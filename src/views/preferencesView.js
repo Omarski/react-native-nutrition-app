@@ -4,7 +4,7 @@ export default class PreferencesView extends React.Component {
 
         render(){
             return (
-                <View><Text>Preferences...</Text></View>
+                <View><Text>Preferences page ...</Text></View>
             )
         }
 }

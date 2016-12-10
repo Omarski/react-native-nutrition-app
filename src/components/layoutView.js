@@ -1,16 +1,16 @@
 
 import React from 'react';
 import {
-    AppRegistry,
+    NavigatorIOS,
     StyleSheet,
     Text,
     View
 } from 'react-native';
 
-//import {Link, Match} from 'react-router';
+import {NavigatorIOS} from 'react-router';
 import {connect} from 'react-redux';
 
-import PreferencesView from './preferencesView';
+import MySceneView from '../views//mySceneView';
 
 import {getUserAction, getAppDataAction} from '../actions/actions';
 
@@ -18,16 +18,24 @@ import {getUserAction, getAppDataAction} from '../actions/actions';
 class LayoutView extends React.Component{
 
     componentWillMount(){
-        //this.props.dispatch(getUserAction());
         getAppDataAction(this.props.dispatch);
     }
 
     render(){
         return (
+            <NavigatorIOS
+                initialRoute={{
+                    title:"",
+                    component:MySceneView,
+                    passProps: { appData: this.props.appData }
+                }}
+                style={{flex: 1}}
+            >
             <View>
                 <Text>User init app: {this.props.appData.userInit}</Text>
 
             </View>
+            </NavigatorIOS>
         )
     }
 }
