@@ -7,35 +7,29 @@ import {
     View
 } from 'react-native';
 
-import {NavigatorIOS} from 'react-router';
 import {connect} from 'react-redux';
 
-import MySceneView from '../views//mySceneView';
+import MySceneView from '../views/mySceneView';
 
-import {getUserAction, getAppDataAction} from '../actions/actions';
+import {getAppDataAction} from '../actions/actions';
 
 
 class LayoutView extends React.Component{
 
     componentWillMount(){
-        getAppDataAction(this.props.dispatch);
+        //getAppDataAction(this.props.dispatch);
     }
 
     render(){
         return (
             <NavigatorIOS
                 initialRoute={{
-                    title:"",
+                    title:"My Scene",
                     component:MySceneView,
                     passProps: { appData: this.props.appData }
                 }}
                 style={{flex: 1}}
-            >
-            <View>
-                <Text>User init app: {this.props.appData.userInit}</Text>
-
-            </View>
-            </NavigatorIOS>
+            />
         )
     }
 }

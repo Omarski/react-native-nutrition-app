@@ -1,12 +1,20 @@
 
-import {Component, propTypes} from 'react';
-import PreferencesView from './PreferencesView';
-export default class MyScene extends Component{
+import React, {PropTypes} from 'react';
+
+import {
+    Text,
+    View,
+    TouchableHighlight
+} from 'react-native';
+
+import PreferencesView from './preferencesView';
+
+export default class MySceneView extends React.Component{
 
     static propTypes = {
-        navigator: propTypes.object.isRequired,
-        title: propTypes.string.isRequired,
-        passProps:propTypes.object
+        navigator: PropTypes.object.isRequired,
+        title: PropTypes.string,
+        passProps:PropTypes.object
     };
 
     _handleBackPress() {
@@ -14,17 +22,19 @@ export default class MyScene extends Component{
     }
 
     _handleNextPress(nextRoute) {
+        console.log("><><><><><><> :"+ this.props.navigator);
         this.props.navigator.push(nextRoute);
     }
 
-    render(){
+    render() {
 
         return (
-            <view className="splashMainView">
-            <TouchableHighlight onPress = {this._handleNextPress({title:"Preferences", component:PreferencesView})}>
-               Preferences page
-            </TouchableHighlight>
-            </view>
+            <View style={{marginTop: 200, alignSelf: 'center'}}>
+                <TouchableHighlight onPress = {() => this._handleNextPress({title:"Preferences", component:PreferencesView})}>
+                    <Text> Preferences page</Text>
+                </TouchableHighlight>
+            </View>
+
         )
     }
 }

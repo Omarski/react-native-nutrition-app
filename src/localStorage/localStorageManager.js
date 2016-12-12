@@ -1,5 +1,5 @@
 import {AsyncStorage} from 'react-native';
-import {initJSON} from ',/initJSON';
+import {appData} from './initJSON';
 
 export function updateLocalStorage(key,data){
     AsyncStorage.setItem(key,data);
@@ -16,5 +16,5 @@ export function getFromLocalStorage(key){
 }
 
 export function getInitData(){
-    return initJSON.appData;
+    return appData;
 }
