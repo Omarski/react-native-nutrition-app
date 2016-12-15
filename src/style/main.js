@@ -1,22 +1,17 @@
+import { StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-    navigator: {
-        flex: 1,
+
+    //common
+    centerXY:{
+        flex:1,
+        flexDirection:'column',
+        justifyContent:'center',
+        alignItems:'center'
     },
-    scrollView: {
-        marginTop: 64
-    },
-    row: {
-        padding: 15,
-        backgroundColor: 'white',
-        borderBottomWidth: 1 / PixelRatio.get(),
-        borderBottomColor: '#CDCDCD',
-    },
-    rowText: {
-        fontSize: 17,
-    },
-    buttonText: {
-        fontSize: 17,
-        fontWeight: '500',
-    },
+
+    //splash loader
+    loaderArt: {
+
+    }
 });

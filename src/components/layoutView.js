@@ -1,10 +1,7 @@
 
 import React from 'react';
 import {
-    NavigatorIOS,
-    StyleSheet,
-    Text,
-    View
+    NavigatorIOS
 } from 'react-native';
 
 import {connect} from 'react-redux';

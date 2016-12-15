@@ -9,7 +9,7 @@ export default function appReducers(state=defaultStore, action){
 
         case "LOAD_DATA_SUCCESS":
             if (action.data){
-                return Object.assign({},state,{"appData":action.data});
+                return Object.assign({},state,{"appData":action.data, "appDataLoaded":true});
             }else {
                 return state;
             }
@@ -17,7 +17,7 @@ export default function appReducers(state=defaultStore, action){
 
         case "LOCAL_DATA_SUCCESS": case "INIT_DATA_SUCCESS":
 
-            return Object.assign({},state,{"appData":action.data});
+            return Object.assign({},state,{"appData":action.data, "appDataLoaded":true});
 
             break;
 
