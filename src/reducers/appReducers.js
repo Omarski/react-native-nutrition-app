@@ -1,6 +1,7 @@
 
 const defaultStore = {
-    appData:{userInit:false, appDataLoaded:false}
+    appData:{userInit:false},
+    appDataLoaded:false
 };
 
 export default function appReducers(state=defaultStore, action){
@@ -17,6 +18,7 @@ export default function appReducers(state=defaultStore, action){
 
         case "LOCAL_DATA_SUCCESS": case "INIT_DATA_SUCCESS":
 
+            //console.dir(Object.assign({},state,{"appData":action.data, "appDataLoaded":true}));
             return Object.assign({},state,{"appData":action.data, "appDataLoaded":true});
 
             break;

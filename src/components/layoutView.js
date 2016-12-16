@@ -14,7 +14,7 @@ import {getAppDataAction} from '../actions/actions';
 class LayoutView extends React.Component{
 
     componentWillMount(){
-        //getAppDataAction(this.props.dispatch);
+        getAppDataAction(this.props.dispatch);
     }
 
     render(){

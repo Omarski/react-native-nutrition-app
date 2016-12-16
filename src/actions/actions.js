@@ -24,8 +24,10 @@ export function getAppDataAction(dispatch){
         console.log('>>>>>>>>>>>>>> There has been a problem with your fetch operation: ' + error.message);
         //load local storage here
         if (getFromLocalStorage("appData")){
+            console.log(">>>>>>>>>>> found local data...");
             dispatch({ type: 'LOCAL_DATA_SUCCESS', data:getFromLocalStorage("appData")});
         }else{
+            console.log(">>>>>>>>>>> No local data...");
             dispatch({ type: 'INIT_DATA_SUCCESS', data:getInitData()});
         }
 
