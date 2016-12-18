@@ -1,5 +1,7 @@
 import { StyleSheet} from "react-native";
 
+
+//can define vars here ddepending on conditions to use inside styles
 export const styles = StyleSheet.create({
 
     //common
@@ -12,27 +14,51 @@ export const styles = StyleSheet.create({
 
     //splash loader
     loaderArt: {
-
+        flex:1,
+        resizeMode:"center"
     },
 
     //splash view
+    splashBlockCont:{
+        flex:1,
+        // justifyContent:"center",
+        // alignItems:"center",
+    },
+
     splashBlock:{
         flex:1,
-        flexDirection:"row",
+        //flexDirection:"row",
         justifyContent:"center",
         alignItems:"center",
-        borderBottomColor:"#000",
-        borderBottomWidth:2
+        // backgroundColor:"gray",
+        // borderBottomColor:"green",
+        // borderBottomWidth:2,
+
+        //height:300
     },
 
     splashBlockImage:{
         flex:1,
-        padding:20
+        resizeMode:"contain",
+        backgroundColor:"blue",
+        //width:300,
+        //height:300
+        //resizeMode:"contain",
+        //padding:0
     },
 
     splashBlockText:{
-        flex:1,
+        flex:.5,
+        color:"#fff",
+        //flexDirection: "column",
+        flexWrap: 'wrap',
+        marginTop:-200,
         fontSize:20,
-        padding:20
+        //height:200,
+        //backgroundColor:"red",
+        backgroundColor:'rgba(52,52,52,0)',
+      // width:300
+        borderWidth:2,
+        borderColor:"red"
     }
 });

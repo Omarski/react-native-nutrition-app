@@ -34,14 +34,16 @@ class MySceneView extends React.Component{
     render() {
 
         return (
-            <View style={styles.centerXY}>
+            <View style={{flex:1}}>
 
                 {/*loader image*/}
                 {!this.props.appDataLoaded ?
 
-                   <Image resizeMode="contain"
+                   <Image
+                           style={styles.loaderArt}
                            source={require('../../images/loaderArt.png')}
-                    />: null}
+
+                   />: null}
 
                 {/*splash view*/}
                 {this.props.appDataLoaded ?

@@ -2,13 +2,13 @@
 import React, {PropTypes} from 'react';
 
 import {
-    Text,
-    View,
-    Image,
-    TouchableHighlight
+    View
 } from 'react-native';
 
+import SplashBlockView from './splashBlocksView';
+
 import CustomView from './customView';
+
 
 export default class SplashView extends React.Component{
 
@@ -17,10 +17,10 @@ export default class SplashView extends React.Component{
         styles:PropTypes.object.isRequired
     };
 
-    static onClickBlock(view){
+     onClickBlock(view){
         switch (view) {
             case "custom":
-                this.navigator.push(
+                this.props.navigator.push(
                     {title:"Smoothie Factory",
                         component:CustomView,
                         passProps: {styles:this.props.styles}
@@ -33,20 +33,26 @@ export default class SplashView extends React.Component{
     render() {
 
         return (
-            <View style={[this.props.styles.centerXY,{backgroundColor:"#001"}]}>
-                <TouchableHighlight
-                        style = {this.props.styles.splashBlock}
-                        onPress = {()=>this.onClickBlock("custom")}
-                        >
-                    <View>
-                        <Image source={require("../../images/splashCustom.png")}
-                               style = {this.props.styles.splashBlockImage}/>
-                        <Text style={this.props.styles.splashBlockText}>
-                            Let's explore creating the perfect smoothie for you!
-                        </Text>
-                    </View>
+            <View style={this.props.styles.splashBlockCont}>
+                <SplashBlockView
+                    styles={this.props.styles}
+                    onClickBlock={()=>{this.onClickBlock("custom")}}
+                    imageIndex={0}
+                    blockTitle={"Let's explore creating the perfect smoothie for you!"}
+                />
+                <SplashBlockView
+                    styles={this.props.styles}
+                    onClickBlock={()=>{this.onClickBlock("custom")}}
+                    imageIndex={0}
+                    blockTitle={"Let's explore creating the perfect smoothie for you!"}
+                />
+                <SplashBlockView
+                    styles={this.props.styles}
+                    onClickBlock={()=>{this.onClickBlock("custom")}}
+                    imageIndex={0}
+                    blockTitle={"Let's explore creating the perfect smoothie for you!"}
+                />
 
-                </TouchableHighlight>
             </View>
         )
     }
