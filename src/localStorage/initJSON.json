@@ -22,5 +22,9 @@
     "ingredient":[
         {"category":"liquid",     "target":["weightLoss","cleansing"], "title":"water", "measurement":{"st":{"title":"cup", "icon":"measureCup","inc":0.25, "incDef":1, "calories":0}, "mt":{"title":"cup", "icon":"measureCup","inc":0.25, "incDef":1}}, "art":{"thumb":"ingWaterThumb.png", "full":"ingWaterFull.png"}, "about":"Essential element of life..", "taste":[{"neutral":0}],"favored":false, "dontShow":false}
 
-    ]
+    ],
+
+  "appDataText": {
+    "targetPageHeader":"Step 1 - What is you goal for this smoothie?"
+  }
 }

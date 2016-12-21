@@ -44,5 +44,3 @@ export default class SplashBlockView extends React.Component {
         )
     }
 }
-
-{/*<View style={{flex:1, backgroundColor:"green", borderBottomColor:"red", borderBottomWidth:2}}/>*/}
