@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {
     Text,
     View,
@@ -8,14 +8,29 @@ import {
 } from 'react-native';
 
 import {connect} from 'react-redux';
-
+import TargetView from './targetView';
 
 class CustomView extends React.Component{
+
+    static propTypes = {
+        styles: PropTypes.object.isRequired,
+        navigator: PropTypes.object.isRequired,
+        introText: PropTypes.string
+    };
 
     render(){
         return (
             <View style={this.props.styles.centerXY}>
-                <Text>This is the Custom View</Text>
+                <Text>{this.props.introText}</Text>
+                <TouchableHighlight onPress={()=>this.props.navigator.push({
+                    title:"What's your goal?",
+                    component:TargetView,
+                    passProps: {styles:this.props.styles}
+                })}>
+                    <Text>
+                        Click here to start!
+                    </Text>
+                </TouchableHighlight>
             </View>
         )
     }
@@ -24,7 +39,7 @@ class CustomView extends React.Component{
 //what props needed
 const mapStateToProps = (state) => {
     return {
-        appData: state.appReducers.appData
+        introText: state.appReducers.appData.appText.customPageIntro
     }
 };
 

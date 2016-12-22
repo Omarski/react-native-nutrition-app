@@ -9,16 +9,22 @@ import {
 } from 'react-native';
 
 import {connect} from 'react-redux';
+import {categorise} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
+
 class TargetView extends React.Component {
 
     static propTypes = {
         styles: PropTypes.object.isRequired,
         navigator: PropTypes.object.isRequired,
+        appTargetsData:PropTypes.array.isRequired,
+        targetPageHeader:PropTypes.string.isRequired,
+        userSelectTargets:PropTypes.array,
     };
 
     prepTargetSliders = () => {
 
+        return categorise(this.props.appTargetsData,"category");
     };
 
     render() {
@@ -26,7 +32,7 @@ class TargetView extends React.Component {
         return (
                 <View style={{flex:1}}>
                     {/*page header*/}
-                    <Text style={this.props.styles.targetViewHeader}>
+                    <Text style={[this.props.styles.pageHeader, this.props.styles.targetViewHeader]}>
                         {this.props.targetPageHeader}
                     </Text>
                     {/*user selections*/}
@@ -36,7 +42,7 @@ class TargetView extends React.Component {
                     {/*sliders list*/}
                     <SelectionSliderListView
                         styles = {this.props.styles}
-                        sliderList = {this.prepTargetSliders}
+                        sliderColl = {this.prepTargetSliders()}
                     />
                 </View>
 
@@ -46,8 +52,9 @@ class TargetView extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        targetPageHeader: state.appReducers.appDataText.targetPageHeader,
-        userSelectData: state.userReducers.userSelectData.targets.targetsFormatted
+        appTargetsData: state.appReducers.appData.appTargets,
+        targetPageHeader: state.appReducers.appData.appText.targetPageHeader,
+        userSelectTargets: state.userReducers.userSelectData.targets
     }
 };
 

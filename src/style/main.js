@@ -12,11 +12,17 @@ export const styles = StyleSheet.create({
         alignItems:"center"
     },
 
+    pageHeader:{
+       fontSize:20
+    },
+
     //splash loader
     loaderArt: {
         flex:1,
         resizeMode:"center"
     },
+
+    //page views
 
     //splash view
     splashBlockCont:{
@@ -60,5 +66,15 @@ export const styles = StyleSheet.create({
       // width:300
         borderWidth:2,
         borderColor:"red"
+    },
+
+    //Target View
+    targetViewHeader: {
+        color:"gray"
+    },
+
+    targetViewUserTargetsText:{
+        color:"green"
     }
+
 });

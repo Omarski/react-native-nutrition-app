@@ -1,7 +1,7 @@
 
 const defaultStore = {
-    appData:{userInit:false},
-    appDataLoaded:false
+    appData:{},
+    appDataLoaded:false,
 };
 
 export default function appReducers(state=defaultStore, action){

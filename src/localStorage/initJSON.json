@@ -1,7 +1,7 @@
 {
     "userInit":false,
     "appDataLoaded":false,
-    "targets":[
+    "appTargets":[
         {"category":"popular",    "target":"weightLoss","title":"weight loss", "favored":false, "dontShow":false},
         {"category":"popular",    "target":"immunityBoost","title":"immunity boost", "favored":false, "dontShow":false},
         {"category":"popular",    "target":"proteinBoost","title":"protein boost", "favored":false, "dontShow":false},
@@ -19,12 +19,13 @@
         {"category":"medical",    "target":"boostMaleLibido","title":"boost male libido", "favored":false, "dontShow":false},
         {"category":"medical",    "target":"boostFemaleLibido","title":"boost female libido", "favored":false, "dontShow":false}
       ],
-    "ingredient":[
+    "appIngredient":[
         {"category":"liquid",     "target":["weightLoss","cleansing"], "title":"water", "measurement":{"st":{"title":"cup", "icon":"measureCup","inc":0.25, "incDef":1, "calories":0}, "mt":{"title":"cup", "icon":"measureCup","inc":0.25, "incDef":1}}, "art":{"thumb":"ingWaterThumb.png", "full":"ingWaterFull.png"}, "about":"Essential element of life..", "taste":[{"neutral":0}],"favored":false, "dontShow":false}
 
     ],
 
-  "appDataText": {
-    "targetPageHeader":"Step 1 - What is you goal for this smoothie?"
+  "appText": {
+    "targetPageHeader":"Step 1 - What is you goal for this smoothie?",
+    "customPageIntro":"This is the custom page intro...!!!"
   }
 }
