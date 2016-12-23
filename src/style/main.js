@@ -75,6 +75,17 @@ export const styles = StyleSheet.create({
 
     targetViewUserTargetsText:{
         color:"green"
+    },
+
+    targetViewItemBlock:{
+        width:100,
+        height:50,
+        borderWidth:2,
+        borderColor:"#878787"
+    },
+
+    targetViewItemBlockImg:{
+
     }
 
 });

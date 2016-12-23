@@ -27,6 +27,10 @@ class TargetView extends React.Component {
         return categorise(this.props.appTargetsData,"category");
     };
 
+    onPressBlock = (blockRef) => {
+        console.log("Pressed ...");
+    };
+
     render() {
 
         return (
@@ -40,10 +44,11 @@ class TargetView extends React.Component {
                         {this.props.userSelectData}
                     </Text>
                     {/*sliders list*/}
-                    <SelectionSliderListView
+                    {this.prepTargetSliders() ? <SelectionSliderListView
                         styles = {this.props.styles}
-                        sliderColl = {this.prepTargetSliders()}
-                    />
+                        slidersColl = {this.prepTargetSliders()}
+                        onPressBlock={this.onPressBlock}
+                    />:null}
                 </View>
 
         )

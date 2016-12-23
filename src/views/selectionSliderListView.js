@@ -5,26 +5,34 @@ import {
     Text,
     View,
     Image,
-    TouchableHighlight
+    ScrollView
 } from 'react-native';
-
+import SelectionSliderView from './selectionSliderView';
 
 export default class SelectionSliderListView extends React.Component {
 
     static propTypes = {
         styles: PropTypes.object.isRequired,
         //{"category":[{},{}.{}], "category2":[{},{}.{}}
-        slidersColl: PropTypes.object,
+        slidersColl: PropTypes.object.isRequired,
+        onPressBlock: PropTypes.func.isRequired,
     };
 
     slidersListRender = () => {
 
-        const slidersColl = [];
-        const view = Object.keys(this.props.slidersColl).map((key,index) => {
+        const view = Object.keys(this.props.slidersColl).map((category,index) => {
+
+            console.log("..................... slider items array");
+            console.log("category: " + category);
+            console.dir(this.props.slidersColl[category]);
             return (
                 <View key={index}>
-                    <Text>{this.props.slidersColl.key.category}</Text>
-                    <SelectionSliderView selections = {this.props.slidersColl.key} />
+                    <Text>{this.props.slidersColl[category].category}</Text>
+                    <SelectionSliderView
+                        styles = {this.props.styles}
+                        sliderItems = {this.props.slidersColl[category]}
+                        onPressBlock = {this.props.onPressBlock}
+                    />
                 </View>
                     )
         });
@@ -35,9 +43,9 @@ export default class SelectionSliderListView extends React.Component {
     render() {
 
         return (
-            <View>
+            <ScrollView>
                 {this.slidersListRender()}
-            </View>
+            </ScrollView>
         )
     }
 }

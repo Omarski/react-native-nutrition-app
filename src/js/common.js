@@ -12,4 +12,5 @@ export const categorise = (coll,key) => {
     }
     console.log("Categories >>>>>>>>>>>>>: ");
     console.dir(keysColl);
+    return keysColl;
 };

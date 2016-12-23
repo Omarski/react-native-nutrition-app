@@ -8,15 +8,17 @@ import {
     TouchableHighlight
 } from 'react-native';
 import SpecialSelectorIconsView from './specialSelectorIconsView';
+
 export default class SelectionItemView extends React.Component {
 
     static propTypes = {
         styles: PropTypes.object.isRequired,
         blockStyle: PropTypes.string,
         imageSrc: PropTypes.object.isRequired,
+        imgStyle: PropTypes.object,
         blockTitle: PropTypes.string.isRequired,
         blockId:PropTypes.string.isRequired,
-        onClickBlock: PropTypes.func.isRequired,
+        onPressBlock: PropTypes.func.isRequired,
         specialSelectorColl: PropTypes.array,
     };
 
@@ -29,7 +31,7 @@ export default class SelectionItemView extends React.Component {
                 <View style={this.props.blockStyle}>
 
                     <Image source={this.props.imageSrc}
-                           style={this.props.styles.selectionItemBlockImage}
+                           style={this.props.imgStyle}
                     />
                     <Text style={this.props.styles.selectionItemBlockText}>
                         {this.props.blockTitle}
