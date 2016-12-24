@@ -16,6 +16,11 @@ export const styles = StyleSheet.create({
        fontSize:20
     },
 
+    slidersTitles:{
+       color:"#000",
+        fontSize:15
+    },
+
     //splash loader
     loaderArt: {
         flex:1,
@@ -78,14 +83,18 @@ export const styles = StyleSheet.create({
     },
 
     targetViewItemBlock:{
-        width:100,
-        height:50,
-        borderWidth:2,
+        width:168,
+        height:112,
+        borderWidth:1,
         borderColor:"#878787"
     },
 
     targetViewItemBlockImg:{
+        opacity:0.2
+    },
 
+    targetViewItemBlockText:{
+        fontSize:12
     }
 
 });

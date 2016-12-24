@@ -7,39 +7,43 @@ import {
     Image,
     TouchableHighlight
 } from 'react-native';
+
 import SpecialSelectorIconsView from './specialSelectorIconsView';
 
 export default class SelectionItemView extends React.Component {
 
     static propTypes = {
         styles: PropTypes.object.isRequired,
-        blockStyle: PropTypes.string,
-        imageSrc: PropTypes.object.isRequired,
-        imgStyle: PropTypes.object,
+        blockStyle: PropTypes.number,
+        imageSrc: PropTypes.number.isRequired,
+        imgStyle: PropTypes.number,
         blockTitle: PropTypes.string.isRequired,
+        blockTextStyle: PropTypes.number,
         blockId:PropTypes.string.isRequired,
         onPressBlock: PropTypes.func.isRequired,
-        specialSelectorColl: PropTypes.array,
+        specialSelectorColl: PropTypes.array
     };
 
     render() {
 
+        let self = this;
         return (
             <TouchableHighlight style={{flex:1}}
-                                onPress={() => this.props.onClickBlock(this.props.blockId)}
+                                onPress={() => {self.props.onPressBlock(self.props.blockId)}}
             >
                 <View style={this.props.blockStyle}>
 
                     <Image source={this.props.imageSrc}
                            style={this.props.imgStyle}
                     />
-                    <Text style={this.props.styles.selectionItemBlockText}>
+
+                    <Text style={{color:"red","marginTop":-30,zIndex:10}}>
                         {this.props.blockTitle}
                     </Text>
 
+
                     {this.props.specialSelectorColl ?
                         <SpecialSelectorIconsView specialSelectorColl = {this.specialSelectorColl} />:null}
-                    />
 
                 </View>
             </TouchableHighlight>

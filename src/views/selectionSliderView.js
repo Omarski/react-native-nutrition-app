@@ -15,7 +15,6 @@ export default class SelectionSliderView extends React.Component {
     static propTypes = {
         styles: PropTypes.object.isRequired,
         sliderItems: PropTypes.array.isRequired,
-        sliderTitle: PropTypes.string,
         onPressBlock: PropTypes.func.isRequired,
     };
 
@@ -28,31 +27,34 @@ export default class SelectionSliderView extends React.Component {
         };
     }
 
-
     render() {
 
-        console.log(">>>>>>>> Data source");
-        console.dir(this.state.dataSource);
+        // console.log(">>>>>>>> sliderTitle:");
+        // console.dir(this.props.sliderTitle);
 
         return (
+
             <View style={{flex: 1, paddingTop: 22}}>
-                {this.props.sliderTitle ? <Text>{this.props.sliderTitle}</Text>:null}
-                <ListView horizontal={true}>
+                <ListView
+                    horizontal={true}
                     dataSource={this.state.dataSource}
                     renderRow={(rowData) =>
                         <View>
                             <SelectionItemView
-                            styles = {this.props.styles}
-                            blockStyle={this.props.styles.targetViewItemBlock}
-                            imageSrc={require('../../images/targetImgFpo.png')}
-                            imgStyle={this.props.styles.targetViewItemBlockImg}
-                            blockTitle={rowData.title}
-                            blockId={rowData.target}
-                            onPressBlock={this.props.onPressBlock}
-                            specialSelectorColl={null}
+                                styles = {this.props.styles}
+                                blockStyle={this.props.styles.targetViewItemBlock}
+                                imageSrc={require('../../images/targetImgFpo.png')}
+                                imgStyle={this.props.styles.targetViewItemBlockImg}
+                                blockTitle={rowData.title}
+                                blockTextStyle={this.props.targetViewItemBlockText}
+                                blockId={rowData.target}
+                                onPressBlock={this.props.onPressBlock}
+                                specialSelectorColl={null}
                             />
-                        </View>}}
-                </ListView>
+
+                        </View>}
+                />
+
             </View>
         );
     }

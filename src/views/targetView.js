@@ -27,8 +27,8 @@ class TargetView extends React.Component {
         return categorise(this.props.appTargetsData,"category");
     };
 
-    onPressBlock = (blockRef) => {
-        console.log("Pressed ...");
+    onPressBlock = (blockId) => {
+        console.log("Pressed ... : "+ blockId);
     };
 
     render() {

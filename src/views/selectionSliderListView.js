@@ -22,12 +22,12 @@ export default class SelectionSliderListView extends React.Component {
 
         const view = Object.keys(this.props.slidersColl).map((category,index) => {
 
-            console.log("..................... slider items array");
-            console.log("category: " + category);
-            console.dir(this.props.slidersColl[category]);
+           //console.log("..................... category print:" + this.props.slidersColl[category].category);
+           //console.log("category: " + category);
+            // console.dir(this.props.slidersColl[category]);
             return (
                 <View key={index}>
-                    <Text>{this.props.slidersColl[category].category}</Text>
+                    <Text>{category}</Text>
                     <SelectionSliderView
                         styles = {this.props.styles}
                         sliderItems = {this.props.slidersColl[category]}
