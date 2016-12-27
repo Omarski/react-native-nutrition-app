@@ -2,25 +2,25 @@
     "userInit":false,
     "appDataLoaded":false,
     "appTargets":[
-        {"category":"popular",    "target":"weightLoss","title":"weight loss", "favored":false, "dontShow":false},
-        {"category":"popular",    "target":"immunityBoost","title":"immunity boost", "favored":false, "dontShow":false},
-        {"category":"popular",    "target":"proteinBoost","title":"protein boost", "favored":false, "dontShow":false},
-        {"category":"popular",    "target":"detox","title":"body detox", "favored":false, "dontShow":false},
-        {"category":"popular",    "target":"boostMaleLibido","title":"boost male libido", "favored":false, "dontShow":false},
-        {"category":"popular",    "target":"boostFemaleLibido","title":"boost female libido", "favored":false, "dontShow":false},
-        {"category":"cleansing",  "target":"detox","title":"body detox", "favored":false, "dontShow":false},
-        {"category":"cleansing",  "target":"bodyCleanse","title":"body cleanser", "favored":false, "dontShow":false},
-        {"category":"medical",    "target":"lowerBloodPressure","title":"lower blood pressure", "favored":false, "dontShow":false},
-        {"category":"medical",    "target":"lowerInflammation","title":"lower inflammation", "favored":false, "dontShow":false},
-        {"category":"medical",    "target":"lowerBloodSugar","title":"lower blood sugar", "favored":false, "dontShow":false},
-        {"category":"medical",    "target":"strengthenHeart","title":"strengthen heart", "favored":false, "dontShow":false},
-        {"category":"medical",    "target":"treatHeadache","title":"treat headache", "favored":false, "dontShow":false},
-        {"category":"medical",    "target":"boostConcentration","title":"boost concentration", "favored":false, "dontShow":false},
-        {"category":"medical",    "target":"boostMaleLibido","title":"boost male libido", "favored":false, "dontShow":false},
-        {"category":"medical",    "target":"boostFemaleLibido","title":"boost female libido", "favored":false, "dontShow":false}
+        {"category":"popular", "id":"weightLoss", "title":"weight loss", "selected":false, "favored":false, "dontShow":false},
+        {"category":"popular", "id":"immunityBoost", "title":"immunity boost", "selected":false, "favored":false, "dontShow":false},
+        {"category":"popular", "id":"proteinBoost", "title":"protein boost", "selected":false, "favored":false, "dontShow":false},
+        {"category":"popular", "id":"detox", "title":"body detox", "selected":false, "favored":false, "dontShow":false},
+        {"category":"popular", "id":"boostMaleLibido", "title":"boost male libido", "selected":false, "favored":false, "dontShow":false},
+        {"category":"popular", "id":"boostFemaleLibido", "title":"boost female libido", "selected":false, "favored":false, "dontShow":false},
+        {"category":"cleansing", "id":"detox", "title":"body detox", "selected":false, "favored":false, "dontShow":false},
+        {"category":"cleansing", "id":"bodyCleanse", "title":"body cleanser", "selected":false, "favored":false, "dontShow":false},
+        {"category":"medical", "id":"lowerBloodPressure", "title":"lower blood pressure", "selected":false, "favored":false, "dontShow":false},
+        {"category":"medical", "id":"lowerInflammation", "title":"lower inflammation", "selected":false, "favored":false, "dontShow":false},
+        {"category":"medical", "id":"lowerBloodSugar", "title":"lower blood sugar", "selected":false, "favored":false, "dontShow":false},
+        {"category":"medical", "id":"strengthenHeart", "title":"strengthen heart", "selected":false, "favored":false, "dontShow":false},
+        {"category":"medical", "id":"treatHeadache", "title":"treat headache", "selected":false, "favored":false, "dontShow":false},
+        {"category":"medical", "id":"boostConcentration", "title":"boost concentration", "selected":false, "favored":false, "dontShow":false},
+        {"category":"medical", "id":"boostMaleLibido", "title":"boost male libido", "selected":false, "favored":false, "dontShow":false},
+        {"category":"medical", "id":"boostFemaleLibido", "title":"boost female libido", "selected":false, "favored":false, "dontShow":false}
       ],
     "appIngredient":[
-        {"category":"liquid",     "target":["weightLoss","cleansing"], "title":"water", "measurement":{"st":{"title":"cup", "icon":"measureCup","inc":0.25, "incDef":1, "calories":0}, "mt":{"title":"cup", "icon":"measureCup","inc":0.25, "incDef":1}}, "art":{"thumb":"ingWaterThumb.png", "full":"ingWaterFull.png"}, "about":"Essential element of life..", "taste":[{"neutral":0}],"favored":false, "dontShow":false}
+        {"category":"liquid", "target":["weightLoss","cleansing"], "title":"water", "measurement":{"st":{"title":"cup", "icon":"measureCup","inc":0.25, "incDef":1, "calories":0}, "mt":{"title":"cup", "icon":"measureCup","inc":0.25, "incDef":1}}, "art":{"thumb":"ingWaterThumb.png", "full":"ingWaterFull.png"}, "about":"Essential element of life..", "taste":[{"neutral":0}],"favored":false, "dontShow":false}
 
     ],
 

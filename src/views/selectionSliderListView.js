@@ -15,6 +15,7 @@ export default class SelectionSliderListView extends React.Component {
         styles: PropTypes.object.isRequired,
         //{"category":[{},{}.{}], "category2":[{},{}.{}}
         slidersColl: PropTypes.object.isRequired,
+        userData: PropTypes.array.isRequired,
         onPressBlock: PropTypes.func.isRequired,
     };
 
@@ -24,16 +25,17 @@ export default class SelectionSliderListView extends React.Component {
 
            //console.log("..................... category print:" + this.props.slidersColl[category].category);
            //console.log("category: " + category);
-            // console.dir(this.props.slidersColl[category]);
+           //console.dir(this.props.slidersColl[category]);
             return (
-                <View key={index}>
-                    <Text>{category}</Text>
-                    <SelectionSliderView
-                        styles = {this.props.styles}
-                        sliderItems = {this.props.slidersColl[category]}
-                        onPressBlock = {this.props.onPressBlock}
-                    />
-                </View>
+                        <View key={index}>
+                            <Text>{category}</Text>
+                            <SelectionSliderView
+                                styles = {this.props.styles}
+                                sliderItems = {this.props.slidersColl[category]}
+                                userData = {this.props.userData}
+                                onPressBlock = {this.props.onPressBlock}
+                            />
+                        </View>
                     )
         });
 

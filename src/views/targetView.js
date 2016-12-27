@@ -11,6 +11,7 @@ import {
 import {connect} from 'react-redux';
 import {categorise} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
+import {addTargetAction, removeTargetAction} from '../actions/actions';
 
 class TargetView extends React.Component {
 
@@ -27,8 +28,18 @@ class TargetView extends React.Component {
         return categorise(this.props.appTargetsData,"category");
     };
 
-    onPressBlock = (blockId) => {
-        console.log("Pressed ... : "+ blockId);
+    renderTargetTitles = () => {
+
+        let targetHeadText = "";
+        for (let i = 0 ; i < this.props.userSelectTargets.length; i++){
+            targetHeadText+= ", " + this.props.userSelectTargets[i].title;
+       }
+
+       return targetHeadText;
+    };
+
+    onPressBlock = (targetObj,isSelected) => {
+        (isSelected) ? this.props.dispatch(removeTargetAction(targetObj)):this.props.dispatch(addTargetAction(targetObj));
     };
 
     render() {
@@ -39,18 +50,21 @@ class TargetView extends React.Component {
                     <Text style={[this.props.styles.pageHeader, this.props.styles.targetViewHeader]}>
                         {this.props.targetPageHeader}
                     </Text>
+
                     {/*user selections*/}
-                    <Text style={this.props.styles.targetViewUserTargetsText}>
-                        {this.props.userSelectData}
-                    </Text>
+                    {this.props.userSelectTargets ? <Text style={this.props.styles.targetViewUserTargetsText}>
+                        {this.renderTargetTitles()}
+                    </Text>:null}
+
                     {/*sliders list*/}
                     {this.prepTargetSliders() ? <SelectionSliderListView
                         styles = {this.props.styles}
                         slidersColl = {this.prepTargetSliders()}
+                        //userData = {{selections:this.props.userSelectTargets}}
+                        userData = {this.props.userSelectTargets}
                         onPressBlock={this.onPressBlock}
                     />:null}
                 </View>
-
         )
     }
 }

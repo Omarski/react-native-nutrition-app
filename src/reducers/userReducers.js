@@ -17,8 +17,8 @@ export default function userReducers(state=defaultStore, action){
             return state;
             break;
 
-        case "updateTargets":
-            return state;
+        case "addTarget":
+            return Object.assign({},state,{userSelectData:{targets:[...state.userSelectData.targets,action.payload.targetObj]}});
             break;
 
         default: return state;

@@ -1,11 +1,19 @@
 import {updateLocalStorage, getFromLocalStorage, getInitData} from '../localStorage/localStorageManager'
 
-export function addUserAction(user){
+export function addTargetAction(targetObj){
     return {
-        type:"addUser",
+        type:"addTarget",
         payload: {
-            name: user.name,
-            age: user.age
+            targetObj: targetObj
+        }
+    }
+}
+
+export function removeTargetAction(targetObj){
+    return {
+        type:"removeTarget",
+        payload: {
+            targetObj: targetObj
         }
     }
 }
@@ -14,20 +22,20 @@ export function getAppDataAction(dispatch){
 
     fetch("http://localhost:3000/appData").then(
         res => res.json()).then(data =>{
-        console.log("............. result: " + data.userInit);
+        //console.log("............. result: " + data.userInit);
         //dispatch store action only after we get server result
         dispatch({ type: 'LOAD_DATA_SUCCESS', data:{data:data}});
         //update local storage here
         updateLocalStorage("appData",data);
 
     }).catch(function(error) {
-        console.log('>>>>>>>>>>>>>> There has been a problem with your fetch operation: ' + error.message);
+        //console.log('>>>>>>>>>>>>>> There has been a problem with your fetch operation: ' + error.message);
         //load local storage here
         if (getFromLocalStorage("appData")){
-            console.log(">>>>>>>>>>> found local data...");
+            //console.log(">>>>>>>>>>> found local data...");
             dispatch({ type: 'LOCAL_DATA_SUCCESS', data:getFromLocalStorage("appData")});
         }else{
-            console.log(">>>>>>>>>>> No local data...");
+            //console.log(">>>>>>>>>>> No local data...");
             dispatch({ type: 'INIT_DATA_SUCCESS', data:getInitData()});
         }
 

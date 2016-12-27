@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     },
 
     pageHeader:{
+       flex:1,
        fontSize:20
     },
 
@@ -79,6 +80,7 @@ export const styles = StyleSheet.create({
     },
 
     targetViewUserTargetsText:{
+        flex:1,
         color:"green"
     },
 
@@ -89,12 +91,21 @@ export const styles = StyleSheet.create({
         borderColor:"#878787"
     },
 
+    targetViewItemBlockSelected:{
+        width:168,
+        height:112,
+        borderWidth:1,
+        borderColor:"#208731"
+    },
+
     targetViewItemBlockImg:{
         opacity:0.2
     },
 
     targetViewItemBlockText:{
-        fontSize:12
+        color:"red",
+        marginTop:-30,
+        zIndex:10
     }
 
 });
