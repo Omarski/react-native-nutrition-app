@@ -19,19 +19,24 @@ export default class SelectionSliderView extends React.Component {
         onPressBlock: PropTypes.func.isRequired,
     };
 
+    componentDidMount(){
+        let newArray = this.props.sliderItems.slice();
+        this.setState({dataSource:this.state.dataSource.cloneWithRows(newArray)});
+    }
+
     constructor(props) {
         super(props);
-
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) =>true});
+        //let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-            dataSource: ds.cloneWithRows(props.sliderItems)
+            dataSource: ds.cloneWithRows(props.sliderItems),
         };
     }
 
     render() {
 
-        // console.log(">>>>>>>> sliderTitle:");
-        // console.dir(this.props.sliderTitle);
+        console.log(">>>>>>zzzzzz Updating target view: userDta:");
+        console.dir(this.props.userData);
 
         return (
 
@@ -39,7 +44,7 @@ export default class SelectionSliderView extends React.Component {
                 <ListView
                     horizontal={true}
                     dataSource={this.state.dataSource}
-                    renderRow={(rowData) =>
+                    renderRow={(rowData) => //rowData has to change to rerender?
                         <View>
                             <SelectionItemView
                                 styles = {this.props.styles}

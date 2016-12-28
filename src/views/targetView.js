@@ -11,7 +11,7 @@ import {
 import {connect} from 'react-redux';
 import {categorise} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
-import {addTargetAction, removeTargetAction} from '../actions/actions';
+import {addTargetAction, updateTargetObjAction, removeTargetAction} from '../actions/actions';
 
 class TargetView extends React.Component {
 
@@ -39,11 +39,19 @@ class TargetView extends React.Component {
     };
 
     onPressBlock = (targetObj,isSelected) => {
-        (isSelected) ? this.props.dispatch(removeTargetAction(targetObj)):this.props.dispatch(addTargetAction(targetObj));
+        if (isSelected){
+            this.props.dispatch(removeTargetAction(targetObj));
+
+        }else {
+            this.props.dispatch(addTargetAction(targetObj));
+            this.props.dispatch(updateTargetObjAction(targetObj,"selected",true));
+        }
     };
 
     render() {
 
+        console.log(">>>>>>00000 Updating target view: userDta:");
+        console.dir(this.props.userSelectTargets);
         return (
                 <View style={{flex:1}}>
                     {/*page header*/}

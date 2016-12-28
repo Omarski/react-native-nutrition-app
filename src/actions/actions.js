@@ -9,6 +9,17 @@ export function addTargetAction(targetObj){
     }
 }
 
+export function updateTargetObjAction(targetObj, key, value){
+    return {
+        type:"UPDATE_TARGET_OBJECT",
+        payload: {
+            targetObj: targetObj,
+            key:key,
+            value:value
+        }
+    }
+}
+
 export function removeTargetAction(targetObj){
     return {
         type:"removeTarget",

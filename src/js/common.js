@@ -17,6 +17,7 @@ export const categorise = (coll,key) => {
 
 export const findInObjArray = (coll, key, value) => {
     console.log("Looking through " + coll.length + " selections for key " + key + " to be " + value);
-    console.dir(coll);
+    //console.dir(coll);
     return coll.filter((obj) => obj[key] === value);
+    //return false;
 };

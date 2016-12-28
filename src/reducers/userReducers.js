@@ -7,7 +7,6 @@ const defaultStore = {
     userSelectData:{
         targets:[]
     }
-
 };
 
 export default function userReducers(state=defaultStore, action){
@@ -18,6 +17,7 @@ export default function userReducers(state=defaultStore, action){
             break;
 
         case "addTarget":
+            //return Object.assign({},state,{userSelectData:{targets:[...state.userSelectData.targets,action.payload.targetObj]}});
             return Object.assign({},state,{userSelectData:{targets:[...state.userSelectData.targets,action.payload.targetObj]}});
             break;
 

@@ -28,8 +28,9 @@ export default class SelectionItemView extends React.Component {
         specialSelectorColl: PropTypes.array
     };
 
+
     checkIfSelected = () => {
-        console.log(">>>> found in array : " + findInObjArray(this.props.userData, "id", this.props.blockId).length);
+        //console.log(">>>> found in array : " + findInObjArray(this.props.userData, "id", this.props.blockId).length);
         // selections of target objects
 
         return (findInObjArray(this.props.userData, "id", this.props.blockId).length > 0);
@@ -37,12 +38,11 @@ export default class SelectionItemView extends React.Component {
 
     render() {
 
-        console.log(">>>>>>>>>>>>>> User Data");
+        console.log(">>>>>>YYYYYYY Updating target view: userDta:");
         console.dir(this.props.userData);
-        let self = this;
         return (
             <TouchableHighlight style={{flex:1}}
-                                onPress={() => {self.props.onPressBlock(self.props.targetObj, this.checkIfSelected())}}
+                                onPress={() => {this.props.onPressBlock(this.props.targetObj, this.checkIfSelected());}}
             >
                 <View style={this.checkIfSelected() ? this.props.blockStyleSelected:this.props.blockStyle}>
 
@@ -55,7 +55,7 @@ export default class SelectionItemView extends React.Component {
                     </Text>
 
                     {this.props.specialSelectorColl ?
-                        <SpecialSelectorIconsView specialSelectorColl = {this.specialSelectorColl} />:null}
+                        <SpecialSelectorIconsView specialSelectorColl = {this.props.specialSelectorColl} />:null}
 
                 </View>
             </TouchableHighlight>
