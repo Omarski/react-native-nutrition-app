@@ -10,14 +10,12 @@ export const categorise = (coll,key) => {
             keysColl[coll[i][key]] = [coll[i]];
         }
     }
-    //console.log("Categories >>>>>>>>>>>>>: ");
-    //console.dir(keysColl);
+
     return keysColl;
 };
 
+//return an array of all qualified objects
 export const findInObjArray = (coll, key, value) => {
-    console.log("Looking through " + coll.length + " selections for key " + key + " to be " + value);
-    //console.dir(coll);
+
     return coll.filter((obj) => obj[key] === value);
-    //return false;
 };

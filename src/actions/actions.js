@@ -1,14 +1,5 @@
 import {updateLocalStorage, getFromLocalStorage, getInitData} from '../localStorage/localStorageManager'
 
-export function addTargetAction(targetObj){
-    return {
-        type:"addTarget",
-        payload: {
-            targetObj: targetObj
-        }
-    }
-}
-
 export function updateTargetObjAction(targetObj, key, value){
     return {
         type:"UPDATE_TARGET_OBJECT",
@@ -20,9 +11,18 @@ export function updateTargetObjAction(targetObj, key, value){
     }
 }
 
+export function addTargetAction(targetObj){
+    return {
+        type:"ADD_TARGET_SELECTION",
+        payload: {
+            targetObj: targetObj
+        }
+    }
+}
+
 export function removeTargetAction(targetObj){
     return {
-        type:"removeTarget",
+        type:"REMOVE_TARGET_SELECTION",
         payload: {
             targetObj: targetObj
         }

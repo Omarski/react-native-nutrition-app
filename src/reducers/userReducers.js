@@ -12,13 +12,12 @@ const defaultStore = {
 export default function userReducers(state=defaultStore, action){
     switch(action.type){
 
-        case "getUser":
-            return state;
+        case "ADD_TARGET_SELECTION":
+            return Object.assign({},state,{userSelectData:{targets:[...state.userSelectData.targets,action.payload.targetObj]}});
             break;
 
-        case "addTarget":
-            //return Object.assign({},state,{userSelectData:{targets:[...state.userSelectData.targets,action.payload.targetObj]}});
-            return Object.assign({},state,{userSelectData:{targets:[...state.userSelectData.targets,action.payload.targetObj]}});
+        case "REMOVE_TARGET_SELECTION":
+            return Object.assign({},state,{userSelectData:{targets:state.userSelectData.targets.filter((targetObj)=>targetObj.id !== action.payload.targetObj.id)}});
             break;
 
         default: return state;

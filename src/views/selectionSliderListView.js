@@ -23,8 +23,6 @@ export default class SelectionSliderListView extends React.Component {
 
         const view = Object.keys(this.props.slidersColl).map((category,index) => {
 
-            console.log(">>>>>>xxxx Updating List View view: userDta:");
-            console.dir(this.props.userData);
             return (
                         <View key={index}>
                             <Text>{category}</Text>

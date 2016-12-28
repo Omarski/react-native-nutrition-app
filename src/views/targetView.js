@@ -28,6 +28,10 @@ class TargetView extends React.Component {
         return categorise(this.props.appTargetsData,"category");
     };
 
+    prepSpecialIconsColl = () => {
+        
+    };
+
     renderTargetTitles = () => {
 
         let targetHeadText = "";
@@ -38,10 +42,10 @@ class TargetView extends React.Component {
        return targetHeadText;
     };
 
-    onPressBlock = (targetObj,isSelected) => {
-        if (isSelected){
+    onPressBlock = (targetObj) => {
+        if (targetObj.selected){
             this.props.dispatch(removeTargetAction(targetObj));
-
+            this.props.dispatch(updateTargetObjAction(targetObj,"selected",false));
         }else {
             this.props.dispatch(addTargetAction(targetObj));
             this.props.dispatch(updateTargetObjAction(targetObj,"selected",true));
@@ -50,8 +54,6 @@ class TargetView extends React.Component {
 
     render() {
 
-        console.log(">>>>>>00000 Updating target view: userDta:");
-        console.dir(this.props.userSelectTargets);
         return (
                 <View style={{flex:1}}>
                     {/*page header*/}
@@ -68,9 +70,9 @@ class TargetView extends React.Component {
                     {this.prepTargetSliders() ? <SelectionSliderListView
                         styles = {this.props.styles}
                         slidersColl = {this.prepTargetSliders()}
-                        //userData = {{selections:this.props.userSelectTargets}}
                         userData = {this.props.userSelectTargets}
                         onPressBlock={this.onPressBlock}
+                        specialSelectorColl={this.prepSpecialIconsColl()}
                     />:null}
                 </View>
         )

@@ -12,7 +12,7 @@ import {
 export default class SpecialSelectorIconsView extends React.Component {
 
     static propTypes = {
-        //styles: PropTypes.object.isRequired,
+        styles: PropTypes.object.isRequired,
         specialSelectorColl: PropTypes.array,
     };
 

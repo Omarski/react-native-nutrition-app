@@ -27,16 +27,12 @@ export default class SelectionSliderView extends React.Component {
     constructor(props) {
         super(props);
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) =>true});
-        //let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             dataSource: ds.cloneWithRows(props.sliderItems),
         };
     }
 
     render() {
-
-        console.log(">>>>>>zzzzzz Updating target view: userDta:");
-        console.dir(this.props.userData);
 
         return (
 

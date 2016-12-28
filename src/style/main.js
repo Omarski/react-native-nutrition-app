@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
 
     pageHeader:{
        flex:1,
-       fontSize:20
+       fontSize:15
     },
 
     slidersTitles:{
@@ -76,7 +76,8 @@ export const styles = StyleSheet.create({
 
     //Target View
     targetViewHeader: {
-        color:"gray"
+        color:"gray",
+        marginTop:80
     },
 
     targetViewUserTargetsText:{
