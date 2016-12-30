@@ -17,6 +17,7 @@ export default class SelectionSliderListView extends React.Component {
         slidersColl: PropTypes.object.isRequired,
         userData: PropTypes.array.isRequired,
         onPressBlock: PropTypes.func.isRequired,
+        specialSelectorIconsColl: PropTypes.array,
     };
 
     slidersListRender = () => {
@@ -31,6 +32,7 @@ export default class SelectionSliderListView extends React.Component {
                                 sliderItems = {this.props.slidersColl[category]}
                                 userData = {this.props.userData}
                                 onPressBlock = {this.props.onPressBlock}
+                                specialSelectorIconsColl={this.props.specialSelectorIconsColl}
                             />
                         </View>
                     )

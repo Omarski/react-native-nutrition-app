@@ -14,7 +14,7 @@ export default class SelectionItemView extends React.Component {
 
     static propTypes = {
         styles: PropTypes.object.isRequired,
-        targetObj: PropTypes.object.isRequired,
+        selectObj: PropTypes.object.isRequired,
         userData: PropTypes.array.isRequired,
         blockStyle: PropTypes.number,
         blockStyleSelected: PropTypes.number,
@@ -24,16 +24,16 @@ export default class SelectionItemView extends React.Component {
         blockTextStyle: PropTypes.number,
         blockId:PropTypes.string.isRequired,
         onPressBlock: PropTypes.func.isRequired,
-        specialSelectorColl: PropTypes.array
+        specialSelectorIconsColl: PropTypes.array
     };
 
     render() {
 
         return (
             <TouchableHighlight style={{flex:1}}
-                                onPress={() => {this.props.onPressBlock(this.props.targetObj);}}
+                                onPress={() => {this.props.onPressBlock(this.props.selectObj);}}
             >
-                <View style={this.props.targetObj.selected ? this.props.blockStyleSelected:this.props.blockStyle}>
+                <View style={this.props.selectObj.selected ? this.props.blockStyleSelected:this.props.blockStyle}>
 
                     <Image source={this.props.imageSrc}
                            style={this.props.imgStyle}
@@ -43,8 +43,11 @@ export default class SelectionItemView extends React.Component {
                         {this.props.blockTitle}
                     </Text>
 
-                    {this.props.specialSelectorColl ?
-                        <SpecialSelectorIconsView specialSelectorColl = {this.props.specialSelectorColl} />:null}
+                    {this.props.specialSelectorIconsColl ?
+                        <SpecialSelectorIconsView
+                            specialSelectorIconsColl = {this.props.specialSelectorIconsColl}
+                            selectObj = {this.props.selectObj}
+                        />:null}
 
                 </View>
             </TouchableHighlight>

@@ -17,6 +17,8 @@ export default class SelectionSliderView extends React.Component {
         sliderItems: PropTypes.array.isRequired,
         userData: PropTypes.array.isRequired,
         onPressBlock: PropTypes.func.isRequired,
+        specialSelectorIconsColl: PropTypes.array,
+
     };
 
     componentDidMount(){
@@ -44,7 +46,7 @@ export default class SelectionSliderView extends React.Component {
                         <View>
                             <SelectionItemView
                                 styles = {this.props.styles}
-                                targetObj = {rowData}
+                                selectObj = {rowData}
                                 userData = {this.props.userData}
                                 selected = {rowData.selected}
                                 blockStyle = {this.props.styles.targetViewItemBlock}
@@ -55,7 +57,7 @@ export default class SelectionSliderView extends React.Component {
                                 blockTextStyle={this.props.styles.targetViewItemBlockText}
                                 blockId={rowData.id}
                                 onPressBlock={this.props.onPressBlock}
-                                specialSelectorColl={null}
+                                specialSelectorIconsColl={this.props.specialSelectorIconsColl}
                             />
 
                         </View>}

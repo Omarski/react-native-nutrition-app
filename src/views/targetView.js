@@ -11,7 +11,7 @@ import {
 import {connect} from 'react-redux';
 import {categorise} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
-import {addTargetAction, updateTargetObjAction, removeTargetAction} from '../actions/actions';
+import {addTargetAction, updateTargetObjAction, removeTargetAction, updatePrefsTargetAction} from '../actions/actions';
 
 class TargetView extends React.Component {
 
@@ -29,7 +29,41 @@ class TargetView extends React.Component {
     };
 
     prepSpecialIconsColl = () => {
-        
+
+        return [
+            {   id:"favoured",
+                imgSrcOn:require("../../images/specialSelectorIconFavoredOn.png"),
+                imgSrcOff:null,
+                styleOn:this.props.styles.specialSelectorIconFavoredOn,
+                styleOff:null,
+                onPressIcon:this.onPressIconFavoured,
+                showIcon:true
+            },
+
+            {   id:"options",
+                imgSrcOn:require("../../images/specialSelectorIconOptions.png"),
+                imgSrcOff:null,
+                styleOn:this.props.styles.specialSelectorIconOptions,
+                styleOff:null,
+                onPressIcon:this.onPressIconOptions,
+                showIcon:true
+            }
+        ]
+    };
+
+    onPressIconFavoured = (targetObj) => {
+        if (targetObj.favoured) {
+            this.props.dispatch(updateTargetObjAction(targetObj,"favoured",false));
+            this.props.dispatch(updatePrefsTargetAction(targetObj,"targetsPrefsFavoured","favoured",false));
+        }else{
+            this.props.dispatch(updateTargetObjAction(targetObj,"favoured",true));
+            this.props.dispatch(updatePrefsTargetAction(targetObj,"targetsPrefsFavoured","favoured",true));
+        }
+    };
+
+    onPressIconOptions = (targetObj) => {
+       //options popup
+        console.log("Click options");
     };
 
     renderTargetTitles = () => {
@@ -72,7 +106,7 @@ class TargetView extends React.Component {
                         slidersColl = {this.prepTargetSliders()}
                         userData = {this.props.userSelectTargets}
                         onPressBlock={this.onPressBlock}
-                        specialSelectorColl={this.prepSpecialIconsColl()}
+                        specialSelectorIconsColl={this.prepSpecialIconsColl()}
                     />:null}
                 </View>
         )

@@ -1,5 +1,7 @@
 import {updateLocalStorage, getFromLocalStorage, getInitData} from '../localStorage/localStorageManager'
 
+
+//targets
 export function updateTargetObjAction(targetObj, key, value){
     return {
         type:"UPDATE_TARGET_OBJECT",
@@ -29,6 +31,20 @@ export function removeTargetAction(targetObj){
     }
 }
 
+export function updatePrefsTargetAction(targetObj,prefName,key,value){
+    return {
+        type:"UPDATE_PREFS_TARGET",
+        payload: {
+            targetObj: targetObj,
+            prefName: prefName,
+            key:key,
+            value:value
+        }
+    }
+}
+
+
+//database connect
 export function getAppDataAction(dispatch){
 
     fetch("http://localhost:3000/appData").then(

@@ -28,6 +28,25 @@ export const styles = StyleSheet.create({
         resizeMode:"center"
     },
 
+    //icons
+    specialSelectorIconOptions:{
+        position:"absolute",
+        width:35,
+        height:36,
+        bottom:-10,
+        right:5,
+        zIndex:10
+    },
+
+    specialSelectorIconFavoredOn:{
+        position:"absolute",
+        width:37,
+        height:34,
+        top:-95,
+        right:5,
+        zIndex:10
+    },
+
     //page views
 
     //splash view
@@ -95,18 +114,20 @@ export const styles = StyleSheet.create({
     targetViewItemBlockSelected:{
         width:168,
         height:112,
-        borderWidth:1,
+        borderWidth:2,
         borderColor:"#208731"
     },
 
     targetViewItemBlockImg:{
-        opacity:0.2
+        opacity:0.3
     },
 
     targetViewItemBlockText:{
         color:"red",
         marginTop:-30,
         zIndex:10
-    }
+    },
+
+
 
 });
