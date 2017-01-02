@@ -19,8 +19,7 @@ export default class SpecialSelectorIconsView extends React.Component {
                 />
             )
         });
-        // console.log("Gen icons .......");
-        // console.dir(renderedIconsColl);
+
         return renderedIconsColl;
     };
 

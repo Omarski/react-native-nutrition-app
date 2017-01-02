@@ -52,6 +52,20 @@ class TargetView extends React.Component {
         ]
     };
 
+    prepSpecialModalIconsColl = () => {
+
+        return [
+            {   id:"favoured",
+                imgSrcOn:require("../../images/specialSelectorIconModalFavoredOn.png"),
+                imgSrcOff:require("../../images/specialSelectorIconModalFavoredOff.png"),
+                styleOn:this.props.styles.specialSelectorIconFavoredOn,
+                styleOff:null,
+                onPressIcon:this.onPressIconFavoured,
+                showIcon:true
+            }
+        ]
+    };
+
     onPressIconFavoured = (targetObj) => {
         if (targetObj.favoured) {
             this.props.dispatch(updateTargetObjAction(targetObj,"favoured",false));
@@ -84,7 +98,9 @@ class TargetView extends React.Component {
 
     prepModalContent = (targetObj) => {
         return(<TargetModalContentView
+            styles = {this.props.styles}
             targetObj={targetObj}
+            specialSelectorIconsColl = {this.prepSpecialModalIconsColl()}
             onPressClose={this.onModalClose}
         />)
     };
@@ -128,14 +144,14 @@ class TargetView extends React.Component {
                     </Text>:null}
 
                     {/*sliders list*/}
-                    {this.prepTargetSliders() ? <SelectionSliderListView
+                    {this.prepTargetSliders() ?<SelectionSliderListView
                         styles = {this.props.styles}
                         slidersColl = {this.prepTargetSliders()}
                         userData = {this.props.userSelectTargets}
                         onPressBlock={this.onPressBlock}
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
                         modal={this.prepModalData(this.props.targetModalActive)}
-                    />:null}
+                        />:null}
                 </View>
         )
     }

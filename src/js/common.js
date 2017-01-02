@@ -19,3 +19,7 @@ export const findInObjArray = (coll, key, value) => {
 
     return coll.filter((obj) => obj[key] === value);
 };
+
+export const capFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+};

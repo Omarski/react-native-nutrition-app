@@ -1,7 +1,11 @@
 import { StyleSheet} from "react-native";
 
+//can define vars here depending on conditions to use inside styles
 
-//can define vars here ddepending on conditions to use inside styles
+const extend = (from,add) => {
+    return Object.assign({},styles[from],add);
+};
+
 export const styles = StyleSheet.create({
 
     //common
@@ -15,6 +19,16 @@ export const styles = StyleSheet.create({
     pageHeader:{
        flex:1,
        fontSize:15
+    },
+
+     modalHeader:{
+       fontSize:15,
+       color:"#777777"
+    },
+
+    modalText:{
+       fontSize:12,
+       color:"#777777"
     },
 
     slidersTitles:{
@@ -45,6 +59,34 @@ export const styles = StyleSheet.create({
         top:-95,
         right:5,
         zIndex:10
+    },
+
+    specialSelectorIconModalFavoredOn:{
+        position:"absolute",
+        width:37,
+        height:34,
+        top:0,
+        left:5
+    },
+
+
+
+    // buttons
+
+    buttonBox:{
+        borderRadius: 64,
+    },
+
+    buttonModalDone: extend("buttonBox",{
+        backgroundColor:"#7eaa4d",
+        borderWidth:1,
+        borderColor:"#41552a"
+    }),
+
+    buttonTitleModalDone:{
+        fontSize:15,
+        fontWeight:"bold",
+        color:"#fff"
     },
 
     //page views
@@ -95,13 +137,16 @@ export const styles = StyleSheet.create({
 
     //Target View
     targetViewHeader: {
+        flex:0.1,
         color:"gray",
-        marginTop:80
+        marginTop:80,
+        //backgroundColor:"red"
     },
 
     targetViewUserTargetsText:{
-        flex:1,
-        color:"green"
+        flex:0.1,
+        color:"green",
+        //backgroundColor:"yellow"
     },
 
     targetViewItemBlock:{
@@ -126,6 +171,13 @@ export const styles = StyleSheet.create({
         color:"red",
         marginTop:-30,
         zIndex:10
+    },
+
+    targetModalViewImg:{
+        borderColor:"#000",
+        borderWidth:2,
+        width:215,
+        height:215
     },
 
 

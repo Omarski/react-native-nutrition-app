@@ -38,7 +38,7 @@ export default class SelectionSliderView extends React.Component {
 
         return (
 
-            <View style={{flex: 1, paddingTop: 22}}>
+            <View style={{flex: 1, marginBottom:10}}>
                 <ListView
                     horizontal={true}
                     dataSource={this.state.dataSource}
