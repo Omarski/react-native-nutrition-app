@@ -43,6 +43,16 @@ export function updatePrefsTargetAction(targetObj,prefName,key,value){
     }
 }
 
+export function targetModalVisibilityAction(targetObj,show){
+    return {
+        type:"UPDATE_TARGET_MODAL_VISIBLE",
+        payload: {
+            targetObj: targetObj,
+            show: show
+        }
+    }
+}
+
 
 //database connect
 export function getAppDataAction(dispatch){

@@ -7,7 +7,9 @@ import {
     Image,
     ScrollView
 } from 'react-native';
+
 import SelectionSliderView from './selectionSliderView';
+import ModalView from '../viewCommon/modalView';
 
 export default class SelectionSliderListView extends React.Component {
 
@@ -18,6 +20,7 @@ export default class SelectionSliderListView extends React.Component {
         userData: PropTypes.array.isRequired,
         onPressBlock: PropTypes.func.isRequired,
         specialSelectorIconsColl: PropTypes.array,
+        modal:PropTypes.object
     };
 
     slidersListRender = () => {
@@ -44,9 +47,18 @@ export default class SelectionSliderListView extends React.Component {
     render() {
 
         return (
+            <View style={{flex:1}}>
             <ScrollView>
                 {this.slidersListRender()}
             </ScrollView>
+                {this.props.modal ?
+                    <ModalView
+                        content = {this.props.modal.content}
+                        animationType = {this.props.modal.animationType}
+                        modalVisible = {this.props.modal.modalVisible}
+                        transparent = {this.props.modal.transparent}
+                    />:null}
+           </View>
         )
     }
 }

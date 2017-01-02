@@ -11,7 +11,8 @@ import {
 import {connect} from 'react-redux';
 import {categorise} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
-import {addTargetAction, updateTargetObjAction, removeTargetAction, updatePrefsTargetAction} from '../actions/actions';
+import {addTargetAction, updateTargetObjAction, removeTargetAction, updatePrefsTargetAction, targetModalVisibilityAction} from '../actions/actions';
+import TargetModalContentView from './targetModalContentView';
 
 class TargetView extends React.Component {
 
@@ -64,6 +65,32 @@ class TargetView extends React.Component {
     onPressIconOptions = (targetObj) => {
        //options popup
         console.log("Click options");
+        this.prepModalData(targetObj);
+        this.props.dispatch(targetModalVisibilityAction(targetObj,true));
+    };
+
+    prepModalData = (targetObj) => {
+
+        if (targetObj){
+            return {
+                animationType:"fade",
+                modalVisible:!!this.props.targetModalActive,
+                transparent:true,
+                //onRequestClose:this.onModalClose,
+                content: this.prepModalContent(targetObj)
+            }
+        } else return null;
+    };
+
+    prepModalContent = (targetObj) => {
+        return(<TargetModalContentView
+            targetObj={targetObj}
+            onPressClose={this.onModalClose}
+        />)
+    };
+
+    onModalClose = (targetObj) => {
+        this.props.dispatch(targetModalVisibilityAction(targetObj,false));
     };
 
     renderTargetTitles = () => {
@@ -107,6 +134,7 @@ class TargetView extends React.Component {
                         userData = {this.props.userSelectTargets}
                         onPressBlock={this.onPressBlock}
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
+                        modal={this.prepModalData(this.props.targetModalActive)}
                     />:null}
                 </View>
         )
@@ -117,7 +145,8 @@ const mapStateToProps = (state) => {
     return {
         appTargetsData: state.appReducers.appData.appTargets,
         targetPageHeader: state.appReducers.appData.appText.targetPageHeader,
-        userSelectTargets: state.userReducers.userSelectData.targets
+        userSelectTargets: state.userReducers.userSelectData.targets,
+        targetModalActive: state.userReducers.userSelectData.targetModal
     }
 };
 
