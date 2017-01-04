@@ -23,14 +23,14 @@ export default class SpecialIconsView extends React.Component {
 
          //image source
          if (iconObj.imgSrcOff) { //has 2 state images
-             imgSrc = selectObj["id"] === true ? iconObj.imgSrcOn: iconObj.imgSrcOff;
+             imgSrc = selectObj[iconObj["id"]] === true ? iconObj.imgSrcOn: iconObj.imgSrcOff;
          } else {
              imgSrc = iconObj.imgSrcOn;
          }
 
         //image style
         if (iconObj.styleOff) { //has 2 state styles
-            imgStyle = selectObj["id"] === true ? iconObj.styleOn: iconObj.styleOff;
+            imgStyle =  selectObj[iconObj["id"]] === true ? iconObj.styleOn: iconObj.styleOff;
         } else {
             imgStyle = iconObj.styleOn;
         }

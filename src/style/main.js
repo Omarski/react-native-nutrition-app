@@ -2,10 +2,6 @@ import { StyleSheet} from "react-native";
 
 //can define vars here depending on conditions to use inside styles
 
-const extend = (from,add) => {
-    return Object.assign({},styles[from],add);
-};
-
 export const styles = StyleSheet.create({
 
     //common
@@ -21,18 +17,36 @@ export const styles = StyleSheet.create({
        fontSize:15
     },
 
+     modalShell:{
+        flex: 1,
+        padding:15,
+        paddingTop:0,
+        backgroundColor:"#000",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
      modalHeader:{
-       fontSize:15,
-       color:"#777777"
+        fontSize:20,
+        color:"#777777",
+        backgroundColor:"green"
     },
 
     modalText:{
-       fontSize:12,
-       color:"#777777"
+       fontSize:15,
+       paddingTop:10,
+       color:"#777777",
+        backgroundColor:"red"
+    },
+
+    modalSpecialIconsShell:{
+        backgroundColor:"#5d5d5d",
+        marginTop:15,
+        padding:30,
     },
 
     slidersTitles:{
-       color:"#000",
+        color:"#000",
         fontSize:15
     },
 
@@ -47,7 +61,7 @@ export const styles = StyleSheet.create({
         position:"absolute",
         width:35,
         height:36,
-        bottom:-10,
+        bottom:10,
         right:5,
         zIndex:10
     },
@@ -62,11 +76,12 @@ export const styles = StyleSheet.create({
     },
 
     specialSelectorIconModalFavoredOn:{
-        position:"absolute",
+        //position:"absolute",
         width:37,
         height:34,
-        top:0,
-        left:5
+        marginTop:-10
+        //top:0,
+        //left:5
     },
 
 
@@ -77,16 +92,23 @@ export const styles = StyleSheet.create({
         borderRadius: 64,
     },
 
-    buttonModalDone: extend("buttonBox",{
+    buttonModalDone: {
+        padding:15,
+        borderRadius: 15,
         backgroundColor:"#7eaa4d",
         borderWidth:1,
-        borderColor:"#41552a"
-    }),
+        borderColor:"#41552a",
+        width:100,
+        height:20,
+        zIndex:10,
+    },
 
     buttonTitleModalDone:{
+        marginTop:-10,
         fontSize:15,
         fontWeight:"bold",
-        color:"#fff"
+        color:"#fff",
+        textAlign:"center"
     },
 
     //page views
@@ -146,7 +168,6 @@ export const styles = StyleSheet.create({
     targetViewUserTargetsText:{
         flex:0.1,
         color:"green",
-        //backgroundColor:"yellow"
     },
 
     targetViewItemBlock:{
@@ -173,13 +194,21 @@ export const styles = StyleSheet.create({
         zIndex:10
     },
 
-    targetModalViewImg:{
-        borderColor:"#000",
-        borderWidth:2,
-        width:215,
-        height:215
+    targetModalShell:{
+        padding:30,
+        backgroundColor:"#000",
+        marginTop:22
     },
 
-
+    targetModalViewImg:{
+        marginBottom:15,
+        width:215,
+        height:215,
+        backgroundColor:"#fff"
+    },
 
 });
+
+// const extend = (from,add) => {
+//     return Object.assign({},styles[from],add);
+// };

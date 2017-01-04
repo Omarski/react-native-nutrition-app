@@ -12,8 +12,8 @@ export default class ButtonCust extends React.Component {
 
     static propTypes = {
         title: PropTypes.string.isRequired,
-        styleBox: PropTypes.object.isRequired,
-        styleTitle: PropTypes.object.isRequired,
+        styleBox: PropTypes.number.isRequired,
+        styleTitle: PropTypes.number.isRequired,
         enabled: PropTypes.func,
         onButtonPress: PropTypes.func.isRequired
     };

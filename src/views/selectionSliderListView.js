@@ -45,19 +45,19 @@ export default class SelectionSliderListView extends React.Component {
     };
 
     render() {
-
         return (
             <View style={{flex:1}}>
+            {this.props.modal ?
+                <ModalView
+                    styles = {this.props.styles}
+                    content = {this.props.modal.content}
+                    animationType = {this.props.modal.animationType}
+                    modalVisible = {this.props.modal.modalVisible}
+                    transparent = {this.props.modal.transparent}
+                />:null}
             <ScrollView>
                 {this.slidersListRender()}
             </ScrollView>
-                {this.props.modal ?
-                    <ModalView
-                        content = {this.props.modal.content}
-                        animationType = {this.props.modal.animationType}
-                        modalVisible = {this.props.modal.modalVisible}
-                        transparent = {this.props.modal.transparent}
-                    />:null}
            </View>
         )
     }

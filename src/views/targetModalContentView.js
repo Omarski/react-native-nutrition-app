@@ -29,11 +29,15 @@ export default class TargetModalContentView extends React.Component {
 
        const targetObj = this.props.targetObj;
        const imgPath = "../../images/" ;
-       return (
+       console.log(">>>>>> : " + imgPath+"imageModal"+capFirstLetter(targetObj.id)+".png");
+       // source= {require(imgPath+"imageModal"+capFirstLetter(targetObj.id)+".png")}
+        // source= {{uri:imgPath+"imageModal"+capFirstLetter(targetObj.id)+".png"}}
 
-            <View style={{flex: 1, paddingTop: 22}}>
+        return (
+
+            <View style={this.props.styles.modalShell}>
                 <Image
-                    src = {require(imgPath+"imageModal"+capFirstLetter(targetObj.id))}
+                    source= {require("../../images/imageModalWeightLoss.png")}
                     style = {this.props.styles.targetModalViewImg}
                 />
                 <Text style={this.props.styles.modalHeader}>
@@ -43,10 +47,11 @@ export default class TargetModalContentView extends React.Component {
                     {targetObj.modalSummary}
                 </Text>
                 {this.props.specialSelectorIconsColl ?
+                    <View style = {this.props.styles.modalSpecialIconsShell}>
                     <SpecialSelectorIconsView
                         specialSelectorIconsColl = {this.props.specialSelectorIconsColl}
                         selectObj = {this.props.targetObj}
-                    />:null}
+                    /></View>:null}
                 <ButtonCust
                     title = "Done"
                     styleBox= {this.props.styles.buttonModalDone}

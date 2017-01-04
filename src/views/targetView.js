@@ -58,7 +58,7 @@ class TargetView extends React.Component {
             {   id:"favoured",
                 imgSrcOn:require("../../images/specialSelectorIconModalFavoredOn.png"),
                 imgSrcOff:require("../../images/specialSelectorIconModalFavoredOff.png"),
-                styleOn:this.props.styles.specialSelectorIconFavoredOn,
+                styleOn:this.props.styles.specialSelectorIconModalFavoredOn,
                 styleOff:null,
                 onPressIcon:this.onPressIconFavoured,
                 showIcon:true
@@ -77,8 +77,7 @@ class TargetView extends React.Component {
     };
 
     onPressIconOptions = (targetObj) => {
-       //options popup
-        console.log("Click options");
+
         this.prepModalData(targetObj);
         this.props.dispatch(targetModalVisibilityAction(targetObj,true));
     };
@@ -89,8 +88,7 @@ class TargetView extends React.Component {
             return {
                 animationType:"fade",
                 modalVisible:!!this.props.targetModalActive,
-                transparent:true,
-                //onRequestClose:this.onModalClose,
+                transparent:false,
                 content: this.prepModalContent(targetObj)
             }
         } else return null;
@@ -144,7 +142,7 @@ class TargetView extends React.Component {
                     </Text>:null}
 
                     {/*sliders list*/}
-                    {this.prepTargetSliders() ?<SelectionSliderListView
+                    {this.prepTargetSliders() ? <SelectionSliderListView
                         styles = {this.props.styles}
                         slidersColl = {this.prepTargetSliders()}
                         userData = {this.props.userSelectTargets}
