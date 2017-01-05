@@ -12,45 +12,45 @@ import SpecialSelectorIconsView from './specialSelectorIconsView';
 import ButtonCust from '../viewCommon/buttonCust';
 import {capFirstLetter} from '../js/common';
 
-export default class TargetModalContentView extends React.Component {
+export default class ItemModalContentView extends React.Component {
 
     static propTypes = {
         styles: PropTypes.object.isRequired,
-        targetObj: PropTypes.object.isRequired,
+        itemObj: PropTypes.object.isRequired,
         specialSelectorIconsColl: PropTypes.array,
         onPressClose: PropTypes.func.isRequired
     };
 
     onPressDoneBtn = () =>{
-        this.props.onPressClose(this.props.targetObj);
+        this.props.onPressClose(this.props.itemObj);
     };
 
     render() {
 
-       const targetObj = this.props.targetObj;
-       const imgPath = "../../images/" ;
+        const itemObj = this.props.itemObj;
+        const imgPath = "../../images/" ;
 
-       // source= {require(imgPath+"imageModal"+capFirstLetter(targetObj.id)+".png")}
+        // source= {require(imgPath+"imageModal"+capFirstLetter(itemObj.id)+".png")}
 
         return (
 
             <View style={this.props.styles.modalShell}>
                 <Image
-                    source= {require("../../images/imageModalWeightLoss.png")}
-                    style = {this.props.styles.targetModalViewImg}
+                    source= {require("../../images/imageModalKale.png")}
+                    style = {this.props.styles.itemModalViewImg}
                 />
                 <Text style={this.props.styles.modalHeader}>
-                    {targetObj.title}
+                    {itemObj.title}
                 </Text>
                 <Text style={this.props.styles.modalText}>
-                    {targetObj.modalSummary}
+                    {itemObj.modalSummary}
                 </Text>
                 {this.props.specialSelectorIconsColl ?
                     <View style = {this.props.styles.modalSpecialIconsShell}>
-                    <SpecialSelectorIconsView
-                        specialSelectorIconsColl = {this.props.specialSelectorIconsColl}
-                        selectObj = {this.props.targetObj}
-                    /></View>:null}
+                        <SpecialSelectorIconsView
+                            specialSelectorIconsColl = {this.props.specialSelectorIconsColl}
+                            selectObj = {this.props.itemObj}
+                        /></View>:null}
                 <ButtonCust
                     title = "Done"
                     styleBox= {this.props.styles.buttonModalNext}

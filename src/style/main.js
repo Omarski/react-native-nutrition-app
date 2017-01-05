@@ -29,20 +29,19 @@ export const styles = StyleSheet.create({
      modalHeader:{
         fontSize:20,
         color:"#777777",
-        backgroundColor:"green"
     },
 
     modalText:{
        fontSize:15,
        paddingTop:10,
        color:"#777777",
-        backgroundColor:"red"
     },
 
     modalSpecialIconsShell:{
-        backgroundColor:"#5d5d5d",
+        alignSelf: "stretch",
+        backgroundColor:"#2b2b2b",
         marginTop:15,
-        padding:30,
+        padding:15,
     },
 
     slidersTitles:{
@@ -76,12 +75,9 @@ export const styles = StyleSheet.create({
     },
 
     specialSelectorIconModalFavoredOn:{
-        //position:"absolute",
         width:37,
         height:34,
         marginTop:-10
-        //top:0,
-        //left:5
     },
 
 
@@ -110,6 +106,26 @@ export const styles = StyleSheet.create({
         color:"#fff",
         textAlign:"center"
     },
+
+    buttonModalNext: {
+        padding:15,
+        borderRadius: 15,
+        backgroundColor:"#7eaa4d",
+        borderWidth:1,
+        borderColor:"#41552a",
+        width:100,
+        height:20,
+        zIndex:10,
+    },
+
+    buttonTitleModalNext:{
+        marginTop:-10,
+        fontSize:15,
+        fontWeight:"bold",
+        color:"#fff",
+        textAlign:"center"
+    },
+
 
     //page views
 
@@ -204,9 +220,56 @@ export const styles = StyleSheet.create({
         marginBottom:15,
         width:215,
         height:215,
-        backgroundColor:"#fff"
     },
 
+    // items view
+    itemViewHeader: {
+        flex:0.1,
+        color:"gray",
+        marginTop:80,
+        //backgroundColor:"red"
+    },
+
+    itemViewUserItemsText:{
+        flex:0.1,
+        color:"green",
+    },
+
+    itemViewItemBlock:{
+        width:168,
+        height:112,
+        borderWidth:1,
+        borderColor:"#878787"
+    },
+
+    itemViewItemBlockSelected:{
+        width:168,
+        height:112,
+        borderWidth:2,
+        borderColor:"#208731"
+    },
+
+    itemViewItemBlockImg:{
+        opacity:0.3
+    },
+
+    itemViewItemBlockText:{
+        color:"red",
+        marginTop:-30,
+        zIndex:10
+    },
+
+    itemModalShell:{
+        padding:30,
+        backgroundColor:"#000",
+        marginTop:22
+    },
+
+    itemModalViewImg:{
+        marginBottom:15,
+        width:215,
+        height:215,
+    },
 });
 
 // const extend = (from,add) => {

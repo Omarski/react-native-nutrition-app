@@ -28,6 +28,13 @@ export default function appReducers(state=defaultStore, action){
             })}});
             break;
 
+        case "UPDATE_ITEM_OBJECT":
+            return Object.assign({},state,{appData:{...state.appData, appItems:state.appData.appItems.map((obj) => {
+                if (obj.id === action.payload.itemObj.id) obj[action.payload.key] = action.payload.value;
+                return obj;
+            })}});
+            break;
+
         default: return state;
     }
 }

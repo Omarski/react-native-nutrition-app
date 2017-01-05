@@ -54,6 +54,60 @@ export function targetModalVisibilityAction(targetObj,show){
 }
 
 
+//Items
+
+export function updateItemObjAction(itemObj, key, value){
+    return {
+        type:"UPDATE_ITEM_OBJECT",
+        payload: {
+            itemObj: itemObj,
+            key:key,
+            value:value
+        }
+    }
+}
+
+export function addItemAction(itemObj){
+    return {
+        type:"ADD_ITEM_SELECTION",
+        payload: {
+            itemObj: itemObj
+        }
+    }
+}
+
+export function removeItemAction(itemObj){
+    return {
+        type:"REMOVE_ITEM_SELECTION",
+        payload: {
+            itemObj: itemObj
+        }
+    }
+}
+
+export function updatePrefsItemAction(itemObj,prefName,key,value){
+    return {
+        type:"UPDATE_PREFS_ITEM",
+        payload: {
+            itemObj: itemObj,
+            prefName: prefName,
+            key:key,
+            value:value
+        }
+    }
+}
+
+export function itemModalVisibilityAction(itemObj,show){
+    return {
+        type:"UPDATE_ITEM_MODAL_VISIBLE",
+        payload: {
+            itemObj: itemObj,
+            show: show
+        }
+    }
+}
+
+
 //database connect
 export function getAppDataAction(dispatch){
 

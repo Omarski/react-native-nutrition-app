@@ -11,6 +11,8 @@ import {
 import {connect} from 'react-redux';
 import {categorise} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
+import CustomView from './customView';
+import ButtonCust from '../viewCommon/buttonCust';
 import {addTargetAction, updateTargetObjAction, removeTargetAction, updatePrefsTargetAction, targetModalVisibilityAction} from '../actions/actions';
 import TargetModalContentView from './targetModalContentView';
 
@@ -67,6 +69,7 @@ class TargetView extends React.Component {
     };
 
     onPressIconFavoured = (targetObj) => {
+
         if (targetObj.favoured) {
             this.props.dispatch(updateTargetObjAction(targetObj,"favoured",false));
             this.props.dispatch(updatePrefsTargetAction(targetObj,"targetsPrefsFavoured","favoured",false));
@@ -80,6 +83,15 @@ class TargetView extends React.Component {
 
         this.prepModalData(targetObj);
         this.props.dispatch(targetModalVisibilityAction(targetObj,true));
+    };
+
+    onPressNextBtn = () => {
+
+        this.props.navigator.push(
+            {title:"Smoothie maker",
+             component:CustomView,
+             passProps: {styles:this.props.styles}
+            });
     };
 
     prepModalData = (targetObj) => {
@@ -150,6 +162,13 @@ class TargetView extends React.Component {
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
                         modal={this.prepModalData(this.props.targetModalActive)}
                         />:null}
+
+                    <ButtonCust
+                        title = "Next"
+                        styleBox= {this.props.styles.buttonModalNext}
+                        styleTitle={this.props.styles.buttonTitleModalNext}
+                        onButtonPress={this.onPressNextBtn}
+                    />
                 </View>
         )
     }

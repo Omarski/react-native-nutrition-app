@@ -7,7 +7,7 @@ import {
 
 import SplashBlockView from './splashBlocksView';
 
-import CustomView from './customView';
+import CustomIntroView from './customIntroView';
 
 
 export default class SplashView extends React.Component{
@@ -22,7 +22,7 @@ export default class SplashView extends React.Component{
             case "custom":
                 this.props.navigator.push(
                     {title:"Smoothie Factory",
-                        component:CustomView,
+                        component:CustomIntroView,
                         passProps: {styles:this.props.styles}
                     }
                 );
