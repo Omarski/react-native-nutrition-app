@@ -56,6 +56,17 @@ export function targetModalVisibilityAction(targetObj,show){
 
 //Items
 
+
+export function itemsRecommendCheckAction(userSelectTargets,appItems){
+    return {
+        type:"UPDATE_RECOMMENDED_ITEMS",
+        payload: {
+            userSelectTargets: userSelectTargets,
+            appItems:appItems
+        }
+    }
+}
+
 export function updateItemObjAction(itemObj, key, value){
     return {
         type:"UPDATE_ITEM_OBJECT",

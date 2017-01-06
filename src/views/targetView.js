@@ -13,7 +13,7 @@ import {categorise} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
 import CustomView from './customView';
 import ButtonCust from '../viewCommon/buttonCust';
-import {addTargetAction, updateTargetObjAction, removeTargetAction, updatePrefsTargetAction, targetModalVisibilityAction} from '../actions/actions';
+import {addTargetAction, updateTargetObjAction, removeTargetAction, updatePrefsTargetAction, itemsRecommendCheckAction, targetModalVisibilityAction} from '../actions/actions';
 import TargetModalContentView from './targetModalContentView';
 
 class TargetView extends React.Component {
@@ -24,6 +24,8 @@ class TargetView extends React.Component {
         appTargetsData:PropTypes.array.isRequired,
         targetPageHeader:PropTypes.string.isRequired,
         userSelectTargets:PropTypes.array,
+        userSelectItems:PropTypes.array,
+        appDataItems:PropTypes.array,
     };
 
     prepTargetSliders = () => {
@@ -40,7 +42,7 @@ class TargetView extends React.Component {
                 styleOn:this.props.styles.specialSelectorIconFavoredOn,
                 styleOff:null,
                 onPressIcon:this.onPressIconFavoured,
-                showIcon:true
+                showIcon:null
             },
 
             {   id:"options",
@@ -49,7 +51,7 @@ class TargetView extends React.Component {
                 styleOn:this.props.styles.specialSelectorIconOptions,
                 styleOff:null,
                 onPressIcon:this.onPressIconOptions,
-                showIcon:true
+                showIcon:null
             }
         ]
     };
@@ -76,6 +78,19 @@ class TargetView extends React.Component {
         }else{
             this.props.dispatch(updateTargetObjAction(targetObj,"favoured",true));
             this.props.dispatch(updatePrefsTargetAction(targetObj,"targetsPrefsFavoured","favoured",true));
+        }
+    };
+
+    onPressBlock = (targetObj) => {
+
+        if (targetObj.selected){
+            this.props.dispatch(removeTargetAction(targetObj));
+            this.props.dispatch(updateTargetObjAction(targetObj,"selected",false));
+            setTimeout(()=>{this.props.dispatch(itemsRecommendCheckAction(this.props.userSelectTargets,this.props.appDataItems))},200);
+        }else {
+            this.props.dispatch(addTargetAction(targetObj));
+            this.props.dispatch(updateTargetObjAction(targetObj,"selected",true));
+            setTimeout(()=>{this.props.dispatch(itemsRecommendCheckAction(this.props.userSelectTargets,this.props.appDataItems))},200);
         }
     };
 
@@ -129,16 +144,6 @@ class TargetView extends React.Component {
        return targetHeadText;
     };
 
-    onPressBlock = (targetObj) => {
-        if (targetObj.selected){
-            this.props.dispatch(removeTargetAction(targetObj));
-            this.props.dispatch(updateTargetObjAction(targetObj,"selected",false));
-        }else {
-            this.props.dispatch(addTargetAction(targetObj));
-            this.props.dispatch(updateTargetObjAction(targetObj,"selected",true));
-        }
-    };
-
     render() {
 
         return (
@@ -179,6 +184,8 @@ const mapStateToProps = (state) => {
         appTargetsData: state.appReducers.appData.appTargets,
         targetPageHeader: state.appReducers.appData.appText.targetPageHeader,
         userSelectTargets: state.userReducers.userSelectData.targets,
+        appDataItems: state.appReducers.appData.appItems,
+        userSelectItems: state.userReducers.userSelectData.items,
         targetModalActive: state.userReducers.userSelectData.targetModal
     }
 };

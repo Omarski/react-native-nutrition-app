@@ -80,7 +80,14 @@ export const styles = StyleSheet.create({
         marginTop:-10
     },
 
-
+    specialSelectorIconRecommended:{
+        position:"absolute",
+        width:37,
+        height:34,
+        top:-95,
+        left:5,
+        zIndex:10
+    },
 
     // buttons
 

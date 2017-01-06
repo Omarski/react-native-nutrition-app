@@ -35,6 +35,18 @@ export default function appReducers(state=defaultStore, action){
             })}});
             break;
 
+        case "UPDATE_RECOMMENDED_ITEMS":
+            let userTargetIds = [];
+            for (let t = 0; t < action.payload.userSelectTargets.length; t++) userTargetIds.push(action.payload.userSelectTargets[t].id);
+            return Object.assign({},state,{appData:{...state.appData, appItems:state.appData.appItems.map((itemObj) => {
+                for (let i = 0 ; i < userTargetIds.length; i++) {
+                    if (itemObj.target.indexOf(userTargetIds[i]) !== -1) return {...itemObj,recommended:true}
+                } return itemObj;
+
+            })}});
+            break;
+
+
         default: return state;
     }
 }

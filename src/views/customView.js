@@ -23,11 +23,45 @@ class CustomView extends React.Component {
         appItemsData:PropTypes.array.isRequired,
         itemPageHeader:PropTypes.string.isRequired,
         userSelectItems:PropTypes.array,
+        appDataItems:PropTypes.array,
+        userSelectTargets:PropTypes.array,
+    };
+
+    // state = {
+    //     itemsRecommendMarked:false
+    // };
+
+    componentWillMount(){
+        this.prepItemSliders();
     };
 
     prepItemSliders = () => {
 
-        return categorise(this.props.appItemsData,"category");
+        //mark items as recommended - shuffle order.
+        // this.props.appItemsData.map((itemObj) => {
+        //     for (let i = 0; i < this.props.userSelectTargets.length; i++) {
+        //         console.log("Target: "+ i);
+        //         if (itemObj.target.indexOf(this.props.userSelectTargets[i].id) !== -1) {
+        //             console.log("found match: " + this.props.userSelectTargets[i].id);
+        //             //this.props.dispatch(updateItemObjAction(itemObj,"recommended", true));
+        //         }
+        //     }
+        // });
+
+        //reorder recommended to front
+        let sliders = categorise(this.props.appDataItems,"category");
+        for (const category in sliders){
+            sliders[category].sort(function(obj1,obj2){
+                //return (obj1.recommended === obj2.recommended) ? 0 : obj1.recommended ? -1 : 1;
+                return (obj2.recommended - obj1.recommended);
+            });
+        }
+
+        return sliders;
+    };
+
+    showRecommendIcon = (itemObj) => {
+        return itemObj.recommended;
     };
 
     prepSpecialIconsColl = () => {
@@ -39,7 +73,7 @@ class CustomView extends React.Component {
                 styleOn:this.props.styles.specialSelectorIconFavoredOn,
                 styleOff:null,
                 onPressIcon:this.onPressIconFavoured,
-                showIcon:true
+                showIcon:null
             },
 
             {   id:"options",
@@ -48,7 +82,16 @@ class CustomView extends React.Component {
                 styleOn:this.props.styles.specialSelectorIconOptions,
                 styleOff:null,
                 onPressIcon:this.onPressIconOptions,
-                showIcon:true
+                showIcon:null
+            },
+
+            {   id:"recommended",
+                imgSrcOn:require("../../images/specialSelectorIconRecommend.png"),
+                imgSrcOff:null,
+                styleOn:this.props.styles.specialSelectorIconRecommended,
+                styleOff:null,
+                onPressIcon:null,
+                showIcon:this.showRecommendIcon
             }
         ]
     };
@@ -176,6 +219,8 @@ const mapStateToProps = (state) => {
         appItemsData: state.appReducers.appData.appItems,
         itemPageHeader: state.appReducers.appData.appText.customPageHeader,
         userSelectItems: state.userReducers.userSelectData.items,
+        userSelectTargets: state.userReducers.userSelectData.targets,
+        appDataItems: state.appReducers.appData.appItems,
         itemModalActive: state.userReducers.userSelectData.itemModal
     }
 };
