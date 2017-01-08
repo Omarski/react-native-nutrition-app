@@ -44,6 +44,14 @@ export const styles = StyleSheet.create({
         padding:15,
     },
 
+    modalStatsShell:{
+        alignSelf: "stretch",
+        backgroundColor:"#2b2b2b",
+        marginTop:15,
+        padding:15,
+        zIndex:30
+    },
+
     slidersTitles:{
         color:"#000",
         fontSize:15
@@ -126,6 +134,25 @@ export const styles = StyleSheet.create({
     },
 
     buttonTitleModalNext:{
+        marginTop:-10,
+        fontSize:15,
+        fontWeight:"bold",
+        color:"#fff",
+        textAlign:"center"
+    },
+
+    buttonModalSave: {
+        padding:15,
+        borderRadius: 15,
+        backgroundColor:"#7eaa4d",
+        borderWidth:1,
+        borderColor:"#41552a",
+        width:100,
+        height:20,
+        zIndex:10,
+    },
+
+    buttonTitleModalSave:{
         marginTop:-10,
         fontSize:15,
         fontWeight:"bold",
@@ -277,8 +304,13 @@ export const styles = StyleSheet.create({
         width:215,
         height:215,
     },
-});
 
-// const extend = (from,add) => {
-//     return Object.assign({},styles[from],add);
-// };
+    //stats view
+
+    statsViewText:{
+        color:"#fff",
+        fontSize:10,
+        fontWeight:"bold",
+        marginTop:0
+    },
+});

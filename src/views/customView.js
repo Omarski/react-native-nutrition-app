@@ -11,9 +11,12 @@ import {
 import {connect} from 'react-redux';
 import {categorise} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
+import StatsTrackerView from './statsTrackerView';
+import SaveCollectionView from './saveCollectionView';
 import ButtonCust from '../viewCommon/buttonCust';
-import {addItemAction, updateItemObjAction, removeItemAction, updatePrefsItemAction, itemModalVisibilityAction} from '../actions/actions';
 import ItemModalContentView from './itemModalContentView';
+import {addItemAction, updateItemObjAction, removeItemAction, updatePrefsItemAction, itemModalVisibilityAction} from '../actions/actions';
+
 
 class CustomView extends React.Component {
 
@@ -27,32 +30,12 @@ class CustomView extends React.Component {
         userSelectTargets:PropTypes.array,
     };
 
-    // state = {
-    //     itemsRecommendMarked:false
-    // };
-
-    componentWillMount(){
-        this.prepItemSliders();
-    };
-
     prepItemSliders = () => {
-
-        //mark items as recommended - shuffle order.
-        // this.props.appItemsData.map((itemObj) => {
-        //     for (let i = 0; i < this.props.userSelectTargets.length; i++) {
-        //         console.log("Target: "+ i);
-        //         if (itemObj.target.indexOf(this.props.userSelectTargets[i].id) !== -1) {
-        //             console.log("found match: " + this.props.userSelectTargets[i].id);
-        //             //this.props.dispatch(updateItemObjAction(itemObj,"recommended", true));
-        //         }
-        //     }
-        // });
 
         //reorder recommended to front
         let sliders = categorise(this.props.appDataItems,"category");
         for (const category in sliders){
             sliders[category].sort(function(obj1,obj2){
-                //return (obj1.recommended === obj2.recommended) ? 0 : obj1.recommended ? -1 : 1;
                 return (obj2.recommended - obj1.recommended);
             });
         }
@@ -126,15 +109,6 @@ class CustomView extends React.Component {
         this.props.dispatch(itemModalVisibilityAction(itemObj,true));
     };
 
-    onPressNextBtn = () => {
-
-        // this.props.navigator.push(
-        //     {title:"My recipes",
-        //         component:CollectionsView,
-        //         passProps: {styles:this.props.styles}
-        //     });
-    };
-
     prepModalData = (itemObj) => {
 
         if (itemObj){
@@ -160,6 +134,7 @@ class CustomView extends React.Component {
         this.props.dispatch(itemModalVisibilityAction(itemObj,false));
     };
 
+
     renderItemTitles = () => {
 
         let itemHeadText = "";
@@ -178,6 +153,17 @@ class CustomView extends React.Component {
             this.props.dispatch(addItemAction(itemObj));
             this.props.dispatch(updateItemObjAction(itemObj,"selected",true));
         }
+    };
+
+    onPressSave = () => {
+        this.props.navigator.push(
+            {title:"My creations",
+                component:SaveCollectionView,
+                passProps: {styles:this.props.styles,
+                            userSelectItems:this.props.userSelectItems,
+                            userSelectTargets:this.props.userSelectTargets
+                }
+            });
     };
 
     render() {
@@ -203,11 +189,18 @@ class CustomView extends React.Component {
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
                         modal={this.prepModalData(this.props.itemModalActive)}
                     />:null}
+
+                <StatsTrackerView
+                    styles={this.props.styles}
+                    userSelectItems={this.props.userSelectItems}
+                    userSelectTargets={this.props.userSelectTargets}
+                    appDataTrackedStats={this.props.appDataTrackedStats}
+                />
                 <ButtonCust
-                    title = "Next"
-                    styleBox= {this.props.styles.buttonModalNext}
-                    styleTitle={this.props.styles.buttonTitleModalNext}
-                    onButtonPress={this.onPressNextBtn}
+                    title = "Save"
+                    styleBox= {this.props.styles.buttonModalSave}
+                    styleTitle={this.props.styles.buttonTitleModalSave}
+                    onButtonPress={this.onPressSave}
                 />
             </View>
         )
@@ -221,6 +214,7 @@ const mapStateToProps = (state) => {
         userSelectItems: state.userReducers.userSelectData.items,
         userSelectTargets: state.userReducers.userSelectData.targets,
         appDataItems: state.appReducers.appData.appItems,
+        appDataTrackedStats: state.appReducers.appData.appTrackedStats,
         itemModalActive: state.userReducers.userSelectData.itemModal
     }
 };
