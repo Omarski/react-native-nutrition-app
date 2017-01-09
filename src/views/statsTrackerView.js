@@ -15,46 +15,51 @@ export default class StatsTrackerView extends React.Component {
         appDataTrackedStats:PropTypes.array.isRequired,
     };
 
-    //statsTagColl = this.props.appDataTrackedStats;
-
     renderStats = () => {
        let statColl = {};
-       this.props.userSelectItems.map((itemObj) => {
+       //let items = new Array(this.props.userSelectItems);
+       //console.log("Items count: " + items.length);
+        this.props.userSelectItems.map((itemObj) => {
            console.log("===== item...");
            for (const stat in itemObj.stats){
-               console.log("===== item stat ...");
+               console.log("===== stat...");
                if (itemObj.stats[stat]){
-                   console.log("===== stat has value in stats...");
                    if (statColl[stat]) {
-                       console.log("===== stat found in coll... incrementing.");
-                      statColl[stat].amount += itemObj.stats[stat].amount;
+                       statColl[stat].amount += itemObj.stats[stat].amount;
+                       //statColl[stat].amount = {...itemObj.stats[stat], amount:itemObj.stats[stat].amount + itemObj.stats[stat].amount}.amount;
+                       console.log("For : " + stat + "  - now: " + statColl[stat].amount);
                   }else {
-                      console.log("===== none found adding stat...");
-                      statColl[stat] = itemObj.stats[stat];
-                  }
+                       //new obj otherwise mutates stats in items in state
+                       statColl[stat] = {...itemObj.stats[stat]};
+                       console.log("Adding For : " + stat + "  - now: " + statColl[stat].amount);
+                   }
                }
            }
        });
 
-        console.log("=========> Stats: ");
-        console.dir(statColl);
+        const texRender = Object.keys(statColl).map((stat,index) => {
 
-        for (const stat in statColl){
+            let recomPerc = "";
+            if (statColl[stat].dailyRec){
+                recomPerc = "("+Math.round(statColl[stat].amount / statColl[stat].dailyRec * 100)+"%)";
+            }
+            return (<Text key = {index} style={this.props.styles.statsViewText}>
+                        {statColl[stat].title}{": "}
+                        {statColl[stat].amount}
+                        {statColl[stat].tag ? statColl[stat].tag:null}{" "}
+                        {statColl[stat].dailyRec ? recomPerc:null}{" "}
+                    </Text>)
+        });
 
-            const statText = statColl[stat].title + ": " + statColl[stat].amount;
-            return(
-                <Text style={this.props.styles.statsViewText}>
-                    {statText}
-                </Text>
-            )
-        }
+        console.dir(this.props.userSelectItems);
+        return texRender;
     };
 
     render() {
 
         return (
                 <View style={this.props.styles.modalStatsShell}>
-                    {this.renderStats()}
+                    <Text>{this.renderStats()}</Text>
                 </View>
 
         )

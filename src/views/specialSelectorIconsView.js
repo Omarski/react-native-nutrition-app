@@ -12,7 +12,6 @@ export default class SpecialSelectorIconsView extends React.Component {
 
     specialIconsRender = () => {
         const renderedIconsColl =  this.props.specialSelectorIconsColl.map((iconObj,index) => {
-
             if (iconObj.showIcon && iconObj.showIcon(this.props.selectObj)) {
                 return (
                     <SpecialIconView key={index}

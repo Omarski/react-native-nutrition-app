@@ -42,7 +42,7 @@ class TargetView extends React.Component {
                 styleOn:this.props.styles.specialSelectorIconFavoredOn,
                 styleOff:null,
                 onPressIcon:this.onPressIconFavoured,
-                showIcon:null
+                showIcon:()=>true
             },
 
             {   id:"options",
@@ -51,7 +51,7 @@ class TargetView extends React.Component {
                 styleOn:this.props.styles.specialSelectorIconOptions,
                 styleOff:null,
                 onPressIcon:this.onPressIconOptions,
-                showIcon:null
+                showIcon:()=>true
             }
         ]
     };
@@ -65,7 +65,7 @@ class TargetView extends React.Component {
                 styleOn:this.props.styles.specialSelectorIconModalFavoredOn,
                 styleOff:null,
                 onPressIcon:this.onPressIconFavoured,
-                showIcon:true
+                showIcon:()=>true
             }
         ]
     };
