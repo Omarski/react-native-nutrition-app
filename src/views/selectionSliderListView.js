@@ -18,6 +18,7 @@ export default class SelectionSliderListView extends React.Component {
         //{"category":[{},{}.{}], "category2":[{},{}.{}}
         slidersColl: PropTypes.object.isRequired,
         userData: PropTypes.array.isRequired,
+        titleCap: PropTypes.func,
         onPressBlock: PropTypes.func.isRequired,
         specialSelectorIconsColl: PropTypes.array,
         modal:PropTypes.object
@@ -34,6 +35,7 @@ export default class SelectionSliderListView extends React.Component {
                                 styles = {this.props.styles}
                                 sliderItems = {this.props.slidersColl[category]}
                                 userData = {this.props.userData}
+                                titleCap = {this.props.titleCap}
                                 onPressBlock = {this.props.onPressBlock}
                                 specialSelectorIconsColl={this.props.specialSelectorIconsColl}
                             />

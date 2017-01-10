@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
         position:"absolute",
         width:35,
         height:36,
-        bottom:10,
+        bottom:-10,
         right:5,
         zIndex:10
     },
@@ -79,6 +79,15 @@ export const styles = StyleSheet.create({
         height:34,
         top:-95,
         right:5,
+        zIndex:10
+    },
+
+    specialSelectorIconFavoredItemOn:{
+        position:"absolute",
+        width:37,
+        height:34,
+        bottom:10,
+        left:5,
         zIndex:10
     },
 
@@ -94,6 +103,24 @@ export const styles = StyleSheet.create({
         height:34,
         top:-95,
         left:5,
+        zIndex:10
+    },
+
+    specialSelectorIconInc:{
+        position:"absolute",
+        width:37,
+        height:34,
+        top:-95,
+        right:5,
+        zIndex:10
+    },
+
+    specialSelectorIconDec:{
+        position:"absolute",
+        width:37,
+        height:34,
+        top:-60,
+        right:5,
         zIndex:10
     },
 

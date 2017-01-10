@@ -12,26 +12,30 @@ export default class StatsTrackerView extends React.Component {
         styles: PropTypes.object.isRequired,
         userSelectItems:PropTypes.array.isRequired,
         userSelectTargets:PropTypes.array.isRequired,
+        userSelectStandard:PropTypes.string.isRequired,
         appDataTrackedStats:PropTypes.array.isRequired,
     };
 
     renderStats = () => {
+
        let statColl = {};
-       //let items = new Array(this.props.userSelectItems);
-       //console.log("Items count: " + items.length);
         this.props.userSelectItems.map((itemObj) => {
-           console.log("===== item...");
            for (const stat in itemObj.stats){
-               console.log("===== stat...");
                if (itemObj.stats[stat]){
+
+                   const itemMeasurementObj = itemObj.measurement[this.props.userSelectStandard];
+                   const percOfInc = itemMeasurementObj.current / itemMeasurementObj.inc;
+
                    if (statColl[stat]) {
-                       statColl[stat].amount += itemObj.stats[stat].amount;
-                       //statColl[stat].amount = {...itemObj.stats[stat], amount:itemObj.stats[stat].amount + itemObj.stats[stat].amount}.amount;
-                       console.log("For : " + stat + "  - now: " + statColl[stat].amount);
+                       // const itemMeasurementObj = itemObj.measurement[this.props.userSelectStandard];
+                       // const percOfInc = itemMeasurementObj.current / itemMeasurementObj.inc;
+                       console.log("Perc: " + percOfInc);
+                       statColl[stat].amount += (itemObj.stats[stat].amount * percOfInc);
+                       //statColl[stat].amount += itemObj.stats[stat].amount;
                   }else {
                        //new obj otherwise mutates stats in items in state
-                       statColl[stat] = {...itemObj.stats[stat]};
-                       console.log("Adding For : " + stat + "  - now: " + statColl[stat].amount);
+                       //statColl[stat] = {...itemObj.stats[stat]};
+                       statColl[stat] = {...itemObj.stats[stat],amount:itemObj.stats[stat].amount * percOfInc};
                    }
                }
            }

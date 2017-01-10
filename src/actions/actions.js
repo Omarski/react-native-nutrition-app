@@ -108,6 +108,24 @@ export function updatePrefsItemAction(itemObj,prefName,key,value){
     }
 }
 
+export function itemIncrementAction(itemObj){
+    return {
+        type:"ITEM_INCREMENT",
+        payload: {
+            itemObj: itemObj
+        }
+    }
+}
+
+export function itemDecrementAction(itemObj){
+    return {
+        type:"ITEM_DECREMENT",
+        payload: {
+            itemObj: itemObj
+        }
+    }
+}
+
 export function itemModalVisibilityAction(itemObj,show){
     return {
         type:"UPDATE_ITEM_MODAL_VISIBLE",

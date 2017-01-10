@@ -18,6 +18,7 @@ export default class SelectionItemView extends React.Component {
         userData: PropTypes.array.isRequired,
         blockStyle: PropTypes.number,
         blockStyleSelected: PropTypes.number,
+        titleCap: PropTypes.func,
         imageSrc: PropTypes.number.isRequired,
         imgStyle: PropTypes.number,
         blockTitle: PropTypes.string.isRequired,
@@ -40,7 +41,7 @@ export default class SelectionItemView extends React.Component {
                     />
 
                     <Text style={this.props.blockTextStyle}>
-                        {this.props.blockTitle}
+                        {this.props.blockTitle}{this.props.titleCap ? this.props.titleCap(this.props.selectObj):""}
                     </Text>
 
                     {this.props.specialSelectorIconsColl ?

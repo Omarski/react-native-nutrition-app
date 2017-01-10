@@ -5,6 +5,7 @@ const defaultStore = {
         userAge: 23
     },
     userSelectData:{
+        standard:"st",
         targets:[],
         items:[],
         targetModal:null,

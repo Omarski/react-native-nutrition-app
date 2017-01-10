@@ -15,7 +15,8 @@ import StatsTrackerView from './statsTrackerView';
 import SaveCollectionView from './saveCollectionView';
 import ButtonCust from '../viewCommon/buttonCust';
 import ItemModalContentView from './itemModalContentView';
-import {addItemAction, updateItemObjAction, removeItemAction, updatePrefsItemAction, itemModalVisibilityAction} from '../actions/actions';
+import {addItemAction, updateItemObjAction, removeItemAction, updatePrefsItemAction,
+        itemModalVisibilityAction, itemIncrementAction, itemDecrementAction} from '../actions/actions';
 
 
 class CustomView extends React.Component {
@@ -47,16 +48,29 @@ class CustomView extends React.Component {
         return itemObj.recommended;
     };
 
+    showFavouredIcon = (itemObj) => {
+        return itemObj.favoured;
+    };
+
+    showIncrementIcon = (itemObj) => {
+        return itemObj.selected;
+    };
+
+    showDecrementIcon = (itemObj) => {
+        return itemObj.selected &&
+               itemObj.measurement[this.props.userSelectStandard].current > itemObj.measurement[this.props.userSelectStandard].inc;
+    };
+
     prepSpecialIconsColl = () => {
 
         return [
             {   id:"favoured",
                 imgSrcOn:require("../../images/specialSelectorIconFavoredOn.png"),
                 imgSrcOff:null,
-                styleOn:this.props.styles.specialSelectorIconFavoredOn,
+                styleOn:this.props.styles.specialSelectorIconFavoredItemOn,
                 styleOff:null,
                 onPressIcon:this.onPressIconFavoured,
-                showIcon:null
+                showIcon:this.showFavouredIcon
             },
 
             {   id:"options",
@@ -65,7 +79,7 @@ class CustomView extends React.Component {
                 styleOn:this.props.styles.specialSelectorIconOptions,
                 styleOff:null,
                 onPressIcon:this.onPressIconOptions,
-                showIcon:null
+                showIcon:()=>true
             },
 
             {   id:"recommended",
@@ -75,6 +89,24 @@ class CustomView extends React.Component {
                 styleOff:null,
                 onPressIcon:null,
                 showIcon:this.showRecommendIcon
+            },
+
+            {   id:"increment",
+                imgSrcOn:require("../../images/specialSelectorIconInc.png"),
+                imgSrcOff:null,
+                styleOn:this.props.styles.specialSelectorIconInc,
+                styleOff:null,
+                onPressIcon:this.onPressIconInc,
+                showIcon:this.showIncrementIcon
+            },
+
+            {   id:"decrement",
+                imgSrcOn:require("../../images/specialSelectorIconDec.png"),
+                imgSrcOff:null,
+                styleOn:this.props.styles.specialSelectorIconDec,
+                styleOff:null,
+                onPressIcon:this.onPressIconDec,
+                showIcon:this.showDecrementIcon
             }
         ]
     };
@@ -93,6 +125,23 @@ class CustomView extends React.Component {
         ]
     };
 
+    renderItemTitles = () => {
+
+        let itemHeadText = "";
+        for (let i = 0 ; i < this.props.userSelectItems.length; i++){
+            itemHeadText+= ", " + this.props.userSelectItems[i].title;
+        }
+
+        return itemHeadText;
+    };
+
+    titleCap = (itemObj)=>{
+        const itemMeasurementObj = itemObj.measurement[this.props.userSelectStandard];
+        const plural = itemMeasurementObj.current > itemMeasurementObj.incDef;
+        console.log("("+itemMeasurementObj.current + " " + itemMeasurementObj.title + (plural ? "s":"") + ")");
+        return " ("+itemMeasurementObj.current + itemMeasurementObj.title + (plural ? "s":"") + ")";
+    };
+
     onPressIconFavoured = (itemObj) => {
         if (itemObj.favoured) {
             this.props.dispatch(updateItemObjAction(itemObj,"favoured",false));
@@ -109,6 +158,17 @@ class CustomView extends React.Component {
         this.props.dispatch(itemModalVisibilityAction(itemObj,true));
     };
 
+    onPressIconInc = (itemObj) => {
+
+        this.props.dispatch(itemIncrementAction(itemObj));
+    };
+
+    onPressIconDec = (itemObj) => {
+
+        this.props.dispatch(itemDecrementAction(itemObj));
+    };
+
+    //modal
     prepModalData = (itemObj) => {
 
         if (itemObj){
@@ -132,17 +192,6 @@ class CustomView extends React.Component {
 
     onModalClose = (itemObj) => {
         this.props.dispatch(itemModalVisibilityAction(itemObj,false));
-    };
-
-
-    renderItemTitles = () => {
-
-        let itemHeadText = "";
-        for (let i = 0 ; i < this.props.userSelectItems.length; i++){
-            itemHeadText+= ", " + this.props.userSelectItems[i].title;
-        }
-
-        return itemHeadText;
     };
 
     onPressBlock = (itemObj) => {
@@ -185,6 +234,7 @@ class CustomView extends React.Component {
                         styles = {this.props.styles}
                         slidersColl = {this.prepItemSliders()}
                         userData = {this.props.userSelectItems}
+                        titleCap = {this.titleCap}
                         onPressBlock={this.onPressBlock}
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
                         modal={this.prepModalData(this.props.itemModalActive)}
@@ -194,6 +244,7 @@ class CustomView extends React.Component {
                     styles={this.props.styles}
                     userSelectItems={this.props.userSelectItems}
                     userSelectTargets={this.props.userSelectTargets}
+                    userSelectStandard={this.props.userSelectStandard}
                     appDataTrackedStats={this.props.appDataTrackedStats}
                 />
                 <ButtonCust
@@ -212,6 +263,7 @@ const mapStateToProps = (state) => {
         appItemsData: state.appReducers.appData.appItems,
         itemPageHeader: state.appReducers.appData.appText.customPageHeader,
         userSelectItems: state.userReducers.userSelectData.items,
+        userSelectStandard: state.userReducers.userSelectData.standard,
         userSelectTargets: state.userReducers.userSelectData.targets,
         appDataItems: state.appReducers.appData.appItems,
         appDataTrackedStats: state.appReducers.appData.appTrackedStats,

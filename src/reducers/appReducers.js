@@ -46,6 +46,26 @@ export default function appReducers(state=defaultStore, action){
             })}});
             break;
 
+        case "ITEM_INCREMENT":
+            return Object.assign({},state,{appData:{...state.appData, appItems:state.appData.appItems.map((obj) => {
+                if (obj.id === action.payload.itemObj.id) {
+                    obj.measurement.st.current += obj.measurement.st.inc;
+                    obj.measurement.mt.current += obj.measurement.mt.inc;
+                }
+                return obj;
+            })}});
+            break;
+
+        case "ITEM_DECREMENT":
+            return Object.assign({},state,{appData:{...state.appData, appItems:state.appData.appItems.map((obj) => {
+                if (obj.id === action.payload.itemObj.id) {
+                    obj.measurement.st.current -= obj.measurement.st.inc;
+                    obj.measurement.mt.current -= obj.measurement.mt.inc;
+                }
+                return obj;
+            })}});
+            break;
+
 
         default: return state;
     }

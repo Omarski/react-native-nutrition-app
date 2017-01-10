@@ -163,6 +163,7 @@ class TargetView extends React.Component {
                         styles = {this.props.styles}
                         slidersColl = {this.prepTargetSliders()}
                         userData = {this.props.userSelectTargets}
+                        titleCap = {null}
                         onPressBlock={this.onPressBlock}
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
                         modal={this.prepModalData(this.props.targetModalActive)}
