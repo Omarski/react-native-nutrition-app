@@ -27,14 +27,9 @@ export default class StatsTrackerView extends React.Component {
                    const percOfInc = itemMeasurementObj.current / itemMeasurementObj.inc;
 
                    if (statColl[stat]) {
-                       // const itemMeasurementObj = itemObj.measurement[this.props.userSelectStandard];
-                       // const percOfInc = itemMeasurementObj.current / itemMeasurementObj.inc;
-                       console.log("Perc: " + percOfInc);
                        statColl[stat].amount += (itemObj.stats[stat].amount * percOfInc);
-                       //statColl[stat].amount += itemObj.stats[stat].amount;
                   }else {
                        //new obj otherwise mutates stats in items in state
-                       //statColl[stat] = {...itemObj.stats[stat]};
                        statColl[stat] = {...itemObj.stats[stat],amount:itemObj.stats[stat].amount * percOfInc};
                    }
                }

@@ -120,7 +120,7 @@ class CustomView extends React.Component {
                 styleOn:this.props.styles.specialSelectorIconModalFavoredOn,
                 styleOff:null,
                 onPressIcon:this.onPressIconFavoured,
-                showIcon:true
+                showIcon:()=>true
             }
         ]
     };
@@ -129,7 +129,8 @@ class CustomView extends React.Component {
 
         let itemHeadText = "";
         for (let i = 0 ; i < this.props.userSelectItems.length; i++){
-            itemHeadText+= ", " + this.props.userSelectItems[i].title;
+            const itemSeparator = (i == this.props.userSelectItems.length -1)? "":", ";
+            itemHeadText+= this.props.userSelectItems[i].title + this.titleCap(this.props.userSelectItems[i]) + itemSeparator;
         }
 
         return itemHeadText;
@@ -138,7 +139,6 @@ class CustomView extends React.Component {
     titleCap = (itemObj)=>{
         const itemMeasurementObj = itemObj.measurement[this.props.userSelectStandard];
         const plural = itemMeasurementObj.current > itemMeasurementObj.incDef;
-        console.log("("+itemMeasurementObj.current + " " + itemMeasurementObj.title + (plural ? "s":"") + ")");
         return " ("+itemMeasurementObj.current + itemMeasurementObj.title + (plural ? "s":"") + ")";
     };
 
@@ -153,7 +153,6 @@ class CustomView extends React.Component {
     };
 
     onPressIconOptions = (itemObj) => {
-
         this.prepModalData(itemObj);
         this.props.dispatch(itemModalVisibilityAction(itemObj,true));
     };
@@ -210,7 +209,8 @@ class CustomView extends React.Component {
                 component:SaveCollectionView,
                 passProps: {styles:this.props.styles,
                             userSelectItems:this.props.userSelectItems,
-                            userSelectTargets:this.props.userSelectTargets
+                            userSelectTargets:this.props.userSelectTargets,
+                            userSelectStandard:this.props.userSelectStandard,
                 }
             });
     };

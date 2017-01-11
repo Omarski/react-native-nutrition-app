@@ -28,15 +28,13 @@ export default class ItemModalContentView extends React.Component {
     render() {
 
         const itemObj = this.props.itemObj;
-        const imgPath = "../../images/" ;
-
-        // source= {require(imgPath+"imageModal"+capFirstLetter(itemObj.id)+".png")}
+        const sourceName = "imageModal"+capFirstLetter(itemObj.id);
 
         return (
 
             <View style={this.props.styles.modalShell}>
                 <Image
-                    source= {require("../../images/imageModalKale.png")}
+                    source= {{uri:sourceName}}
                     style = {this.props.styles.itemModalViewImg}
                 />
                 <Text style={this.props.styles.modalHeader}>
