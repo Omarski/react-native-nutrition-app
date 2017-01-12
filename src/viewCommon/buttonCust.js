@@ -4,7 +4,8 @@ import React, {PropTypes} from 'react';
 import {
     Text,
     View,
-    TouchableHighlight
+    TouchableHighlight,
+    TouchableOpacity
 } from 'react-native';
 
 
@@ -14,16 +15,19 @@ export default class ButtonCust extends React.Component {
         title: PropTypes.string.isRequired,
         styleBox: PropTypes.number.isRequired,
         styleTitle: PropTypes.number.isRequired,
-        enabled: PropTypes.func,
-        onButtonPress: PropTypes.func.isRequired
+        enabled: PropTypes.bool.isRequired,
+        onButtonPress: PropTypes.func.isRequired,
+        styleDisabled: PropTypes.object
     };
 
     render() {
 
+        const disabledStyle = this.props.styleDisabled ? !this.props.enabled ? this.props.styleDisabled:null:null;
         return (
 
             <TouchableHighlight
-                style= {this.props.styleBox}
+                disabled = {!this.props.enabled}
+                style = {[this.props.styleBox, disabledStyle]}
                 onPress = {this.props.onButtonPress}
             >
                 <Text style={this.props.styleTitle}>

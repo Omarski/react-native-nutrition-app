@@ -13,7 +13,6 @@ export default class StatsTrackerView extends React.Component {
         userSelectItems:PropTypes.array.isRequired,
         userSelectTargets:PropTypes.array.isRequired,
         userSelectStandard:PropTypes.string.isRequired,
-        appDataTrackedStats:PropTypes.array.isRequired,
     };
 
     renderStats = () => {
@@ -50,7 +49,6 @@ export default class StatsTrackerView extends React.Component {
                     </Text>)
         });
 
-        console.dir(this.props.userSelectItems);
         return texRender;
     };
 

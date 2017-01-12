@@ -109,6 +109,10 @@ class TargetView extends React.Component {
             });
     };
 
+    // enableNext = ()=> {
+    //     return this.props.userSelectTargets.length > 0;
+    // };
+
     prepModalData = (targetObj) => {
 
         if (targetObj){
@@ -174,6 +178,8 @@ class TargetView extends React.Component {
                         styleBox= {this.props.styles.buttonModalNext}
                         styleTitle={this.props.styles.buttonTitleModalNext}
                         onButtonPress={this.onPressNextBtn}
+                        enabled={this.props.userSelectTargets.length > 0}
+                        styleDisabled = {{opacity:0.5}}
                     />
                 </View>
         )

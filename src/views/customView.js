@@ -136,10 +136,11 @@ class CustomView extends React.Component {
         return itemHeadText;
     };
 
-    titleCap = (itemObj)=>{
+    titleCap = (itemObj,mode=null)=>{
         const itemMeasurementObj = itemObj.measurement[this.props.userSelectStandard];
         const plural = itemMeasurementObj.current > itemMeasurementObj.incDef;
-        return " ("+itemMeasurementObj.current + itemMeasurementObj.title + (plural ? "s":"") + ")";
+        if (mode == "plain") return itemMeasurementObj.current + " " + itemMeasurementObj.title + (plural ? "s":"");
+        else return " ("+itemMeasurementObj.current + itemMeasurementObj.title + (plural ? "s":"") + ")";
     };
 
     onPressIconFavoured = (itemObj) => {
@@ -211,8 +212,14 @@ class CustomView extends React.Component {
                             userSelectItems:this.props.userSelectItems,
                             userSelectTargets:this.props.userSelectTargets,
                             userSelectStandard:this.props.userSelectStandard,
+                            appDataSaveInputText:this.props.appDataSaveInputText,
+                            titleCap:this.titleCap,
                 }
             });
+    };
+
+    enableSaving = ()=> {
+        return this.props.userSelectItems.length > 0;
     };
 
     render() {
@@ -245,13 +252,14 @@ class CustomView extends React.Component {
                     userSelectItems={this.props.userSelectItems}
                     userSelectTargets={this.props.userSelectTargets}
                     userSelectStandard={this.props.userSelectStandard}
-                    appDataTrackedStats={this.props.appDataTrackedStats}
                 />
                 <ButtonCust
                     title = "Save"
                     styleBox= {this.props.styles.buttonModalSave}
                     styleTitle={this.props.styles.buttonTitleModalSave}
                     onButtonPress={this.onPressSave}
+                    enabled={this.enableSaving()}
+                    styleDisabled = {{opacity:0.5}}
                 />
             </View>
         )
@@ -266,7 +274,7 @@ const mapStateToProps = (state) => {
         userSelectStandard: state.userReducers.userSelectData.standard,
         userSelectTargets: state.userReducers.userSelectData.targets,
         appDataItems: state.appReducers.appData.appItems,
-        appDataTrackedStats: state.appReducers.appData.appTrackedStats,
+        appDataSaveInputText: state.appReducers.appData.appText.saveCollectionDefaultText,
         itemModalActive: state.userReducers.userSelectData.itemModal
     }
 };

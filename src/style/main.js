@@ -187,6 +187,25 @@ export const styles = StyleSheet.create({
         textAlign:"center"
     },
 
+    buttonCollectionSaveSave: {
+        padding:15,
+        borderRadius: 10,
+        backgroundColor:"#7eaa4d",
+        borderWidth:1,
+        borderColor:"#41552a",
+        width:200,
+        height:20,
+        zIndex:10,
+    },
+
+    buttonTitleCollectionSave:{
+        marginTop:-10,
+        fontSize:15,
+        fontWeight:"bold",
+        color:"#fff",
+        textAlign:"center"
+    },
+
 
     //page views
 
@@ -340,4 +359,46 @@ export const styles = StyleSheet.create({
         fontWeight:"bold",
         marginTop:0
     },
+
+    //collection display view
+
+    collectionItemDisplayBlock:{
+        flexDirection:"row",
+        justifyContent:"flex-start",
+        alignItems:"center",
+        marginTop:22,
+        padding:20,
+    },
+
+    collectionItemDisplayAmountText:{
+        color:"#fff",
+        fontSize:13
+    },
+
+    collectionItemDisplayTitleText:{
+        color:"#7eaa4d",
+        fontSize:13
+    },
+
+    collectionItemDisplayIcon:{
+        width:50,
+        height:50,
+        marginLeft:10,
+        marginRight:10,
+    },
+
+    // save coll view
+    saveCollViewShell:{
+        flex:1,
+        marginTop:22,
+        backgroundColor:"#000"
+    },
+
+    saveCollectionViewInputText:{
+        fontSize:20,
+        height:40,
+        width:200,
+        color:"#000",
+        backgroundColor:"#fff"
+    }
 });

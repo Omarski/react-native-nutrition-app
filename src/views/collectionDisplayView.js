@@ -12,9 +12,10 @@ export default class CollectionDisplayView extends React.Component {
 
     static propTypes = {
         styles: PropTypes.object.isRequired,
-        userSelectItems:PropTypes.array.isRequired,
-        userSelectStandard:PropTypes.string.isRequired,
-    };
+        userSelectItems: PropTypes.array.isRequired,
+        userSelectStandard: PropTypes.string.isRequired,
+        titleCap: PropTypes.func
+    }
 
     render() {
 
@@ -23,7 +24,8 @@ export default class CollectionDisplayView extends React.Component {
                 <CollectionItemDisplayView key={index}
                     styles = {this.props.styles}
                     itemObj = {itemObj}
-                    userSelectionStandard = {this.props.userSelectStandard}
+                    userSelectStandard = {this.props.userSelectStandard}
+                    titleCap = {this.props.titleCap}
                 />
             )
         });
