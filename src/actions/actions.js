@@ -136,6 +136,15 @@ export function itemModalVisibilityAction(itemObj,show){
     }
 }
 
+// collections
+export function saveCollectionAction(collectionName,collItems){
+    return {
+        type:"SAVE_COLLECTION",
+        payload: {
+            collectionObj: {collectionName:collectionName, items:collItems}
+        }
+    }
+}
 
 //database connect
 export function getAppDataAction(dispatch){

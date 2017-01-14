@@ -6,12 +6,12 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
-
-  "proxy":"http://localhost:8080",
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "axios": "^0.15.2",
     "react": "15.3.2",
     "react-native": "0.37.0",
+    "react-native-share": "^1.0.17",
     "react-redux": "^4.4.6",
     "react-router": "^4.0.0-alpha.6",
     "redux": "^3.6.0",

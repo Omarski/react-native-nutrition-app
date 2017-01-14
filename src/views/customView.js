@@ -209,10 +209,15 @@ class CustomView extends React.Component {
             {title:"My creations",
                 component:SaveCollectionView,
                 passProps: {styles:this.props.styles,
+                            dispatch:this.props.dispatch,
                             userSelectItems:this.props.userSelectItems,
                             userSelectTargets:this.props.userSelectTargets,
                             userSelectStandard:this.props.userSelectStandard,
                             appDataSaveInputText:this.props.appDataSaveInputText,
+                            appDataSaveBtnText:this.props.appDataSaveBtnText,
+                            appDataShareBtnText:this.props.appDataShareBtnText,
+                            appDataShareOptions:this.props.appDataShareOptions,
+                            appDataShareImageBase64:this.props.appDataShareImageBase64,
                             titleCap:this.titleCap,
                 }
             });
@@ -275,7 +280,11 @@ const mapStateToProps = (state) => {
         userSelectTargets: state.userReducers.userSelectData.targets,
         appDataItems: state.appReducers.appData.appItems,
         appDataSaveInputText: state.appReducers.appData.appText.saveCollectionDefaultText,
-        itemModalActive: state.userReducers.userSelectData.itemModal
+        appDataSaveBtnText: state.appReducers.appData.appText.saveBtnText,
+        appDataShareBtnText: state.appReducers.appData.appText.shareBtnText,
+        itemModalActive: state.userReducers.userSelectData.itemModal,
+        appDataShareOptions: state.appReducers.appData.shareOptions,
+        appDataShareImageBase64: state.appReducers.appData.shareImageBase64,
     }
 };
 

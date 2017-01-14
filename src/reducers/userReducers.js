@@ -12,7 +12,8 @@ const defaultStore = {
         itemModal:null,
         targetsPrefsFavoured:[],
         itemsPrefsFavoured:[]
-        }
+        },
+    userSavedColl:[]
 };
 
 export default function userReducers(state=defaultStore, action){
@@ -67,6 +68,12 @@ export default function userReducers(state=defaultStore, action){
             }else{
                 return Object.assign({},state,{userSelectData:{...state.userSelectData, itemModal:null}});
             }
+            break;
+
+        // collections
+
+        case "SAVE_COLLECTION":
+                return Object.assign({},state,{userSelectData:{...state.userSelectData, userSavedColl:[...state.userSavedColl,action.payload.collectionObj]}});
             break;
 
         default: return state;
