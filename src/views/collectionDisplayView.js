@@ -15,7 +15,7 @@ export default class CollectionDisplayView extends React.Component {
         userSelectItems: PropTypes.array.isRequired,
         userSelectStandard: PropTypes.string.isRequired,
         titleCap: PropTypes.func
-    }
+    };
 
     render() {
 

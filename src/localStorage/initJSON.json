@@ -44,7 +44,8 @@
         "customPageIntro":"This is the custom page intro...!!!",
         "saveCollectionDefaultText":"Type your recipe name here!",
         "saveBtnText":"Save this recipe!",
-        "shareBtnText":"Share your recipe!"
+        "shareBtnText":"Share your recipe!",
+        "myCollectionsPageHeader":"Here are the recipies you saved!"
   },
 
     "shareOptions":{

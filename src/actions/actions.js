@@ -146,6 +146,16 @@ export function saveCollectionAction(collectionName,collItems){
     }
 }
 
+export function savedCollModalVisibilityAction(itemObj,show){
+    return {
+        type:"UPDATE_SAVED_COLL_MODAL_VISIBLE",
+        payload: {
+            itemObj: itemObj,
+            show: show
+        }
+    }
+}
+
 //database connect
 export function getAppDataAction(dispatch){
 

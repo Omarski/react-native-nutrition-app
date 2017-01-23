@@ -97,6 +97,18 @@ export const styles = StyleSheet.create({
         marginTop:-10
     },
 
+    specialSelectorIconModalShare:{
+        width:37,
+        height:34,
+        marginTop:-10
+    },
+
+    specialSelectorIconModalDelete:{
+        width:37,
+        height:34,
+        marginTop:-10
+    },
+
     specialSelectorIconRecommended:{
         position:"absolute",
         width:37,
@@ -120,6 +132,24 @@ export const styles = StyleSheet.create({
         width:37,
         height:34,
         top:-60,
+        right:5,
+        zIndex:10
+    },
+
+    specialSelectorIconShare:{
+        position:"absolute",
+        width:37,
+        height:34,
+        top:-95,
+        right:5,
+        zIndex:10
+    },
+
+    specialSelectorIconDelete:{
+        position:"absolute",
+        width:37,
+        height:34,
+        bottom:-10,
         right:5,
         zIndex:10
     },
@@ -400,5 +430,13 @@ export const styles = StyleSheet.create({
         width:200,
         color:"#000",
         backgroundColor:"#fff"
-    }
+    },
+
+    //Saved Coll View
+    savedCollViewHeader: {
+        flex:0.1,
+        color:"gray",
+        marginTop:80,
+        //backgroundColor:"red"
+    },
 });

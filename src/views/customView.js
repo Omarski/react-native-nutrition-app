@@ -208,17 +208,19 @@ class CustomView extends React.Component {
         this.props.navigator.push(
             {title:"My creations",
                 component:SaveCollectionView,
-                passProps: {styles:this.props.styles,
-                            dispatch:this.props.dispatch,
-                            userSelectItems:this.props.userSelectItems,
-                            userSelectTargets:this.props.userSelectTargets,
-                            userSelectStandard:this.props.userSelectStandard,
-                            appDataSaveInputText:this.props.appDataSaveInputText,
-                            appDataSaveBtnText:this.props.appDataSaveBtnText,
-                            appDataShareBtnText:this.props.appDataShareBtnText,
-                            appDataShareOptions:this.props.appDataShareOptions,
-                            appDataShareImageBase64:this.props.appDataShareImageBase64,
-                            titleCap:this.titleCap,
+                passProps: {
+                    styles:this.props.styles,
+                    dispatch:this.props.dispatch,
+                    navigator:this.props.navigator,
+                    userSelectItems:this.props.userSelectItems,
+                    userSelectTargets:this.props.userSelectTargets,
+                    userSelectStandard:this.props.userSelectStandard,
+                    appDataSaveInputText:this.props.appDataSaveInputText,
+                    appDataSaveBtnText:this.props.appDataSaveBtnText,
+                    appDataShareBtnText:this.props.appDataShareBtnText,
+                    appDataShareOptions:this.props.appDataShareOptions,
+                    appDataShareImageBase64:this.props.appDataShareImageBase64,
+                    titleCap:this.titleCap,
                 }
             });
     };

@@ -9,6 +9,7 @@ import {
 
 import CollectionDisplayView from './collectionDisplayView';
 import StatsTrackerView from './statsTrackerView';
+import MyCollectionsView from './savedCollectionsView';
 import ButtonCust from '../viewCommon/buttonCust';
 import SocialShare from '../viewCommon/socialShare';
 import {saveCollectionAction} from '../actions/actions';
@@ -19,6 +20,7 @@ export default class SaveCollectionView extends React.Component {
     static propTypes = {
         styles: PropTypes.object.isRequired,
         dispatch: PropTypes.func.isRequired,
+        navigator: PropTypes.object.isRequired,
         userSelectItems:PropTypes.array.isRequired,
         userSelectTargets:PropTypes.array.isRequired,
         userSelectStandard:PropTypes.string.isRequired,
@@ -31,12 +33,22 @@ export default class SaveCollectionView extends React.Component {
     };
 
     state = {
-        inputVerified:false
+        inputVerified:false,
     };
 
     onPressSave = () => {
+
         if (this.inputVerify) this.props.dispatch(saveCollectionAction(this.refs.inputText._lastNativeText,
             this.props.userSelectItems));
+
+        setTimeout(()=>{
+           this.props.navigator.push(
+               {
+                   title: "My recipes",
+                   component: MyCollectionsView,
+                   passProps: {styles:this.props.styles}
+            })
+        },1000);
     };
 
     onPressSimpleShare = () => {
@@ -52,7 +64,8 @@ export default class SaveCollectionView extends React.Component {
     };
 
     inputVerify = (text) => {
-        this.setState({inputVerified:text.length > 0 && text !== this.props.appDataSaveInputText});
+        this.setState({inputVerified:text.length > 0 && text !== this.props.appDataSaveInputText,
+        textValue:text});
     };
 
     render() {
@@ -78,6 +91,7 @@ export default class SaveCollectionView extends React.Component {
                     userSelectStandard={this.props.userSelectStandard}
                 />
                 <TextInput
+                    ref="inputText"
                     style={this.props.styles.saveCollectionViewInputText}
                     placeholder={this.props.appDataSaveInputText}
                     onChangeText={(text) => this.inputVerify(text)}
