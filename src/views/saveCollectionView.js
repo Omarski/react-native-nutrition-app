@@ -9,7 +9,7 @@ import {
 
 import CollectionDisplayView from './collectionDisplayView';
 import StatsTrackerView from './statsTrackerView';
-import MyCollectionsView from './savedCollectionsView';
+import savedCollectionsView from './savedCollectionsView';
 import ButtonCust from '../viewCommon/buttonCust';
 import SocialShare from '../viewCommon/socialShare';
 import {saveCollectionAction} from '../actions/actions';
@@ -38,15 +38,21 @@ export default class SaveCollectionView extends React.Component {
 
     onPressSave = () => {
 
-        if (this.inputVerify) this.props.dispatch(saveCollectionAction(this.refs.inputText._lastNativeText,
+        if (this.inputVerify) this.props.dispatch(saveCollectionAction(
+            this.refs.inputText._lastNativeText,
+            this.refs.inputCategory._lastNativeText,
             this.props.userSelectItems));
 
         setTimeout(()=>{
            this.props.navigator.push(
                {
                    title: "My recipes",
-                   component: MyCollectionsView,
-                   passProps: {styles:this.props.styles}
+                   component: savedCollectionsView,
+                   passProps: {
+                       styles:this.props.styles,
+                       savedCollectionsHeader:this.props.savedCollectionsHeader,
+                       savedCollSource:"user"
+                   }
             })
         },1000);
     };

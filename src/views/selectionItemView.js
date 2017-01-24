@@ -15,7 +15,7 @@ export default class SelectionItemView extends React.Component {
     static propTypes = {
         styles: PropTypes.object.isRequired,
         selectObj: PropTypes.object.isRequired,
-        userData: PropTypes.array.isRequired,
+        //userData: PropTypes.array.isRequired,
         blockStyle: PropTypes.number,
         blockStyleSelected: PropTypes.number,
         titleCap: PropTypes.func,

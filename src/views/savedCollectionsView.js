@@ -22,13 +22,14 @@ class SavedCollectionsView extends React.Component {
     static propTypes = {
         styles: PropTypes.object.isRequired,
         navigator: PropTypes.object.isRequired,
-        savedCollectionsPageHeader:PropTypes.string.isRequired,
-        userSavedColl:PropTypes.array,
+        savedCollectionsHeader:PropTypes.string.isRequired,
+        // from user or in app
+        savedCollSource:PropTypes.string.isRequired,
     };
 
     prepItemSliders = () => {
 
-        let sliders = categorise(this.props.userSavedColl,"category");
+        let sliders = categorise(this.props.savedColl,"category");
         return sliders;
     };
 
@@ -130,22 +131,21 @@ class SavedCollectionsView extends React.Component {
             <View style={{flex:1}}>
                 {/*page header*/}
                 <Text style={[this.props.styles.pageHeader, this.props.styles.savedCollViewHeader]}>
-                    {this.props.itemPageHeader}
+                    {this.props.savedCollectionsHeader}
                 </Text>
 
                 {/*sliders list*/}
                 {this.prepItemSliders() ? <SelectionSliderListView
                         styles = {this.props.styles}
                         slidersColl = {this.prepItemSliders()}
-                        userData = {this.props.userSelectItems}
                         titleCap = {this.titleCap}
                         onPressBlock={this.onPressBlock}
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
-                        modal={this.prepModalData(this.props.myCollModalActive)}
+                        modal={this.prepModalData(this.props.savedCollModalActive)}
                     />:null}
 
                 <ButtonCust
-                    title = "Save"
+                    title = "home"
                     styleBox= {this.props.styles.buttonModalSave}
                     styleTitle={this.props.styles.buttonTitleModalSave}
                     onButtonPress={this.onPressSave}
@@ -159,9 +159,9 @@ class SavedCollectionsView extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        myCollectionsPageHeader: state.appReducers.appData.appText.myCollectionsPageHeader,
         userSelectStandard: state.userReducers.userSelectData.standard,
         savedCollModalActive: state.userReducers.userSelectData.savedCollModal,
+        savedColl: this.props.savedCollSource === "user" ? state.userReducers.userSavedColl: state.appReducers.appData.savedAppColl,
         appDataShareOptions: state.appReducers.appData.shareOptions,
         appDataShareImageBase64: state.appReducers.appData.shareImageBase64,
     }

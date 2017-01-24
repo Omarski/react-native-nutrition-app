@@ -247,7 +247,6 @@ class CustomView extends React.Component {
                 {this.prepItemSliders() ? <SelectionSliderListView
                         styles = {this.props.styles}
                         slidersColl = {this.prepItemSliders()}
-                        userData = {this.props.userSelectItems}
                         titleCap = {this.titleCap}
                         onPressBlock={this.onPressBlock}
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}

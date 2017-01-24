@@ -166,7 +166,6 @@ class TargetView extends React.Component {
                     {this.prepTargetSliders() ? <SelectionSliderListView
                         styles = {this.props.styles}
                         slidersColl = {this.prepTargetSliders()}
-                        userData = {this.props.userSelectTargets}
                         titleCap = {null}
                         onPressBlock={this.onPressBlock}
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
