@@ -74,7 +74,6 @@ export default function userReducers(state=defaultStore, action){
         // collections
 
         case "SAVE_COLLECTION":
-                //return Object.assign({},state,{userSelectData:{...state.userSelectData, userSavedColl:[...state.userSavedColl,action.payload.collectionObj]}});
                 return Object.assign({},state,{userSavedColl:[...state.userSavedColl,action.payload.collectionObj]});
             break;
 

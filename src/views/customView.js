@@ -218,9 +218,12 @@ class CustomView extends React.Component {
                     appDataSaveInputText:this.props.appDataSaveInputText,
                     appDataSaveBtnText:this.props.appDataSaveBtnText,
                     appDataShareBtnText:this.props.appDataShareBtnText,
+                    appDataSavedViewHeader:this.props.savedCollViewHeader,
+                    appDataPickerSaveCatText:this.props.appDataPickerSaveCatText,
                     appDataShareOptions:this.props.appDataShareOptions,
                     appDataShareImageBase64:this.props.appDataShareImageBase64,
                     titleCap:this.titleCap,
+                    appDataSaveCat:this.props.appDataSaveCat,
                 }
             });
     };
@@ -283,9 +286,12 @@ const mapStateToProps = (state) => {
         appDataSaveInputText: state.appReducers.appData.appText.saveCollectionDefaultText,
         appDataSaveBtnText: state.appReducers.appData.appText.saveBtnText,
         appDataShareBtnText: state.appReducers.appData.appText.shareBtnText,
+        appDataPickerSaveCatText: state.appReducers.appData.appText.appDataPickerSaveCatText,
+        savedCollViewHeader: state.appReducers.appData.appText.savedCollViewHeader,
         itemModalActive: state.userReducers.userSelectData.itemModal,
         appDataShareOptions: state.appReducers.appData.shareOptions,
         appDataShareImageBase64: state.appReducers.appData.shareImageBase64,
+        appDataSaveCat: state.appReducers.appData.saveAppCategories,
     }
 };
 

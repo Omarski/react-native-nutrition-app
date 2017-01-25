@@ -9,9 +9,11 @@ import {
 
 import CollectionDisplayView from './collectionDisplayView';
 import StatsTrackerView from './statsTrackerView';
-import savedCollectionsView from './savedCollectionsView';
+import SavedCollectionsView from './savedCollectionsView';
 import ButtonCust from '../viewCommon/buttonCust';
 import SocialShare from '../viewCommon/socialShare';
+import PickerCust from '../viewCommon/pickerCust';
+
 import {saveCollectionAction} from '../actions/actions';
 
 
@@ -27,30 +29,36 @@ export default class SaveCollectionView extends React.Component {
         appDataSaveInputText:PropTypes.string.isRequired,
         appDataSaveBtnText:PropTypes.string.isRequired,
         appDataShareBtnText:PropTypes.string.isRequired,
+        appDataPickerSaveCatText:PropTypes.string.isRequired,
         appDataShareOptions:PropTypes.object,
         appDataShareImageBase64:PropTypes.object,
+        appDataSaveCat:PropTypes.array.isRequired,
+        appDataSavedViewHeader:PropTypes.string.isRequired,
         titleCap:PropTypes.func,
     };
 
     state = {
-        inputVerified:false,
+        inputTextVerified:false,
+        inputPickerVerified:false,
+        pickerInputText:""
     };
 
     onPressSave = () => {
 
-        if (this.inputVerify) this.props.dispatch(saveCollectionAction(
+        this.props.dispatch(saveCollectionAction(
             this.refs.inputText._lastNativeText,
-            this.refs.inputCategory._lastNativeText,
+            this.state.pickerInputText,
             this.props.userSelectItems));
 
         setTimeout(()=>{
-           this.props.navigator.push(
+
+            this.props.navigator.push(
                {
                    title: "My recipes",
-                   component: savedCollectionsView,
+                   component: SavedCollectionsView,
                    passProps: {
                        styles:this.props.styles,
-                       savedCollectionsHeader:this.props.savedCollectionsHeader,
+                       appDataSavedViewHeader:this.props.appDataSavedViewHeader,
                        savedCollSource:"user"
                    }
             })
@@ -69,9 +77,13 @@ export default class SaveCollectionView extends React.Component {
         this.refs.socialShare.openUIComponentShare();
     };
 
-    inputVerify = (text) => {
-        this.setState({inputVerified:text.length > 0 && text !== this.props.appDataSaveInputText,
-        textValue:text});
+    inputTextVerify = (text) => {
+        this.setState({inputTextVerified:text.length > 0 && text !== this.props.appDataSaveInputText});
+    };
+
+    inputPickerVerify = (text) => {
+        this.setState({inputPickerVerified:text.length > 0 && text !== this.props.appDataPickerSaveCatText,
+            pickerInputText:text});
     };
 
     render() {
@@ -100,14 +112,21 @@ export default class SaveCollectionView extends React.Component {
                     ref="inputText"
                     style={this.props.styles.saveCollectionViewInputText}
                     placeholder={this.props.appDataSaveInputText}
-                    onChangeText={(text) => this.inputVerify(text)}
+                    onChangeText={(text) => this.inputTextVerify(text)}
+                />
+                <PickerCust style={{flex:1}}
+                    ref="inputCategory"
+                    styles={this.props.styles}
+                    itemsColl={this.props.appDataSaveCat}
+                    selectedValue={this.props.appDataPickerSaveCatText}
+                    onValueChange={this.inputPickerVerify}
                 />
                 <ButtonCust
                     title = {this.props.appDataSaveBtnText}
                     styleBox= {this.props.styles.buttonCollectionSaveSave}
                     styleTitle={this.props.styles.buttonTitleCollectionSave}
                     onButtonPress={this.onPressSave}
-                    enabled={this.state.inputVerified}
+                    enabled={this.state.inputTextVerified && this.state.inputPickerVerified}
                     styleDisabled = {{opacity:0.5}}
                 />
                 <ButtonCust
@@ -115,7 +134,7 @@ export default class SaveCollectionView extends React.Component {
                     styleBox= {this.props.styles.buttonCollectionSaveSave}
                     styleTitle={this.props.styles.buttonTitleCollectionSave}
                     onButtonPress={this.onPressSimpleShare}
-                    enabled={this.state.inputVerified}
+                    enabled={this.state.inputTextVerified}
                     styleDisabled = {{opacity:0.5}}
                 />
             </View>

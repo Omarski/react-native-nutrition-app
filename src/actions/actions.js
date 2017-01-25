@@ -137,11 +137,15 @@ export function itemModalVisibilityAction(itemObj,show){
 }
 
 // collections
-export function saveCollectionAction(collectionName,collItems){
+export function saveCollectionAction(collectionName,collectionCat,collItems){
     return {
         type:"SAVE_COLLECTION",
         payload: {
-            collectionObj: {collectionName:collectionName, items:collItems}
+            collectionObj: {
+                title:collectionName,
+                id:collectionName,
+                category:collectionCat,
+                itemsColl:collItems}
         }
     }
 }

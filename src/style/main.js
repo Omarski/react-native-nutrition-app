@@ -425,10 +425,17 @@ export const styles = StyleSheet.create({
     },
 
     saveCollectionViewInputText:{
-        fontSize:20,
+        fontSize:15,
         height:40,
         width:200,
         color:"#000",
+        backgroundColor:"#fff"
+    },
+
+    saveCatPicker:{
+        //flex:1,
+        width:300,
+        height:50,
         backgroundColor:"#fff"
     },
 

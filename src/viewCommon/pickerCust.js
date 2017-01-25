@@ -1,18 +1,19 @@
 import React, {PropTypes} from 'react';
 import {Picker, View} from 'react-native';
 
-export default class PickerCust extends React.component {
+export default class PickerCust extends React.Component {
 
-    propTypes = {
+    static propTypes = {
         styles:PropTypes.object.isRequired,
         itemsColl:PropTypes.array.isRequired,
-        defaultValue:PropTypes.string,
+        selectedValue:PropTypes.string,
         onValueChange:PropTypes.func,
     };
 
     prepPicker = () => {
+        const PickerItem = Picker.Item;
         const itemsRender = this.props.itemsColl.map((item, index)=>{
-            return (<Picker.item label=item.label value=item.value />)
+            return (<PickerItem label={item.label} value={item.value} key={index}/>)
         });
 
         return itemsRender;
@@ -21,9 +22,10 @@ export default class PickerCust extends React.component {
     render() {
 
         return(
-            <View style={this.props.styles.pickerCust}>
+            <View>
                 <Picker
-                    selectedValue={this.props.defaultValue}
+                    style={this.props.styles.saveCatPicker}
+                    selectedValue={this.props.selectedValue}
                     onValueChange={(val)=>this.props.onValueChange(val)}>
                     {this.prepPicker()}
                 </Picker>

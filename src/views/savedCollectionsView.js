@@ -22,14 +22,18 @@ class SavedCollectionsView extends React.Component {
     static propTypes = {
         styles: PropTypes.object.isRequired,
         navigator: PropTypes.object.isRequired,
-        savedCollectionsHeader:PropTypes.string.isRequired,
-        // from user or in app
+        appDataSavedViewHeader:PropTypes.string.isRequired,
         savedCollSource:PropTypes.string.isRequired,
     };
 
     prepItemSliders = () => {
-
-        let sliders = categorise(this.props.savedColl,"category");
+        console.log("parsing array of objs ....");
+        console.dir(this.props.userDataSavedColl);
+        let sliders = this.props.savedCollSource === "user" ?
+            categorise(this.props.userDataSavedColl,"category"):
+                categorise(this.props.appDataSavedColl,"category");
+        console.log("saved coll ....");
+        console.dir(sliders);
         return sliders;
     };
 
@@ -46,6 +50,9 @@ class SavedCollectionsView extends React.Component {
     };
 
     onPressIconDelete = () => {
+    };
+
+    onPressHome = () => {
     };
 
 
@@ -131,7 +138,7 @@ class SavedCollectionsView extends React.Component {
             <View style={{flex:1}}>
                 {/*page header*/}
                 <Text style={[this.props.styles.pageHeader, this.props.styles.savedCollViewHeader]}>
-                    {this.props.savedCollectionsHeader}
+                    {this.props.appDataSavedViewHeader}
                 </Text>
 
                 {/*sliders list*/}
@@ -148,8 +155,8 @@ class SavedCollectionsView extends React.Component {
                     title = "home"
                     styleBox= {this.props.styles.buttonModalSave}
                     styleTitle={this.props.styles.buttonTitleModalSave}
-                    onButtonPress={this.onPressSave}
-                    enabled={this.enableSaving()}
+                    onButtonPress={this.onPressHome}
+                    enabled={true}
                     styleDisabled = {{opacity:0.5}}
                 />
             </View>
@@ -161,7 +168,8 @@ const mapStateToProps = (state) => {
     return {
         userSelectStandard: state.userReducers.userSelectData.standard,
         savedCollModalActive: state.userReducers.userSelectData.savedCollModal,
-        savedColl: this.props.savedCollSource === "user" ? state.userReducers.userSavedColl: state.appReducers.appData.savedAppColl,
+        appDataSavedColl: state.appReducers.appData.savedAppColl,
+        userDataSavedColl: state.userReducers.userSavedColl,
         appDataShareOptions: state.appReducers.appData.shareOptions,
         appDataShareImageBase64: state.appReducers.appData.shareImageBase64,
     }
