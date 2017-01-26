@@ -63,6 +63,7 @@
         "saveCollectionDefaultText":"Type your recipe name here!",
         "saveBtnText":"Save this recipe!",
         "shareBtnText":"Share your recipe!",
+        "doneBtnText":"Done!",
         "appDataPickerSaveCatText":"category",
         "savedCollViewHeader":"Here are the recipies you saved!"
   },

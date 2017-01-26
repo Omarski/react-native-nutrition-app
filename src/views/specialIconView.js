@@ -37,13 +37,13 @@ export default class SpecialIconsView extends React.Component {
 
         //image clickabble?
         const onPressIcon = iconObj.onPressIcon ? ()=>iconObj.onPressIcon(selectObj):null;
-
          return (
             <TouchableHighlight
                 style={imgStyle}
                 onPress={onPressIcon}>
                <Image
                    source = {imgSrc}
+                   style = {imgStyle}
                />
             </TouchableHighlight>
         )

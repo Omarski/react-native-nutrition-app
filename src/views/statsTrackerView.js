@@ -11,7 +11,6 @@ export default class StatsTrackerView extends React.Component {
     static propTypes = {
         styles: PropTypes.object.isRequired,
         userSelectItems:PropTypes.array.isRequired,
-        userSelectTargets:PropTypes.array.isRequired,
         userSelectStandard:PropTypes.string.isRequired,
     };
 

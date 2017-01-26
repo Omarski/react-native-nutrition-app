@@ -37,7 +37,7 @@ class TargetView extends React.Component {
 
         return [
             {   id:"favoured",
-                imgSrcOn:require("../../images/specialSelectorIconFavoredOn.png"),
+                imgSrcOn:{uri:"specialSelectorIconFavoredOn"},
                 imgSrcOff:null,
                 styleOn:this.props.styles.specialSelectorIconFavoredOn,
                 styleOff:null,
@@ -46,7 +46,7 @@ class TargetView extends React.Component {
             },
 
             {   id:"options",
-                imgSrcOn:require("../../images/specialSelectorIconOptions.png"),
+                imgSrcOn:{uri:"specialSelectorIconOptions"},
                 imgSrcOff:null,
                 styleOn:this.props.styles.specialSelectorIconOptions,
                 styleOff:null,
@@ -60,8 +60,8 @@ class TargetView extends React.Component {
 
         return [
             {   id:"favoured",
-                imgSrcOn:require("../../images/specialSelectorIconModalFavoredOn.png"),
-                imgSrcOff:require("../../images/specialSelectorIconModalFavoredOff.png"),
+                imgSrcOn:{uri:"specialSelectorIconModalFavoredOn"},
+                imgSrcOff:{uri:"specialSelectorIconModalFavoredOff"},
                 styleOn:this.props.styles.specialSelectorIconModalFavoredOn,
                 styleOff:null,
                 onPressIcon:this.onPressIconFavoured,
@@ -108,10 +108,6 @@ class TargetView extends React.Component {
              passProps: {styles:this.props.styles}
             });
     };
-
-    // enableNext = ()=> {
-    //     return this.props.userSelectTargets.length > 0;
-    // };
 
     prepModalData = (targetObj) => {
 

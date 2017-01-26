@@ -11,6 +11,7 @@ import {
 import {connect} from 'react-redux';
 import {categorise} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
+import SocialShare from '../viewCommon/socialShare';
 import ButtonCust from '../viewCommon/buttonCust';
 import SavedCollModalContentView from './savedCollModalContentView';
 
@@ -24,16 +25,13 @@ class SavedCollectionsView extends React.Component {
         navigator: PropTypes.object.isRequired,
         appDataSavedViewHeader:PropTypes.string.isRequired,
         savedCollSource:PropTypes.string.isRequired,
+        titleCap:PropTypes.func,
     };
 
     prepItemSliders = () => {
-        console.log("parsing array of objs ....");
-        console.dir(this.props.userDataSavedColl);
         let sliders = this.props.savedCollSource === "user" ?
-            categorise(this.props.userDataSavedColl,"category"):
-                categorise(this.props.appDataSavedColl,"category");
-        console.log("saved coll ....");
-        console.dir(sliders);
+        categorise(this.props.userDataSavedColl,"category"):
+        categorise(this.props.appDataSavedColl,"category");
         return sliders;
     };
 
@@ -119,7 +117,12 @@ class SavedCollectionsView extends React.Component {
             styles = {this.props.styles}
             savedCollObj={savedCollObj}
             specialSelectorIconsColl = {this.prepSpecialModalIconsColl()}
+            userSelectStandard = {this.props.userSelectStandard}
+            appDataDoneBtnText = {this.props.appDataDoneBtnText}
+            titleCap = {this.props.titleCap}
             onPressClose={this.onModalClose}
+            appDataShareOptions={this.props.appDataShareOptions}
+            appDataShareImageBase64={this.props.appDataShareImageBase64}
         />)
     };
 
@@ -140,6 +143,12 @@ class SavedCollectionsView extends React.Component {
                 <Text style={[this.props.styles.pageHeader, this.props.styles.savedCollViewHeader]}>
                     {this.props.appDataSavedViewHeader}
                 </Text>
+                <SocialShare
+                    ref="socialShare"
+                    styles={this.props.styles}
+                    shareOptions={this.props.appDataShareOptions}
+                    shareImageBase64={this.props.appDataShareImageBase64}
+                />
 
                 {/*sliders list*/}
                 {this.prepItemSliders() ? <SelectionSliderListView
@@ -169,6 +178,7 @@ const mapStateToProps = (state) => {
         userSelectStandard: state.userReducers.userSelectData.standard,
         savedCollModalActive: state.userReducers.userSelectData.savedCollModal,
         appDataSavedColl: state.appReducers.appData.savedAppColl,
+        appDataDoneBtnText: state.appReducers.appData.appText.doneBtnText,
         userDataSavedColl: state.userReducers.userSavedColl,
         appDataShareOptions: state.appReducers.appData.shareOptions,
         appDataShareImageBase64: state.appReducers.appData.shareImageBase64,

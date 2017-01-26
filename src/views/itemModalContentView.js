@@ -53,6 +53,7 @@ export default class ItemModalContentView extends React.Component {
                     title = "Done"
                     styleBox= {this.props.styles.buttonModalNext}
                     styleTitle={this.props.styles.buttonTitleModalNext}
+                    enabled = {true}
                     onButtonPress={this.onPressDoneBtn}
                 />
             </View>

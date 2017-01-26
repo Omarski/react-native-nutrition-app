@@ -65,7 +65,7 @@ class CustomView extends React.Component {
 
         return [
             {   id:"favoured",
-                imgSrcOn:require("../../images/specialSelectorIconFavoredOn.png"),
+                imgSrcOn:{uri:"specialSelectorIconFavoredOn"},
                 imgSrcOff:null,
                 styleOn:this.props.styles.specialSelectorIconFavoredItemOn,
                 styleOff:null,
@@ -74,7 +74,7 @@ class CustomView extends React.Component {
             },
 
             {   id:"options",
-                imgSrcOn:require("../../images/specialSelectorIconOptions.png"),
+                imgSrcOn:{uri:"specialSelectorIconOptions"},
                 imgSrcOff:null,
                 styleOn:this.props.styles.specialSelectorIconOptions,
                 styleOff:null,
@@ -83,7 +83,7 @@ class CustomView extends React.Component {
             },
 
             {   id:"recommended",
-                imgSrcOn:require("../../images/specialSelectorIconRecommend.png"),
+                imgSrcOn:{uri:"specialSelectorIconRecommend"},
                 imgSrcOff:null,
                 styleOn:this.props.styles.specialSelectorIconRecommended,
                 styleOff:null,
@@ -92,7 +92,7 @@ class CustomView extends React.Component {
             },
 
             {   id:"increment",
-                imgSrcOn:require("../../images/specialSelectorIconInc.png"),
+                imgSrcOn:{uri:"specialSelectorIconInc"},
                 imgSrcOff:null,
                 styleOn:this.props.styles.specialSelectorIconInc,
                 styleOff:null,
@@ -101,7 +101,7 @@ class CustomView extends React.Component {
             },
 
             {   id:"decrement",
-                imgSrcOn:require("../../images/specialSelectorIconDec.png"),
+                imgSrcOn:{uri:"specialSelectorIconDec"},
                 imgSrcOff:null,
                 styleOn:this.props.styles.specialSelectorIconDec,
                 styleOff:null,
@@ -115,8 +115,8 @@ class CustomView extends React.Component {
 
         return [
             {   id:"favoured",
-                imgSrcOn:require("../../images/specialSelectorIconModalFavoredOn.png"),
-                imgSrcOff:require("../../images/specialSelectorIconModalFavoredOff.png"),
+                imgSrcOn:{uri:"specialSelectorIconModalFavoredOn"},
+                imgSrcOff:{uri:"specialSelectorIconModalFavoredOff"},
                 styleOn:this.props.styles.specialSelectorIconModalFavoredOn,
                 styleOff:null,
                 onPressIcon:this.onPressIconFavoured,

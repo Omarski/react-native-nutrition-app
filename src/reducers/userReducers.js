@@ -21,6 +21,7 @@ export default function userReducers(state=defaultStore, action){
     switch(action.type){
 
         //targets
+
         case "ADD_TARGET_SELECTION":
             return Object.assign({},state,{userSelectData:{...state.userSelectData, targets:[...state.userSelectData.targets,action.payload.targetObj]}});
             break;
@@ -75,6 +76,14 @@ export default function userReducers(state=defaultStore, action){
 
         case "SAVE_COLLECTION":
                 return Object.assign({},state,{userSavedColl:[...state.userSavedColl,action.payload.collectionObj]});
+            break;
+
+        case "UPDATE_SAVED_COLL_MODAL_VISIBLE":
+            if (action.payload.show){
+                return Object.assign({},state,{userSelectData:{...state.userSelectData, savedCollModal:action.payload.collObj}});
+            }else{
+                return Object.assign({},state,{userSelectData:{...state.userSelectData, savedCollModal:null}});
+            }
             break;
 
         default: return state;

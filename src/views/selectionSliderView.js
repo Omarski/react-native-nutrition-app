@@ -50,7 +50,7 @@ export default class SelectionSliderView extends React.Component {
                                 selected = {rowData.selected}
                                 blockStyle = {this.props.styles.targetViewItemBlock}
                                 blockStyleSelected={this.props.styles.targetViewItemBlockSelected}
-                                imageSrc={require('../../images/targetImgFpo.png')}
+                                imageSrc={{uri:"targetImgFpo"}}
                                 imgStyle={this.props.styles.targetViewItemBlockImg}
                                 blockTitle={rowData.title}
                                 titleCap={this.props.titleCap}

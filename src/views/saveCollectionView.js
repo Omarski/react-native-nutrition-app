@@ -59,7 +59,8 @@ export default class SaveCollectionView extends React.Component {
                    passProps: {
                        styles:this.props.styles,
                        appDataSavedViewHeader:this.props.appDataSavedViewHeader,
-                       savedCollSource:"user"
+                       savedCollSource:"user",
+                       titleCap:this.props.titleCap,
                    }
             })
         },1000);
@@ -105,7 +106,6 @@ export default class SaveCollectionView extends React.Component {
                 <StatsTrackerView
                     styles={this.props.styles}
                     userSelectItems={this.props.userSelectItems}
-                    userSelectTargets={this.props.userSelectTargets}
                     userSelectStandard={this.props.userSelectStandard}
                 />
                 <TextInput

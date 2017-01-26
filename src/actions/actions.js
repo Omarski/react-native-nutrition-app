@@ -150,11 +150,11 @@ export function saveCollectionAction(collectionName,collectionCat,collItems){
     }
 }
 
-export function savedCollModalVisibilityAction(itemObj,show){
+export function savedCollModalVisibilityAction(collObj,show){
     return {
         type:"UPDATE_SAVED_COLL_MODAL_VISIBLE",
         payload: {
-            itemObj: itemObj,
+            collObj: collObj,
             show: show
         }
     }

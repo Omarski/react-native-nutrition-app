@@ -15,11 +15,10 @@ export default class SelectionItemView extends React.Component {
     static propTypes = {
         styles: PropTypes.object.isRequired,
         selectObj: PropTypes.object.isRequired,
-        //userData: PropTypes.array.isRequired,
         blockStyle: PropTypes.number,
         blockStyleSelected: PropTypes.number,
         titleCap: PropTypes.func,
-        imageSrc: PropTypes.number.isRequired,
+        imageSrc: PropTypes.object.isRequired,
         imgStyle: PropTypes.number,
         blockTitle: PropTypes.string.isRequired,
         blockTextStyle: PropTypes.number,

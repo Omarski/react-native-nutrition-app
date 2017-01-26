@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
         position:"absolute",
         width:35,
         height:36,
-        bottom:-10,
+        bottom:-5,
         right:5,
         zIndex:10
     },
@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
         position:"absolute",
         width:37,
         height:34,
-        top:-95,
+        top:-45,
         right:5,
         zIndex:10
     },
@@ -86,7 +86,7 @@ export const styles = StyleSheet.create({
         position:"absolute",
         width:37,
         height:34,
-        bottom:10,
+        top:15,
         left:5,
         zIndex:10
     },
@@ -113,7 +113,7 @@ export const styles = StyleSheet.create({
         position:"absolute",
         width:37,
         height:34,
-        top:-95,
+        top:-45,
         left:5,
         zIndex:10
     },
@@ -122,7 +122,7 @@ export const styles = StyleSheet.create({
         position:"absolute",
         width:37,
         height:34,
-        top:-95,
+        top:-50,
         right:5,
         zIndex:10
     },
@@ -131,7 +131,7 @@ export const styles = StyleSheet.create({
         position:"absolute",
         width:37,
         height:34,
-        top:-60,
+        top:-32,
         right:5,
         zIndex:10
     },
@@ -140,7 +140,7 @@ export const styles = StyleSheet.create({
         position:"absolute",
         width:37,
         height:34,
-        top:-95,
+        top:-45,
         right:5,
         zIndex:10
     },
@@ -149,8 +149,8 @@ export const styles = StyleSheet.create({
         position:"absolute",
         width:37,
         height:34,
-        bottom:-10,
-        right:5,
+        bottom:0,
+        right:0,
         zIndex:10
     },
 
@@ -311,7 +311,9 @@ export const styles = StyleSheet.create({
     },
 
     targetViewItemBlockImg:{
-        opacity:0.3
+        opacity:0.3,
+        width:168,
+        height:112
     },
 
     targetViewItemBlockText:{
@@ -393,6 +395,7 @@ export const styles = StyleSheet.create({
     //collection display view
 
     collectionItemDisplayBlock:{
+        flex:1,
         flexDirection:"row",
         justifyContent:"flex-start",
         alignItems:"center",
@@ -445,5 +448,12 @@ export const styles = StyleSheet.create({
         color:"gray",
         marginTop:80,
         //backgroundColor:"red"
+    },
+
+    appCollModalHeader: {
+        //flex:0.1,
+        color:"gray",
+        marginTop:80,
+        fontSize:20
     },
 });

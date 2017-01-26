@@ -8,16 +8,22 @@ import {
     TouchableHighlight
 } from 'react-native';
 
+import CollectionDisplayView from './collectionDisplayView';
 import SpecialSelectorIconsView from './specialSelectorIconsView';
+import StatsTrackerView from './statsTrackerView';
+import SocialShare from '../viewCommon/socialShare';
 import ButtonCust from '../viewCommon/buttonCust';
-import {capFirstLetter} from '../js/common';
+//import {capFirstLetter} from '../js/common';
 
 export default class SavedCollModalContentView extends React.Component {
 
     static propTypes = {
         styles: PropTypes.object.isRequired,
         savedCollObj: PropTypes.object.isRequired,
+        appDataDoneBtnText: PropTypes.string.isRequired,
         specialSelectorIconsColl: PropTypes.array,
+        userSelectStandard: PropTypes.string.isRequired,
+        titleCap:PropTypes.func,
         onPressClose: PropTypes.func.isRequired
     };
 
@@ -27,13 +33,12 @@ export default class SavedCollModalContentView extends React.Component {
 
     render() {
 
-        const savedCollObj = this.props.savedCollObj;
-
-        // source= {require(imgPath+"imageModal"+capFirstLetter(savedCollObj.id)+".png")}
-
         return (
 
             <View style={this.props.styles.modalShell}>
+                <Text style={[this.props.styles.pageHeader, this.props.styles.appCollModalHeader]}>
+                    {this.props.savedCollObj.title}
+                </Text>
                 <Image
                     source= {require("../../images/imageModalWeightLoss.png")}
                     style = {this.props.styles.targetModalViewImg}
@@ -46,22 +51,28 @@ export default class SavedCollModalContentView extends React.Component {
                 />
                 <CollectionDisplayView
                     styles={this.props.styles}
-                    userSelectItems={this.props.userSelectItems}
+                    userSelectItems={this.props.savedCollObj.itemsColl}
                     userSelectStandard={this.props.userSelectStandard}
                     titleCap={this.props.titleCap}
                 />
                 <StatsTrackerView
                     styles={this.props.styles}
-                    userSelectItems={this.props.userSelectItems}
+                    userSelectItems={this.props.savedCollObj.itemsColl}
                     userSelectTargets={this.props.userSelectTargets}
                     userSelectStandard={this.props.userSelectStandard}
                 />
+                {this.props.specialSelectorIconsColl ?
+                    <View style = {this.props.styles.modalSpecialIconsShell}>
+                        <SpecialSelectorIconsView
+                            specialSelectorIconsColl = {this.props.specialSelectorIconsColl}
+                            selectObj = {this.props.savedCollObj}
+                        /></View>:null}
                 <ButtonCust
-                    title = {this.props.appDataShareBtnText}
+                    title = {this.props.appDataDoneBtnText}
                     styleBox= {this.props.styles.buttonCollectionSaveSave}
                     styleTitle={this.props.styles.buttonTitleCollectionSave}
-                    onButtonPress={this.onPressSimpleShare}
-                    enabled={this.state.inputVerified}
+                    onButtonPress={this.onPressDoneBtn}
+                    enabled={true}
                     styleDisabled = {{opacity:0.5}}
                 />
             </View>

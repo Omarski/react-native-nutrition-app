@@ -55,6 +55,7 @@ export default class TargetModalContentView extends React.Component {
                     title = "Done"
                     styleBox= {this.props.styles.buttonModalNext}
                     styleTitle={this.props.styles.buttonTitleModalNext}
+                    enabled={true}
                     onButtonPress={this.onPressDoneBtn}
                 />
             </View>
