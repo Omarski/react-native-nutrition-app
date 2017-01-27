@@ -11,6 +11,7 @@ import CollectionDisplayView from './collectionDisplayView';
 import StatsTrackerView from './statsTrackerView';
 import SavedCollectionsView from './savedCollectionsView';
 import ButtonCust from '../viewCommon/buttonCust';
+import ModalView from '../viewCommon/modalView';
 import SocialShare from '../viewCommon/socialShare';
 import PickerCust from '../viewCommon/pickerCust';
 
@@ -29,7 +30,7 @@ export default class SaveCollectionView extends React.Component {
         appDataSaveInputText:PropTypes.string.isRequired,
         appDataSaveBtnText:PropTypes.string.isRequired,
         appDataShareBtnText:PropTypes.string.isRequired,
-        appDataPickerSaveCatText:PropTypes.string.isRequired,
+        appDataSaveCollCatInputText:PropTypes.string.isRequired,
         appDataShareOptions:PropTypes.object,
         appDataShareImageBase64:PropTypes.object,
         appDataSaveCat:PropTypes.array.isRequired,
@@ -40,14 +41,15 @@ export default class SaveCollectionView extends React.Component {
     state = {
         inputTextVerified:false,
         inputPickerVerified:false,
-        pickerInputText:""
+        catPickerInputText:this.props.appDataSaveCollCatInputText,
+        pickerModalVisible:false
     };
 
     onPressSave = () => {
 
         this.props.dispatch(saveCollectionAction(
-            this.refs.inputText._lastNativeText,
-            this.state.pickerInputText,
+            this.refs.saveTitleText._lastNativeText,
+            this.state.catPickerInputText,
             this.props.userSelectItems));
 
         setTimeout(()=>{
@@ -66,6 +68,36 @@ export default class SaveCollectionView extends React.Component {
         },1000);
     };
 
+    onPressCatSave = () => {
+        this.setState({pickerModalVisible:false});
+    };
+
+    prepCategoryPicker = () => {
+        return(
+            <View style = {{flex:1}}>
+                <View style={this.props.styles.saveCollViewCatPickerCont}>
+                    <Text style={this.props.styles.saveCollCatInputText}>
+                        {this.state.catPickerInputText}
+                    </Text>
+                    <ButtonCust
+                        title = {this.props.appDataSaveCatBtnTitle}
+                        styleBox= {this.props.styles.buttonCatSave}
+                        styleTitle={this.props.styles.buttonTitleCatSave}
+                        onButtonPress={this.onPressCatSave}
+                        enabled={this.state.inputPickerVerified}
+                        styleDisabled = {{opacity:0.5}}
+                    />
+                </View>
+                    <PickerCust pickerStyle={this.props.styles.saveCatPicker}
+                                ref="inputCategory"
+                                itemsColl={this.props.appDataSaveCat}
+                                selectedValue={this.props.appDataSaveCat[0].label}
+                                onValueChange={this.inputPickerVerify}
+                    />
+            </View>
+        )
+    };
+
     onPressSimpleShare = () => {
         this.refs.socialShare.openSimpleShare();
     };
@@ -78,13 +110,18 @@ export default class SaveCollectionView extends React.Component {
         this.refs.socialShare.openUIComponentShare();
     };
 
-    inputTextVerify = (text) => {
+    saveTitleInputTextVerify = (text) => {
         this.setState({inputTextVerified:text.length > 0 && text !== this.props.appDataSaveInputText});
+    };
+
+    catInputTextVerify = (text) => {
+        this.setState({catInputTextVerified:text.length > 0 && text !== this.props.appDataSaveCollCatInputText,
+            catPickerInputText:text});
     };
 
     inputPickerVerify = (text) => {
         this.setState({inputPickerVerified:text.length > 0 && text !== this.props.appDataPickerSaveCatText,
-            pickerInputText:text});
+            catPickerInputText:text});
     };
 
     render() {
@@ -97,6 +134,13 @@ export default class SaveCollectionView extends React.Component {
                     shareOptions={this.props.appDataShareOptions}
                     shareImageBase64={this.props.appDataShareImageBase64}
                 />
+                <ModalView
+                    styles = {this.props.styles}
+                    content = {this.prepCategoryPicker()}
+                    animationType = "fade"
+                    modalVisible = {this.state.pickerModalVisible}
+                    transparent = {false}
+                />
                 <CollectionDisplayView
                     styles={this.props.styles}
                     userSelectItems={this.props.userSelectItems}
@@ -108,19 +152,19 @@ export default class SaveCollectionView extends React.Component {
                     userSelectItems={this.props.userSelectItems}
                     userSelectStandard={this.props.userSelectStandard}
                 />
-                <TextInput
-                    ref="inputText"
-                    style={this.props.styles.saveCollectionViewInputText}
-                    placeholder={this.props.appDataSaveInputText}
-                    onChangeText={(text) => this.inputTextVerify(text)}
-                />
-                <PickerCust style={{flex:1}}
-                    ref="inputCategory"
-                    styles={this.props.styles}
-                    itemsColl={this.props.appDataSaveCat}
-                    selectedValue={this.props.appDataPickerSaveCatText}
-                    onValueChange={this.inputPickerVerify}
-                />
+                <View style={this.props.styles.saveCollInputCont}>
+                    <TextInput
+                        ref="saveTitleText"
+                        style={this.props.styles.saveCollectionViewInputText}
+                        placeholder={this.props.appDataSaveInputText}
+                        onChangeText={(text) => this.saveTitleInputTextVerify(text)}
+                    />
+                    <Text
+                        style={this.props.styles.saveCollCatText}
+                        onPress={()=>this.setState({pickerModalVisible:true})}>
+                        {this.state.catPickerInputText}
+                    </Text>
+                </View>
                 <ButtonCust
                     title = {this.props.appDataSaveBtnText}
                     styleBox= {this.props.styles.buttonCollectionSaveSave}

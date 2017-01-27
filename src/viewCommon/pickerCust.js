@@ -4,7 +4,7 @@ import {Picker, View} from 'react-native';
 export default class PickerCust extends React.Component {
 
     static propTypes = {
-        styles:PropTypes.object.isRequired,
+        pickerStyle:PropTypes.number.isRequired,
         itemsColl:PropTypes.array.isRequired,
         selectedValue:PropTypes.string,
         onValueChange:PropTypes.func,
@@ -24,7 +24,7 @@ export default class PickerCust extends React.Component {
         return(
             <View>
                 <Picker
-                    style={this.props.styles.saveCatPicker}
+                    style={this.props.pickerStyle}
                     selectedValue={this.props.selectedValue}
                     onValueChange={(val)=>this.props.onValueChange(val)}>
                     {this.prepPicker()}

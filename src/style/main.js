@@ -236,6 +236,25 @@ export const styles = StyleSheet.create({
         textAlign:"center"
     },
 
+    buttonCatSave: {
+        padding:15,
+        borderRadius: 10,
+        backgroundColor:"#7eaa4d",
+        borderWidth:1,
+        borderColor:"#41552a",
+        width:200,
+        height:20,
+        zIndex:10,
+    },
+
+    buttonTitleCatSave:{
+        marginTop:-10,
+        fontSize:15,
+        fontWeight:"bold",
+        color:"#fff",
+        textAlign:"center"
+    },
+
 
     //page views
 
@@ -433,6 +452,31 @@ export const styles = StyleSheet.create({
         width:200,
         color:"#000",
         backgroundColor:"#fff"
+    },
+
+    saveCollCatInputText:{
+        fontSize:15,
+        height:40,
+        width:200,
+        color:"#000",
+        backgroundColor:"#fff"
+    },
+
+    saveCollCatText:{
+        fontSize:15,
+        height:40,
+        width:200,
+        color:"#000",
+        backgroundColor:"#f6ae23"
+    },
+
+    saveCollInputCont:{
+        flex:1,
+        flexDirection:"row",
+        justifyContent:"flex-start",
+        alignItems:"center",
+        marginTop:22,
+        padding:20,
     },
 
     saveCatPicker:{

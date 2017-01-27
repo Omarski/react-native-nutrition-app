@@ -56,7 +56,7 @@
         ]}
     ],
 
-    "appText": {
+  "appText": {
         "targetPageHeader":"Step 1 - What is you goal for this smoothie?",
         "customPageHeader":"Step 2 - Now pick your ingredients. Items marked with thumbs up sign are perfect to help yo meet your goal.",
         "customPageIntro":"This is the custom page intro...!!!",
@@ -64,7 +64,7 @@
         "saveBtnText":"Save this recipe!",
         "shareBtnText":"Share your recipe!",
         "doneBtnText":"Done!",
-        "appDataPickerSaveCatText":"category",
+        "saveCollCatInputText":"category",
         "savedCollViewHeader":"Here are the recipies you saved!"
   },
 
