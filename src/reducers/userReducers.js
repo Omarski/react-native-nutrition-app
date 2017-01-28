@@ -86,6 +86,14 @@ export default function userReducers(state=defaultStore, action){
             }
             break;
 
+
+         case "DELETE_USER_SAVED_COLL":
+                return Object.assign({},state,{userSavedColl:[...state.userSavedColl,
+                    state.userSavedColl.filter((savedCollObj)=>{
+                        return savedCollObj.title !== action.savedCollObj.title
+                    })]});
+            break;
+
         default: return state;
 
     }

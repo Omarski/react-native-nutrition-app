@@ -20,7 +20,8 @@ export default class SelectionSliderListView extends React.Component {
         titleCap: PropTypes.func,
         onPressBlock: PropTypes.func.isRequired,
         specialSelectorIconsColl: PropTypes.array,
-        modal:PropTypes.object
+        modal:PropTypes.object,
+        confirmSupportObj:PropTypes.object
     };
 
     slidersListRender = () => {
@@ -36,6 +37,7 @@ export default class SelectionSliderListView extends React.Component {
                                 titleCap = {this.props.titleCap}
                                 onPressBlock = {this.props.onPressBlock}
                                 specialSelectorIconsColl={this.props.specialSelectorIconsColl}
+                                confirmSupportObj = {this.props.confirmSupportObj? this.props.confirmSupportObj:null}
                             />
                         </View>
                     )

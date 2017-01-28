@@ -18,7 +18,7 @@ export default class SelectionSliderView extends React.Component {
         titleCap: PropTypes.func,
         onPressBlock: PropTypes.func.isRequired,
         specialSelectorIconsColl: PropTypes.array,
-
+        confirmSupportObj: PropTypes.object
     };
 
     componentDidMount(){

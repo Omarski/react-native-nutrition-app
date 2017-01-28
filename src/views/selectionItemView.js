@@ -7,6 +7,7 @@ import {
     Image,
     TouchableHighlight
 } from 'react-native';
+import TaskConfirm from '../viewCommon/taskConfirm';
 
 import SpecialSelectorIconsView from './specialSelectorIconsView';
 
@@ -24,7 +25,8 @@ export default class SelectionItemView extends React.Component {
         blockTextStyle: PropTypes.number,
         blockId:PropTypes.string.isRequired,
         onPressBlock: PropTypes.func.isRequired,
-        specialSelectorIconsColl: PropTypes.array
+        specialSelectorIconsColl: PropTypes.array,
+        confirmSupportObj:PropTypes.object
     };
 
     render() {
@@ -48,6 +50,19 @@ export default class SelectionItemView extends React.Component {
                             specialSelectorIconsColl = {this.props.specialSelectorIconsColl}
                             selectObj = {this.props.selectObj}
                         />:null}
+
+                    <TaskConfirm
+                        message = {this.props.confirmSupportObj.message}
+                        cancelMessage: {this.props.confirmSupportObj.cancelMessage}
+                        confirmContStyle: {this.props.confirmSupportObj.confirmContStyle}
+                        styleMessageBox: {this.props.confirmSupportObj.styleMessageBox}
+                        styleMessage: {this.props.confirmSupportObj.styleMessage}
+                        styleCancelBox: {this.props.confirmSupportObj.styleCancelBox}
+                        styleCancel: {this.props.confirmSupportObj.styleCancel}
+                        visible: {this.props.confirmSupportObj.visible}
+                        onConfirmPress: {this.props.confirmSupportObj.onConfirmPress}
+                        onConfirmCancel: {this.props.confirmSupportObj.onConfirmCancel}
+                    />
 
                 </View>
             </TouchableHighlight>

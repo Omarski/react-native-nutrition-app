@@ -160,6 +160,17 @@ export function savedCollModalVisibilityAction(collObj,show){
     }
 }
 
+export function deleteUserSavedCollAction(collObj){
+    return {
+        type:"DELETE_USER_SAVED_COLL",
+        payload: {
+            collObj: collObj
+        }
+    }
+}
+
+
+
 //database connect
 export function getAppDataAction(dispatch){
 

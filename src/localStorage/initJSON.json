@@ -65,7 +65,9 @@
         "shareBtnText":"Share your recipe!",
         "doneBtnText":"Done!",
         "saveCollCatInputText":"category",
-        "savedCollViewHeader":"Here are the recipies you saved!"
+        "savedCollViewHeader":"Here are the recipies you saved!",
+        "appDataDeleteCollConfirmText":"delete recipe?",
+        "appDataCancelDeleteCollConfirmText":"cancel"
   },
 
     "shareOptions":{

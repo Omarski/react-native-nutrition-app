@@ -255,6 +255,45 @@ export const styles = StyleSheet.create({
         textAlign:"center"
     },
 
+    // task confirm
+
+    deleteCollConfirmCont:{
+        position:"absolute",
+        flexDirection:"row",
+        justifyContent:"flex-start",
+        alignItems:"center",
+        width:150,
+        padding:20,
+    },
+
+    deleteCollConfirmMessageBox:{
+        width:70,
+        height:30,
+        backgroundColor:"#676654"
+    },
+
+    deleteCollConfirmMessage:{
+        marginTop:-10,
+        fontSize:15,
+        fontWeight:"bold",
+        color:"#fff",
+        textAlign:"center"
+    },
+
+    deleteCollConfirmCancelBox:{
+        width:70,
+        height:30,
+        backgroundColor:"#416721"
+    },
+
+    deleteCollConfirmCancel:{
+        marginTop:-10,
+        fontSize:15,
+        fontWeight:"bold",
+        color:"#fff",
+        textAlign:"center"
+    },
+
 
     //page views
 

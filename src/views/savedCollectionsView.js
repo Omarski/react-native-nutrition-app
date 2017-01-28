@@ -15,7 +15,7 @@ import SocialShare from '../viewCommon/socialShare';
 import ButtonCust from '../viewCommon/buttonCust';
 import SavedCollModalContentView from './savedCollModalContentView';
 
-import {savedCollModalVisibilityAction} from '../actions/actions';
+import {savedCollModalVisibilityAction, deleteUserSavedCollAction} from '../actions/actions';
 
 
 class SavedCollectionsView extends React.Component {
@@ -26,6 +26,10 @@ class SavedCollectionsView extends React.Component {
         appDataSavedViewHeader:PropTypes.string.isRequired,
         savedCollSource:PropTypes.string.isRequired,
         titleCap:PropTypes.func,
+    };
+
+    static state = {
+        showConfirm:false
     };
 
     prepItemSliders = () => {
@@ -51,6 +55,10 @@ class SavedCollectionsView extends React.Component {
     };
 
     onPressHome = () => {
+    };
+
+    onConfirmDeleteColl = (savedCollObj) => {
+        this.props.dispatch(deleteUserSavedCollAction(savedCollObj));
     };
 
 
@@ -137,6 +145,19 @@ class SavedCollectionsView extends React.Component {
 
     render() {
 
+        const confirmSupportObj = {
+            message: this.props.appDataDeleteCollConfirmText,
+            cancelMessage: this.props.appDataCancelDeleteCollConfirmText,
+            confirmContStyle: this.props.styles.deleteCollConfirmCont,
+            styleMessageBox: this.props.styles.deleteCollConfirmMessageBox,
+            styleMessage: this.props.styles.deleteCollConfirmMessage,
+            styleCancelBox: this.props.styles.deleteCollConfirmCancelBox,
+            styleCancel: this.props.styles.deleteCollConfirmCancel,
+            visible:this.state.showConfirm,
+            onConfirmPress:this.onConfirmDeleteColl,
+            onConfirmCancel:this.setState({showConfirm:false})
+        };
+
         return (
             <View style={{flex:1}}>
                 {/*page header*/}
@@ -158,6 +179,7 @@ class SavedCollectionsView extends React.Component {
                         onPressBlock={this.onPressBlock}
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
                         modal={this.prepModalData(this.props.savedCollModalActive)}
+                        confirmSupportObj={confirmSupportObj}
                     />:null}
 
                 <ButtonCust
@@ -179,6 +201,8 @@ const mapStateToProps = (state) => {
         savedCollModalActive: state.userReducers.userSelectData.savedCollModal,
         appDataSavedColl: state.appReducers.appData.savedAppColl,
         appDataDoneBtnText: state.appReducers.appData.appText.doneBtnText,
+        appDataDeleteCollConfirmText: state.appReducers.appData.appText.appDataDeleteCollConfirmText,
+        appDataCancelDeleteCollConfirmText: state.appReducers.appData.appText.appDataCancelDeleteCollConfirmText,
         userDataSavedColl: state.userReducers.userSavedColl,
         appDataShareOptions: state.appReducers.appData.shareOptions,
         appDataShareImageBase64: state.appReducers.appData.shareImageBase64,
