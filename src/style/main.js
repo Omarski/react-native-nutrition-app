@@ -264,6 +264,7 @@ export const styles = StyleSheet.create({
         alignItems:"center",
         width:150,
         padding:20,
+        bottom:20
     },
 
     deleteCollConfirmMessageBox:{
@@ -453,7 +454,7 @@ export const styles = StyleSheet.create({
     //collection display view
 
     collectionItemDisplayBlock:{
-        flex:1,
+        //flex:1,
         flexDirection:"row",
         justifyContent:"flex-start",
         alignItems:"center",

@@ -20,7 +20,6 @@ export default class CollectionItemDisplayView extends React.Component {
         const itemObj = this.props.itemObj;
         const itemObjMeasurement = itemObj.measurement[this.props.userSelectStandard];
         const iconSrc = itemObjMeasurement.icon;
-
         return (
             <View style={this.props.styles.collectionItemDisplayBlock}>
                 <Text style={this.props.styles.collectionItemDisplayAmountText}>

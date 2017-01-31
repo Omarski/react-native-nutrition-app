@@ -28,8 +28,8 @@ class SavedCollectionsView extends React.Component {
         titleCap:PropTypes.func,
     };
 
-    static state = {
-        showConfirm:false
+    state = {
+        visibleCancelTaskColl:[]
     };
 
     prepItemSliders = () => {
@@ -51,16 +51,33 @@ class SavedCollectionsView extends React.Component {
         this.refs.socialShare.openUIComponentShare();
     };
 
-    onPressIconDelete = () => {
+    onPressIconDelete = (collObj) => {
+
+        const self = this;
+        if (self.state.visibleCancelTaskColl.indexOf(collObj.id) === -1){
+            console.log("Adding to coll");
+            self.setState({visibleCancelTaskColl:[...self.state.visibleCancelTaskColl,collObj.id]});
+        }
+    };
+
+    onConfirmDeleteColl = (collId) => {
+        this.props.dispatch(deleteUserSavedCollAction(collId));
+    };
+
+    onConfirmCancel = (collId) => {
+        this.setState({visibleCancelTaskColl:this.state.visibleCancelTaskColl.filter((collIdStack)=> {
+            return collIdStack !== collId;
+        })});
+    };
+
+    onConfirmVisible = (collId) => {
+        console.log("Saved coll: ");
+        console.dir(this.state.visibleCancelTaskColl);
+        return this.state.visibleCancelTaskColl.indexOf(collId) !== -1;
     };
 
     onPressHome = () => {
     };
-
-    onConfirmDeleteColl = (savedCollObj) => {
-        this.props.dispatch(deleteUserSavedCollAction(savedCollObj));
-    };
-
 
     prepSpecialIconsColl = () => {
 
@@ -139,6 +156,7 @@ class SavedCollectionsView extends React.Component {
     };
 
     onPressBlock = (savedCollObj) => {
+        console.log("Pressing block....");
         this.prepModalData(savedCollObj);
         this.props.dispatch(savedCollModalVisibilityAction(savedCollObj,true));
     };
@@ -153,12 +171,13 @@ class SavedCollectionsView extends React.Component {
             styleMessage: this.props.styles.deleteCollConfirmMessage,
             styleCancelBox: this.props.styles.deleteCollConfirmCancelBox,
             styleCancel: this.props.styles.deleteCollConfirmCancel,
-            visible:this.state.showConfirm,
+            visible:this.onConfirmVisible,
             onConfirmPress:this.onConfirmDeleteColl,
-            onConfirmCancel:this.setState({showConfirm:false})
+            onConfirmCancel:this.onConfirmCancel
         };
 
         return (
+
             <View style={{flex:1}}>
                 {/*page header*/}
                 <Text style={[this.props.styles.pageHeader, this.props.styles.savedCollViewHeader]}>
@@ -199,6 +218,7 @@ const mapStateToProps = (state) => {
     return {
         userSelectStandard: state.userReducers.userSelectData.standard,
         savedCollModalActive: state.userReducers.userSelectData.savedCollModal,
+        userSavedCollDelConfirmsVis: state.userReducers.userSelectData.userSavedCollDelConfirmsVis,
         appDataSavedColl: state.appReducers.appData.savedAppColl,
         appDataDoneBtnText: state.appReducers.appData.appText.doneBtnText,
         appDataDeleteCollConfirmText: state.appReducers.appData.appText.appDataDeleteCollConfirmText,

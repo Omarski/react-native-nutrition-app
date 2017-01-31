@@ -14,7 +14,7 @@ const defaultStore = {
         targetsPrefsFavoured:[],
         itemsPrefsFavoured:[]
         },
-    userSavedColl:[]
+    userSavedColl:[],
 };
 
 export default function userReducers(state=defaultStore, action){
@@ -86,12 +86,11 @@ export default function userReducers(state=defaultStore, action){
             }
             break;
 
-
          case "DELETE_USER_SAVED_COLL":
-                return Object.assign({},state,{userSavedColl:[...state.userSavedColl,
+                return Object.assign({},state,{userSavedColl:
                     state.userSavedColl.filter((savedCollObj)=>{
-                        return savedCollObj.title !== action.savedCollObj.title
-                    })]});
+                        return savedCollObj.title !== action.payload.collTitle
+                    })});
             break;
 
         default: return state;

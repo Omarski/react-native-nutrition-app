@@ -58,6 +58,7 @@ export default class SelectionSliderView extends React.Component {
                                 blockId={rowData.id}
                                 onPressBlock={this.props.onPressBlock}
                                 specialSelectorIconsColl={this.props.specialSelectorIconsColl}
+                                confirmSupportObj={this.props.confirmSupportObj}
                             />
 
                         </View>}

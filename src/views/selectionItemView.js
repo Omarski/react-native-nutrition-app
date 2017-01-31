@@ -8,7 +8,6 @@ import {
     TouchableHighlight
 } from 'react-native';
 import TaskConfirm from '../viewCommon/taskConfirm';
-
 import SpecialSelectorIconsView from './specialSelectorIconsView';
 
 export default class SelectionItemView extends React.Component {
@@ -51,18 +50,19 @@ export default class SelectionItemView extends React.Component {
                             selectObj = {this.props.selectObj}
                         />:null}
 
-                    <TaskConfirm
+                    {this.props.confirmSupportObj ? <TaskConfirm
                         message = {this.props.confirmSupportObj.message}
-                        cancelMessage: {this.props.confirmSupportObj.cancelMessage}
-                        confirmContStyle: {this.props.confirmSupportObj.confirmContStyle}
-                        styleMessageBox: {this.props.confirmSupportObj.styleMessageBox}
-                        styleMessage: {this.props.confirmSupportObj.styleMessage}
-                        styleCancelBox: {this.props.confirmSupportObj.styleCancelBox}
-                        styleCancel: {this.props.confirmSupportObj.styleCancel}
-                        visible: {this.props.confirmSupportObj.visible}
-                        onConfirmPress: {this.props.confirmSupportObj.onConfirmPress}
-                        onConfirmCancel: {this.props.confirmSupportObj.onConfirmCancel}
-                    />
+                        cancelMessage = {this.props.confirmSupportObj.cancelMessage}
+                        confirmContStyle = {this.props.confirmSupportObj.confirmContStyle}
+                        styleMessageBox = {this.props.confirmSupportObj.styleMessageBox}
+                        styleMessage = {this.props.confirmSupportObj.styleMessage}
+                        styleCancelBox = {this.props.confirmSupportObj.styleCancelBox}
+                        styleCancel = {this.props.confirmSupportObj.styleCancel}
+                        visible = {this.props.confirmSupportObj.visible}
+                        onConfirmPress = {this.props.confirmSupportObj.onConfirmPress}
+                        onConfirmCancel = {this.props.confirmSupportObj.onConfirmCancel}
+                        taskId = {this.props.blockId}
+                    />:null}
 
                 </View>
             </TouchableHighlight>

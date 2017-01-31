@@ -255,6 +255,7 @@ class CustomView extends React.Component {
                         onPressBlock={this.onPressBlock}
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
                         modal={this.prepModalData(this.props.itemModalActive)}
+                        confirmSupportObj = {null}
                     />:null}
 
                 <StatsTrackerView

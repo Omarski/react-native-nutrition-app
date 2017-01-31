@@ -8,9 +8,10 @@ import {
 } from 'react-native';
 
 
-export default class ButtonCust extends React.Component {
+export default class TaskConfirm extends React.Component {
 
     static propTypes = {
+        taskId: PropTypes.string,
         message: PropTypes.string.isRequired,
         cancelMessage: PropTypes.string.isRequired,
         confirmContStyle: PropTypes.number.isRequired,
@@ -18,7 +19,7 @@ export default class ButtonCust extends React.Component {
         styleMessage: PropTypes.number.isRequired,
         styleCancelBox: PropTypes.number.isRequired,
         styleCancel: PropTypes.number.isRequired,
-        visible: PropTypes.bool.isRequired,
+        visible: PropTypes.func.isRequired,
         onConfirmPress: PropTypes.func.isRequired,
         onConfirmCancel: PropTypes.func.isRequired,
     };
@@ -26,16 +27,16 @@ export default class ButtonCust extends React.Component {
     render() {
 
         return (
-            <View style={this.props.confirmContStyle}>
+           <View style={[this.props.confirmContStyle,{opacity: this.props.visible(this.props.taskId) ? 1:0}]}>
                 <TouchableOpacity
-                    onPress = {this.props.onConfirmPress}
+                    onPress = {()=>{this.props.onConfirmPress(this.props.taskId)}}
                     style={this.props.styleMessageBox}>
                         <Text style={this.props.styleMessage}>
                             {this.props.message}
                         </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress = {this.props.onConfirmCancel}
+                    onPress = {()=>this.props.onConfirmCancel(this.props.taskId)}
                     style={this.props.styleCancelBox}>
                         <Text style={this.props.styleCancel}>
                             {this.props.cancelMessage}

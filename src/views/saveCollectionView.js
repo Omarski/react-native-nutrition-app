@@ -120,7 +120,7 @@ export default class SaveCollectionView extends React.Component {
     };
 
     inputPickerVerify = (text) => {
-        this.setState({inputPickerVerified:text.length > 0 && text !== this.props.appDataPickerSaveCatText,
+        this.setState({inputPickerVerified:text.length > 0,
             catPickerInputText:text});
     };
 

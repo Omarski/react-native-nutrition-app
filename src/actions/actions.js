@@ -160,15 +160,14 @@ export function savedCollModalVisibilityAction(collObj,show){
     }
 }
 
-export function deleteUserSavedCollAction(collObj){
+export function deleteUserSavedCollAction(collTitle) {
     return {
-        type:"DELETE_USER_SAVED_COLL",
+        type: "DELETE_USER_SAVED_COLL",
         payload: {
-            collObj: collObj
+            collTitle: collTitle
         }
     }
 }
-
 
 
 //database connect

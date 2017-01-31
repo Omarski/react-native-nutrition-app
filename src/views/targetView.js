@@ -166,6 +166,7 @@ class TargetView extends React.Component {
                         onPressBlock={this.onPressBlock}
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
                         modal={this.prepModalData(this.props.targetModalActive)}
+                        confirmSupportObj = {null}
                         />:null}
 
                     <ButtonCust
