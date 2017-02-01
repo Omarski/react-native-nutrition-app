@@ -29,7 +29,8 @@ class SavedCollectionsView extends React.Component {
     };
 
     state = {
-        visibleCancelTaskColl:[]
+        visibleCancelTaskColl:[],
+        modalConfirmVisible:false
     };
 
     prepItemSliders = () => {
@@ -51,17 +52,26 @@ class SavedCollectionsView extends React.Component {
         this.refs.socialShare.openUIComponentShare();
     };
 
+    // Delete coll task confirms
+
     onPressIconDelete = (collObj) => {
 
-        const self = this;
-        if (self.state.visibleCancelTaskColl.indexOf(collObj.id) === -1){
-            console.log("Adding to coll");
-            self.setState({visibleCancelTaskColl:[...self.state.visibleCancelTaskColl,collObj.id]});
+        if (this.state.visibleCancelTaskColl.indexOf(collObj.id) === -1){
+            this.setState({visibleCancelTaskColl:[...this.state.visibleCancelTaskColl,collObj.id]});
         }
+    };
+
+    modalDeleteConfirmVisible = () => {
+        this.setState({modalConfirmVisible:!this.state.modalConfirmVisible});
     };
 
     onConfirmDeleteColl = (collId) => {
         this.props.dispatch(deleteUserSavedCollAction(collId));
+    };
+
+    onConfirmModalDeleteColl = (collId) => {
+        this.props.dispatch(deleteUserSavedCollAction(collId));
+        this.modalDeleteConfirmVisible();
     };
 
     onConfirmCancel = (collId) => {
@@ -71,10 +81,10 @@ class SavedCollectionsView extends React.Component {
     };
 
     onConfirmVisible = (collId) => {
-        console.log("Saved coll: ");
-        console.dir(this.state.visibleCancelTaskColl);
         return this.state.visibleCancelTaskColl.indexOf(collId) !== -1;
     };
+
+    onModalConfirmVisible = () => {return this.state.modalConfirmVisible};
 
     onPressHome = () => {
     };
@@ -118,7 +128,7 @@ class SavedCollectionsView extends React.Component {
                 imgSrcOff:null,
                 styleOn:this.props.styles.specialSelectorIconModalDelete,
                 styleOff:null,
-                onPressIcon:this.onPressIconDelete,
+                onPressIcon:this.modalDeleteConfirmVisible,
                 showIcon:()=>true
             }
         ]
@@ -138,10 +148,12 @@ class SavedCollectionsView extends React.Component {
     };
 
     prepModalContent = (savedCollObj) => {
+
         return(<SavedCollModalContentView
             styles = {this.props.styles}
             savedCollObj={savedCollObj}
             specialSelectorIconsColl = {this.prepSpecialModalIconsColl()}
+            confirmSupportObj = {this.confirmSupportModalObj}
             userSelectStandard = {this.props.userSelectStandard}
             appDataDoneBtnText = {this.props.appDataDoneBtnText}
             titleCap = {this.props.titleCap}
@@ -156,25 +168,30 @@ class SavedCollectionsView extends React.Component {
     };
 
     onPressBlock = (savedCollObj) => {
-        console.log("Pressing block....");
         this.prepModalData(savedCollObj);
         this.props.dispatch(savedCollModalVisibilityAction(savedCollObj,true));
     };
 
-    render() {
+    confirmSupportObj = {
+        message: this.props.appDataDeleteCollConfirmText,
+        cancelMessage: this.props.appDataCancelDeleteCollConfirmText,
+        confirmContStyle: this.props.styles.deleteCollConfirmCont,
+        styleMessageBox: this.props.styles.deleteCollConfirmMessageBox,
+        styleMessage: this.props.styles.deleteCollConfirmMessage,
+        styleCancelBox: this.props.styles.deleteCollConfirmCancelBox,
+        styleCancel: this.props.styles.deleteCollConfirmCancel,
+        visible:this.onConfirmVisible,
+        onConfirmPress:this.onConfirmDeleteColl,
+        onConfirmCancel:this.onConfirmCancel
+    };
 
-        const confirmSupportObj = {
-            message: this.props.appDataDeleteCollConfirmText,
-            cancelMessage: this.props.appDataCancelDeleteCollConfirmText,
-            confirmContStyle: this.props.styles.deleteCollConfirmCont,
-            styleMessageBox: this.props.styles.deleteCollConfirmMessageBox,
-            styleMessage: this.props.styles.deleteCollConfirmMessage,
-            styleCancelBox: this.props.styles.deleteCollConfirmCancelBox,
-            styleCancel: this.props.styles.deleteCollConfirmCancel,
-            visible:this.onConfirmVisible,
-            onConfirmPress:this.onConfirmDeleteColl,
-            onConfirmCancel:this.onConfirmCancel
-        };
+    confirmSupportModalObj = Object.assign({},this.confirmSupportObj,{
+        visible:this.onModalConfirmVisible,
+        onConfirmPress:this.onConfirmModalDeleteColl,
+        onConfirmCancel:this.modalDeleteConfirmVisible
+    });
+
+    render() {
 
         return (
 
@@ -198,7 +215,7 @@ class SavedCollectionsView extends React.Component {
                         onPressBlock={this.onPressBlock}
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
                         modal={this.prepModalData(this.props.savedCollModalActive)}
-                        confirmSupportObj={confirmSupportObj}
+                        confirmSupportObj={this.confirmSupportObj}
                     />:null}
 
                 <ButtonCust

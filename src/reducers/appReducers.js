@@ -8,6 +8,20 @@ export default function appReducers(state=defaultStore, action){
 
     switch(action.type){
 
+        //global
+        case "RESET_APP_SESSION":
+                return Object.assign({},state,{"appData":{...state.appData,
+                    appTargets:state.appData.appTargets.map((targetObj)=>{targetObj.selected=false; return targetObj}),
+                    appItems:state.appData.appItems.map((itemObj)=>{itemObj.selected=false; itemObj.recommended=false; return itemObj})
+                }});
+            break;
+
+        case "RESET_ITEM_SELECTIONS":
+                return Object.assign({},state,{"appData":{...state.appData,
+                    appItems:state.appData.appItems.map((itemObj)=>{itemObj.selected=false; return itemObj})
+                }});
+            break;
+
         case "LOAD_DATA_SUCCESS":
             if (action.data){
                 return Object.assign({},state,{"appData":action.data, "appDataLoaded":true});

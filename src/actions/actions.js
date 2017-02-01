@@ -1,7 +1,38 @@
 import {updateLocalStorage, getFromLocalStorage, getInitData} from '../localStorage/localStorageManager'
 
 
+// global
+
+export function resetCustomProcessAction() {
+    return {
+        type: "RESET_CUSTOM_PROCESS",
+        payload: {}
+    }
+}
+
+export function resetAppSessionAction() {
+    return {
+        type: "RESET_APP_SESSION",
+        payload: {}
+    }
+}
+
+export function resetItemSelectionsAction() {
+    return {
+        type: "RESET_ITEM_SELECTIONS",
+        payload: {}
+    }
+}
+
+export function resetUserSelectItemsAction() {
+    return {
+        type: "RESET_USER_SELECT_ITEMS",
+        payload: {}
+    }
+}
+
 //targets
+
 export function updateTargetObjAction(targetObj, key, value){
     return {
         type:"UPDATE_TARGET_OBJECT",
@@ -193,10 +224,4 @@ export function getAppDataAction(dispatch){
         }
 
     });
-}
-
-export function getUserAction(){
-    return {
-        type:"getUser"
-    }
 }

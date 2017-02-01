@@ -15,7 +15,7 @@ import ModalView from '../viewCommon/modalView';
 import SocialShare from '../viewCommon/socialShare';
 import PickerCust from '../viewCommon/pickerCust';
 
-import {saveCollectionAction} from '../actions/actions';
+import {saveCollectionAction, resetCustomProcessAction, resetAppSessionAction} from '../actions/actions';
 
 
 export default class SaveCollectionView extends React.Component {
@@ -52,7 +52,13 @@ export default class SaveCollectionView extends React.Component {
             this.state.catPickerInputText,
             this.props.userSelectItems));
 
+
+
         setTimeout(()=>{
+
+            //reset user selections
+            this.props.dispatch(resetCustomProcessAction());
+            this.props.dispatch(resetAppSessionAction());
 
             this.props.navigator.push(
                {

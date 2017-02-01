@@ -16,7 +16,8 @@ import SaveCollectionView from './saveCollectionView';
 import ButtonCust from '../viewCommon/buttonCust';
 import ItemModalContentView from './itemModalContentView';
 import {addItemAction, updateItemObjAction, removeItemAction, updatePrefsItemAction,
-        itemModalVisibilityAction, itemIncrementAction, itemDecrementAction} from '../actions/actions';
+        itemModalVisibilityAction, itemIncrementAction, itemDecrementAction,
+        resetItemSelectionsAction, resetUserSelectItemsAction} from '../actions/actions';
 
 
 class CustomView extends React.Component {
@@ -229,6 +230,12 @@ class CustomView extends React.Component {
             });
     };
 
+    onPressResetBtn = () => {
+
+        this.props.dispatch(resetItemSelectionsAction());
+        this.props.dispatch(resetUserSelectItemsAction());
+    };
+
     enableSaving = ()=> {
         return this.props.userSelectItems.length > 0;
     };
@@ -270,6 +277,14 @@ class CustomView extends React.Component {
                     styleTitle={this.props.styles.buttonTitleModalSave}
                     onButtonPress={this.onPressSave}
                     enabled={this.enableSaving()}
+                    styleDisabled = {{opacity:0.5}}
+                />
+                <ButtonCust
+                    title = "Reset"
+                    styleBox= {this.props.styles.buttonModalNext}
+                    styleTitle={this.props.styles.buttonTitleModalNext}
+                    onButtonPress={this.onPressResetBtn}
+                    enabled={true}
                     styleDisabled = {{opacity:0.5}}
                 />
             </View>

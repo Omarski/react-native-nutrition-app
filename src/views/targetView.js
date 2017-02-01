@@ -13,7 +13,9 @@ import {categorise} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
 import CustomView from './customView';
 import ButtonCust from '../viewCommon/buttonCust';
-import {addTargetAction, updateTargetObjAction, removeTargetAction, updatePrefsTargetAction, itemsRecommendCheckAction, targetModalVisibilityAction} from '../actions/actions';
+import {addTargetAction, updateTargetObjAction, removeTargetAction,
+        updatePrefsTargetAction, itemsRecommendCheckAction, targetModalVisibilityAction,
+        resetCustomProcessAction, resetAppSessionAction} from '../actions/actions';
 import TargetModalContentView from './targetModalContentView';
 
 class TargetView extends React.Component {
@@ -109,6 +111,12 @@ class TargetView extends React.Component {
             });
     };
 
+    onPressResetBtn = () => {
+
+        this.props.dispatch(resetCustomProcessAction());
+        this.props.dispatch(resetAppSessionAction());
+    };
+
     prepModalData = (targetObj) => {
 
         if (targetObj){
@@ -138,7 +146,8 @@ class TargetView extends React.Component {
 
         let targetHeadText = "";
         for (let i = 0 ; i < this.props.userSelectTargets.length; i++){
-            targetHeadText+= ", " + this.props.userSelectTargets[i].title;
+            const itemSeparator = (i == this.props.userSelectTargets.length -1)? "":", ";
+            targetHeadText+= this.props.userSelectTargets[i].title + itemSeparator;
        }
 
        return targetHeadText;
@@ -175,6 +184,14 @@ class TargetView extends React.Component {
                         styleTitle={this.props.styles.buttonTitleModalNext}
                         onButtonPress={this.onPressNextBtn}
                         enabled={this.props.userSelectTargets.length > 0}
+                        styleDisabled = {{opacity:0.5}}
+                    />
+                    <ButtonCust
+                        title = "Reset"
+                        styleBox= {this.props.styles.buttonModalNext}
+                        styleTitle={this.props.styles.buttonTitleModalNext}
+                        onButtonPress={this.onPressResetBtn}
+                        enabled={true}
                         styleDisabled = {{opacity:0.5}}
                     />
                 </View>

@@ -13,6 +13,8 @@ import SpecialSelectorIconsView from './specialSelectorIconsView';
 import StatsTrackerView from './statsTrackerView';
 import SocialShare from '../viewCommon/socialShare';
 import ButtonCust from '../viewCommon/buttonCust';
+import TaskConfirm from '../viewCommon/taskConfirm';
+
 //import {capFirstLetter} from '../js/common';
 
 export default class SavedCollModalContentView extends React.Component {
@@ -22,6 +24,7 @@ export default class SavedCollModalContentView extends React.Component {
         savedCollObj: PropTypes.object.isRequired,
         appDataDoneBtnText: PropTypes.string.isRequired,
         specialSelectorIconsColl: PropTypes.array,
+        confirmSupportObj: PropTypes.object.isRequired,
         userSelectStandard: PropTypes.string.isRequired,
         titleCap:PropTypes.func,
         onPressClose: PropTypes.func.isRequired
@@ -61,12 +64,28 @@ export default class SavedCollModalContentView extends React.Component {
                     userSelectTargets={this.props.userSelectTargets}
                     userSelectStandard={this.props.userSelectStandard}
                 />
+
+                {this.props.confirmSupportObj ? <TaskConfirm
+                    message = {this.props.confirmSupportObj.message}
+                    cancelMessage = {this.props.confirmSupportObj.cancelMessage}
+                    confirmContStyle = {this.props.confirmSupportObj.confirmContStyle}
+                    styleMessageBox = {this.props.confirmSupportObj.styleMessageBox}
+                    styleMessage = {this.props.confirmSupportObj.styleMessage}
+                    styleCancelBox = {this.props.confirmSupportObj.styleCancelBox}
+                    styleCancel = {this.props.confirmSupportObj.styleCancel}
+                    visible = {this.props.confirmSupportObj.visible}
+                    onConfirmPress = {this.props.confirmSupportObj.onConfirmPress}
+                    onConfirmCancel = {this.props.confirmSupportObj.onConfirmCancel}
+                    taskId = {this.props.savedCollObj.id}
+                    />:null}
+
                 {this.props.specialSelectorIconsColl ?
                     <View style = {this.props.styles.modalSpecialIconsShell}>
                         <SpecialSelectorIconsView
                             specialSelectorIconsColl = {this.props.specialSelectorIconsColl}
                             selectObj = {this.props.savedCollObj}
                         /></View>:null}
+
                 <ButtonCust
                     title = {this.props.appDataDoneBtnText}
                     styleBox= {this.props.styles.buttonCollectionSaveSave}

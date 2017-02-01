@@ -20,6 +20,23 @@ const defaultStore = {
 export default function userReducers(state=defaultStore, action){
     switch(action.type){
 
+        //global
+
+        case "RESET_CUSTOM_PROCESS":
+            return Object.assign({},state,
+                {userSelectData:{...state.userSelectData,
+                    targets:[],
+                    items:[]
+            }});
+        break;
+
+        case "RESET_USER_SELECT_ITEMS":
+            return Object.assign({},state,
+                {userSelectData:{...state.userSelectData,
+                    items:[]
+            }});
+        break;
+
         //targets
 
         case "ADD_TARGET_SELECTION":

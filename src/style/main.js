@@ -264,7 +264,8 @@ export const styles = StyleSheet.create({
         alignItems:"center",
         width:150,
         padding:20,
-        bottom:20
+        bottom:20,
+        zIndex:20
     },
 
     deleteCollConfirmMessageBox:{
