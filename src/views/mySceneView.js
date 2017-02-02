@@ -58,12 +58,6 @@ class MySceneView extends React.Component{
 
         )
     }
-
-// <View style={{marginTop: 200, alignSelf: 'center'}}>
-// <TouchableHighlight onPress = {() => this._handleNextPress({title:"Preferences", component:PreferencesView})}>
-// <Text> Preferences page</Text>
-// </TouchableHighlight>
-// </View>
 }
 
 //what props needed

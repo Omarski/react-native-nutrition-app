@@ -225,3 +225,11 @@ export function getAppDataAction(dispatch){
 
     });
 }
+
+//local storage integrate
+export function getLocalDataAction(userDataObj) {
+    return {
+        type: "GET_LOCAL_DATA",
+        payload: {userDataObj:userDataObj}
+    }
+}

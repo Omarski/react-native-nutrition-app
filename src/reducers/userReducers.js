@@ -1,11 +1,10 @@
 
 const defaultStore = {
-    userInfo: {
-        userName: 'Omar',
-        userAge: 23
+    userSettings: {
+        standard: "st",
+        language: "en"
     },
     userSelectData:{
-        standard:"st",
         targets:[],
         items:[],
         targetModal:null,
@@ -20,8 +19,17 @@ const defaultStore = {
 export default function userReducers(state=defaultStore, action){
     switch(action.type){
 
-        //global
+        //local storage integrate
+        case "GET_LOCAL_DATA":
+            return Object.assign({},state,
+                {userSelectData:{...state.userSelectData,
+                    targetsPrefsFavoured:action.payload.userDataObj.targetsPrefsFavoured ? action.payload.userDataObj.targetsPrefsFavoured:[],
+                    itemsPrefsFavoured:action.payload.userDataObj.itemsPrefsFavoured ? action.payload.userDataObj.itemsPrefsFavoured:[],
+                },userSavedColl:action.payload.userDataObj.userSavedColl ? action.payload.userDataObj.userSavedColl:[]
+                });
+            break;
 
+        //global
         case "RESET_CUSTOM_PROCESS":
             return Object.assign({},state,
                 {userSelectData:{...state.userSelectData,

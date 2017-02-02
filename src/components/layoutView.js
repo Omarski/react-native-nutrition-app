@@ -5,16 +5,22 @@ import {
 } from 'react-native';
 
 import {connect} from 'react-redux';
-
 import MySceneView from '../views/mySceneView';
-
-import {getAppDataAction} from '../actions/actions';
+import {getAppDataAction, getLocalDataAction} from '../actions/actions';
+import {getFromLocalStorage, setDefaultLocalStorage} from '../localStorage/localStorageManager'
 
 
 class LayoutView extends React.Component{
 
     componentWillMount(){
+        //remove
+        setDefaultLocalStorage();
         getAppDataAction(this.props.dispatch);
+        if (getFromLocalStorage("appUserData")) {
+            this.props.dispatch(getLocalDataAction(getFromLocalStorage("appUserData")));
+        }else{
+            setDefaultLocalStorage();
+        }
     }
 
     render(){

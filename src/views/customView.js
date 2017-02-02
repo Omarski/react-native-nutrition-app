@@ -297,7 +297,7 @@ const mapStateToProps = (state) => {
         appItemsData: state.appReducers.appData.appItems,
         itemPageHeader: state.appReducers.appData.appText.customPageHeader,
         userSelectItems: state.userReducers.userSelectData.items,
-        userSelectStandard: state.userReducers.userSelectData.standard,
+        userSelectStandard: state.userReducers.userSettings.standard,
         userSelectTargets: state.userReducers.userSelectData.targets,
         appDataItems: state.appReducers.appData.appItems,
         appDataSaveInputText: state.appReducers.appData.appText.saveCollectionDefaultText,
