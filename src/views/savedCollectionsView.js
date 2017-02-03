@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import {connect} from 'react-redux';
+import {updateLocalStorage, getFromLocalStorage} from '../localStorage/localStorageManager';
 import {categorise} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
 import SocialShare from '../viewCommon/socialShare';
@@ -67,6 +68,17 @@ class SavedCollectionsView extends React.Component {
 
     onConfirmDeleteColl = (collId) => {
         this.props.dispatch(deleteUserSavedCollAction(collId));
+
+        //local storage
+        getFromLocalStorage("userLocalData").then((userLocalData)=>{
+            const userLocalDataObj = JSON.parse(userLocalData);
+            const updatedObj = {...userLocalDataObj,userSavedColl:userLocalDataObj.userSavedColl.filter((savedColl)=>{
+                    return savedColl.id !== collId;
+                }
+            )};
+
+            updateLocalStorage("userLocalData",JSON.stringify(updatedObj));
+        });
     };
 
     onConfirmModalDeleteColl = (collId) => {
@@ -233,7 +245,7 @@ class SavedCollectionsView extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        userSelectStandard: state.userReducers.userSelectData.standard,
+        userSelectStandard: state.userReducers.userSettings.standard,
         savedCollModalActive: state.userReducers.userSelectData.savedCollModal,
         userSavedCollDelConfirmsVis: state.userReducers.userSelectData.userSavedCollDelConfirmsVis,
         appDataSavedColl: state.appReducers.appData.savedAppColl,

@@ -15,12 +15,22 @@ export function setDefaultLocalStorage(){
             },
             userSavedColl:[]
         }),
-        ()=>{(getFromLocalStorage("userLocalData").then((obj)=>console.log(JSON.parse(obj).userSettings.standard)))}
+        ()=>{AsyncStorage.removeItem("appData")}
+        // (getFromLocalStorage("userLocalData").then((obj)=>console.log(JSON.parse(obj).userSettings.standard)))
     );
 }
 
 export function updateLocalStorage(key,data){
-    AsyncStorage.setItem(key,data);
+    AsyncStorage.setItem(key,data,()=>{
+
+        getFromLocalStorage("userLocalData").then((obj)=>{
+            console.log("=================== userLocalData:");
+            console.log(JSON.parse(obj))
+        })
+
+
+
+    });
 }
 
 //returns a promise

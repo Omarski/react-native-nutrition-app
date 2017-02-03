@@ -18,6 +18,7 @@ export default class CollectionItemDisplayView extends React.Component {
     render() {
 
         const itemObj = this.props.itemObj;
+        console.log("Standard: " + this.props.userSelectStandard);
         const itemObjMeasurement = itemObj.measurement[this.props.userSelectStandard];
         const iconSrc = itemObjMeasurement.icon;
         return (

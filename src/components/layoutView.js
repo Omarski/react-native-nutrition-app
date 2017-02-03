@@ -13,14 +13,20 @@ import {getFromLocalStorage, setDefaultLocalStorage} from '../localStorage/local
 class LayoutView extends React.Component{
 
     componentWillMount(){
+
         //remove
-        setDefaultLocalStorage();
+        //setDefaultLocalStorage();
         getAppDataAction(this.props.dispatch);
-        if (getFromLocalStorage("appUserData")) {
-            this.props.dispatch(getLocalDataAction(getFromLocalStorage("appUserData")));
-        }else{
-            setDefaultLocalStorage();
-        }
+
+        getFromLocalStorage("appUserData").then((obj)=>{
+            if (obj){
+                console.log("oooooooooo found local user data...");
+                this.props.dispatch(getLocalDataAction(getFromLocalStorage("appUserData")));
+            } else {
+                console.log("oooooooooo No local user data... setting user default");
+                setDefaultLocalStorage();
+            }
+        });
     }
 
     render(){

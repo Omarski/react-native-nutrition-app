@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import {connect} from 'react-redux';
+import {updateLocalStorage, getFromLocalStorage} from '../localStorage/localStorageManager';
 import {categorise} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
 import StatsTrackerView from './statsTrackerView';
@@ -148,9 +149,29 @@ class CustomView extends React.Component {
         if (itemObj.favoured) {
             this.props.dispatch(updateItemObjAction(itemObj,"favoured",false));
             this.props.dispatch(updatePrefsItemAction(itemObj,"itemsPrefsFavoured","favoured",false));
+
+            getFromLocalStorage("userLocalData").then((userLocalData)=>{
+                const userLocalDataObj = JSON.parse(userLocalData);
+                const updatedObj = {...userLocalDataObj,userSelectData:{...userLocalDataObj.userSelectData,
+                    itemsPrefsFavoured:userLocalDataObj.userSelectData.itemsPrefsFavoured.filter((favouredId) =>{
+                        return favouredId !== itemObj.id;
+                    })
+                }};
+
+                updateLocalStorage("userLocalData",JSON.stringify(updatedObj));
+            });
         }else{
             this.props.dispatch(updateItemObjAction(itemObj,"favoured",true));
             this.props.dispatch(updatePrefsItemAction(itemObj,"itemsPrefsFavoured","favoured",true));
+
+            getFromLocalStorage("userLocalData").then((userLocalData)=>{
+                const userLocalDataObj = JSON.parse(userLocalData);
+                const updatedObj = {...userLocalDataObj,userSelectData:{...userLocalDataObj.userSelectData,
+                    itemsPrefsFavoured:[...userLocalDataObj.userSelectData.itemsPrefsFavoured,itemObj.id]
+                }};
+
+                updateLocalStorage("userLocalData",JSON.stringify(updatedObj));
+            });
         }
     };
 

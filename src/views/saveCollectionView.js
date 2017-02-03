@@ -7,6 +7,7 @@ import {
     TextInput
 } from 'react-native';
 
+import {updateLocalStorage, getFromLocalStorage} from '../localStorage/localStorageManager';
 import CollectionDisplayView from './collectionDisplayView';
 import StatsTrackerView from './statsTrackerView';
 import SavedCollectionsView from './savedCollectionsView';
@@ -14,7 +15,6 @@ import ButtonCust from '../viewCommon/buttonCust';
 import ModalView from '../viewCommon/modalView';
 import SocialShare from '../viewCommon/socialShare';
 import PickerCust from '../viewCommon/pickerCust';
-
 import {saveCollectionAction, resetCustomProcessAction, resetAppSessionAction} from '../actions/actions';
 
 
@@ -52,7 +52,19 @@ export default class SaveCollectionView extends React.Component {
             this.state.catPickerInputText,
             this.props.userSelectItems));
 
+        //local storage
+        getFromLocalStorage("userLocalData").then((userLocalData)=>{
+            const userLocalDataObj = JSON.parse(userLocalData);
+            const collObj = {
+                title:this.refs.saveTitleText._lastNativeText,
+                id:this.refs.saveTitleText._lastNativeText,
+                category:this.state.catPickerInputText,
+                itemsColl:this.props.userSelectItems
+        };
+            const updatedObj = {...userLocalDataObj,userSavedColl:[...userLocalDataObj.userSavedColl,collObj]};
 
+            updateLocalStorage("userLocalData",JSON.stringify(updatedObj));
+        });
 
         setTimeout(()=>{
 

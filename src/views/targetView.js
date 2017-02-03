@@ -7,10 +7,9 @@ import {
     Image,
     TouchableHighlight
 } from 'react-native';
-import {updateLocalStorage, getFromLocalStorage} from '../localStorage/localStorageManager'
-
 
 import {connect} from 'react-redux';
+import {updateLocalStorage, getFromLocalStorage} from '../localStorage/localStorageManager';
 import {categorise} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
 import CustomView from './customView';
@@ -79,17 +78,29 @@ class TargetView extends React.Component {
         if (targetObj.favoured) {
             this.props.dispatch(updateTargetObjAction(targetObj,"favoured",false));
             this.props.dispatch(updatePrefsTargetAction(targetObj,"targetsPrefsFavoured","favoured",false));
-            const userLocalData = getFromLocalStorage("userLocalData").then((obj)=>{return JSON.parse(obj)});
-            updateLocalStorage("userLocalData",{targetsPrefsFavoured:[...userLocalData.targetsPrefsFavoured,targetObj.id]});
-            console.log("Now updated userSelectData: ");
-            console.dir(getFromLocalStorage("userLocalData").then((obj)=>JSON.parse(obj)));
+
+            getFromLocalStorage("userLocalData").then((userLocalData)=>{
+                const userLocalDataObj = JSON.parse(userLocalData);
+                const updatedObj = {...userLocalDataObj,userSelectData:{...userLocalDataObj.userSelectData,
+                    targetsPrefsFavoured:userLocalDataObj.userSelectData.targetsPrefsFavoured.filter((favouredId) =>{
+                        return favouredId !== targetObj.id;
+                    })
+                }};
+
+                updateLocalStorage("userLocalData",JSON.stringify(updatedObj));
+            });
         }else{
             this.props.dispatch(updateTargetObjAction(targetObj,"favoured",true));
             this.props.dispatch(updatePrefsTargetAction(targetObj,"targetsPrefsFavoured","favoured",true));
-            const userLocalData = getFromLocalStorage("userLocalData");
-            updateLocalStorage("userLocalData",{targetsPrefsFavoured:[...userLocalData.targetsPrefsFavoured,targetObj.id]});
-            console.log("Now updated userSelectData: ");
-            console.dir(getFromLocalStorage("userLocalData").then((obj)=>JSON.parse(obj)));
+
+            getFromLocalStorage("userLocalData").then((userLocalData)=>{
+                const userLocalDataObj = JSON.parse(userLocalData);
+                const updatedObj = {...userLocalDataObj,userSelectData:{...userLocalDataObj.userSelectData,
+                    targetsPrefsFavoured:[...userLocalDataObj.userSelectData.targetsPrefsFavoured,targetObj.id]
+                }};
+
+                updateLocalStorage("userLocalData",JSON.stringify(updatedObj));
+            });
         }
     };
 
