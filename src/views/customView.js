@@ -10,7 +10,7 @@ import {
 
 import {connect} from 'react-redux';
 import {updateLocalStorage, getFromLocalStorage} from '../localStorage/localStorageManager';
-import {categorise} from '../js/common.js';
+import {categorise, titleCap} from '../js/common.js';
 import SelectionSliderListView from './selectionSliderListView';
 import StatsTrackerView from './statsTrackerView';
 import SaveCollectionView from './saveCollectionView';
@@ -128,21 +128,15 @@ class CustomView extends React.Component {
     };
 
     renderItemTitles = () => {
-
+        console.log(" >>>> : " + this.props.userSelectStandard);
         let itemHeadText = "";
         for (let i = 0 ; i < this.props.userSelectItems.length; i++){
             const itemSeparator = (i == this.props.userSelectItems.length -1)? "":", ";
-            itemHeadText+= this.props.userSelectItems[i].title + this.titleCap(this.props.userSelectItems[i]) + itemSeparator;
+            itemHeadText+= this.props.userSelectItems[i].title +
+                titleCap(this.props.userSelectItems[i],null,this.props.userSelectStandard) + itemSeparator;
         }
 
         return itemHeadText;
-    };
-
-    titleCap = (itemObj,mode=null)=>{
-        const itemMeasurementObj = itemObj.measurement[this.props.userSelectStandard];
-        const plural = itemMeasurementObj.current > itemMeasurementObj.incDef;
-        if (mode == "plain") return itemMeasurementObj.current + " " + itemMeasurementObj.title + (plural ? "s":"");
-        else return " ("+itemMeasurementObj.current + itemMeasurementObj.title + (plural ? "s":"") + ")";
     };
 
     onPressIconFavoured = (itemObj) => {
@@ -245,7 +239,7 @@ class CustomView extends React.Component {
                     appDataSaveCollCatInputText:this.props.appDataSaveCollCatInputText,
                     appDataShareOptions:this.props.appDataShareOptions,
                     appDataShareImageBase64:this.props.appDataShareImageBase64,
-                    titleCap:this.titleCap,
+                    titleCap:titleCap,
                     appDataSaveCat:this.props.appDataSaveCat,
                 }
             });
@@ -271,7 +265,7 @@ class CustomView extends React.Component {
                 </Text>
 
                 {/*user selections*/}
-                {this.props.userSelectItems ? <Text style={this.props.styles.itemViewUserItemsText}>
+                {this.props.userSelectItems? <Text style={this.props.styles.itemViewUserItemsText}>
                         {this.renderItemTitles()}
                     </Text>:null}
 
@@ -279,7 +273,8 @@ class CustomView extends React.Component {
                 {this.prepItemSliders() ? <SelectionSliderListView
                         styles = {this.props.styles}
                         slidersColl = {this.prepItemSliders()}
-                        titleCap = {this.titleCap}
+                        titleCap = {titleCap}
+                        userSelectStandard = {this.props.userSelectStandard}
                         onPressBlock={this.onPressBlock}
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
                         modal={this.prepModalData(this.props.itemModalActive)}

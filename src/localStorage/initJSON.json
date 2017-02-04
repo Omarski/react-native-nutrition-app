@@ -66,6 +66,7 @@
         "doneBtnText":"Done!",
         "saveCollCatInputText":"category",
         "savedCollViewHeader":"Here are the recipies you saved!",
+        "sampleCollViewHeader":"Here are example recipies!",
         "appDataDeleteCollConfirmText":"delete recipe?",
         "appDataCancelDeleteCollConfirmText":"cancel"
   },

@@ -24,7 +24,7 @@ export default class CollectionItemDisplayView extends React.Component {
         return (
             <View style={this.props.styles.collectionItemDisplayBlock}>
                 <Text style={this.props.styles.collectionItemDisplayAmountText}>
-                    {this.props.titleCap(this.props.itemObj,"plain")}
+                    {this.props.titleCap(this.props.itemObj,"plain",this.props.userSelectStandard)}
                 </Text>
                 <Image
                     source={{uri:iconSrc}}

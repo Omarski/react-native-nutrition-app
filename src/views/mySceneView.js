@@ -17,22 +17,14 @@ import PreferencesView from './preferencesView';
 class MySceneView extends React.Component{
 
     static propTypes = {
+        appData:PropTypes.object,
         navigator: PropTypes.object.isRequired,
         title: PropTypes.string,
         passProps:PropTypes.object,
-        appDataLoaded:PropTypes.bool
+        appDataLoaded:PropTypes.bool.isRequired
     };
 
-    _handleBackPress() {
-        this.props.navigator.pop();
-    }
-
-    _handleNextPress(nextRoute) {
-        this.props.navigator.push(nextRoute);
-    }
-
     render() {
-
         return (
             <View style={{flex:1}}>
 
@@ -60,7 +52,6 @@ class MySceneView extends React.Component{
     }
 }
 
-//what props needed
 const mapStateToProps = (state) => {
     return {
         appDataLoaded: state.appReducers.appDataLoaded

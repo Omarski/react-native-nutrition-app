@@ -23,3 +23,10 @@ export const findInObjArray = (coll, key, value) => {
 export const capFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
+
+export const titleCap = (itemObj,mode=null,standard)=>{
+    const itemMeasurementObj = itemObj.measurement[standard];
+    const plural = itemMeasurementObj.current > itemMeasurementObj.incDef;
+    if (mode == "plain") return itemMeasurementObj.current + " " + itemMeasurementObj.title + (plural ? "s":"");
+    else return " ("+itemMeasurementObj.current + itemMeasurementObj.title + (plural ? "s":"") + ")";
+};

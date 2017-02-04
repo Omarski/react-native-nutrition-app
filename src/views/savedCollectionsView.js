@@ -24,7 +24,8 @@ class SavedCollectionsView extends React.Component {
     static propTypes = {
         styles: PropTypes.object.isRequired,
         navigator: PropTypes.object.isRequired,
-        appDataSavedViewHeader:PropTypes.string.isRequired,
+        appDataSavedViewHeader:PropTypes.string,
+        sampleCollViewHeader:PropTypes.string,
         savedCollSource:PropTypes.string.isRequired,
         titleCap:PropTypes.func,
     };
@@ -103,7 +104,7 @@ class SavedCollectionsView extends React.Component {
 
     prepSpecialIconsColl = () => {
 
-        return [
+        if (this.props.savedCollSource === "user") {return [
             {   id:"share",
                 imgSrcOn:{uri:"specialSelectorIconShare.png"},
                 imgSrcOff:null,
@@ -121,12 +122,21 @@ class SavedCollectionsView extends React.Component {
                 onPressIcon:this.onPressIconDelete,
                 showIcon:()=>true
             },
+        ]} else return [
+            {   id:"share",
+                imgSrcOn:{uri:"specialSelectorIconShare.png"},
+                imgSrcOff:null,
+                styleOn:this.props.styles.specialSelectorIconShare,
+                styleOff:null,
+                onPressIcon:this.onPressSimpleShare,
+                showIcon:()=>true
+            }
         ]
     };
 
     prepSpecialModalIconsColl = () => {
 
-        return [
+        if (this.props.savedCollSource === "user") {return [
             {   id:"share",
                 imgSrcOn:{uri:"specialSelectorIconShare.png"},
                 imgSrcOff:null,
@@ -141,6 +151,15 @@ class SavedCollectionsView extends React.Component {
                 styleOn:this.props.styles.specialSelectorIconModalDelete,
                 styleOff:null,
                 onPressIcon:this.modalDeleteConfirmVisible,
+                showIcon:()=>true
+            }
+        ]} else return [
+            {   id:"share",
+                imgSrcOn:{uri:"specialSelectorIconShare.png"},
+                imgSrcOff:null,
+                styleOn:this.props.styles.specialSelectorIconModalShare,
+                styleOff:null,
+                onPressIcon:this.onPressSimpleShare,
                 showIcon:()=>true
             }
         ]

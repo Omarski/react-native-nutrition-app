@@ -35,6 +35,7 @@ export default class SelectionSliderListView extends React.Component {
                                 styles = {this.props.styles}
                                 sliderItems = {this.props.slidersColl[category]}
                                 titleCap = {this.props.titleCap}
+                                userSelectStandard = {this.props.userSelectStandard}
                                 onPressBlock = {this.props.onPressBlock}
                                 specialSelectorIconsColl={this.props.specialSelectorIconsColl}
                                 confirmSupportObj = {this.props.confirmSupportObj? this.props.confirmSupportObj:null}

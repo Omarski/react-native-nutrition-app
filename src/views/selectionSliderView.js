@@ -16,6 +16,7 @@ export default class SelectionSliderView extends React.Component {
         styles: PropTypes.object.isRequired,
         sliderItems: PropTypes.array.isRequired,
         titleCap: PropTypes.func,
+        userSelectStandard: PropTypes.string,
         onPressBlock: PropTypes.func.isRequired,
         specialSelectorIconsColl: PropTypes.array,
         confirmSupportObj: PropTypes.object
@@ -54,6 +55,7 @@ export default class SelectionSliderView extends React.Component {
                                 imgStyle={this.props.styles.targetViewItemBlockImg}
                                 blockTitle={rowData.title}
                                 titleCap={this.props.titleCap}
+                                userSelectStandard={this.props.userSelectStandard}
                                 blockTextStyle={this.props.styles.targetViewItemBlockText}
                                 blockId={rowData.id}
                                 onPressBlock={this.props.onPressBlock}
