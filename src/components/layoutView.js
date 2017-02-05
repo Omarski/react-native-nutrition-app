@@ -18,10 +18,13 @@ export default class LayoutView extends React.Component{
         //setDefaultLocalStorage();
         getAppDataAction(store.dispatch);
 
-        getFromLocalStorage("appUserData").then((obj)=>{
+        getFromLocalStorage("userLocalData").then((obj)=>{
+            console.log("++++++ storage...");
+            console.dir(obj);
             if (obj){
                 console.log("oooooooooo found local user data...");
-                store.dispatch(getLocalDataAction(getFromLocalStorage("appUserData")));
+                //store.dispatch(getLocalDataAction(getFromLocalStorage("appUserData")));
+                store.dispatch(getLocalDataAction(JSON.parse(obj)));
             } else {
                 console.log("oooooooooo No local user data... setting user default");
                 setDefaultLocalStorage();

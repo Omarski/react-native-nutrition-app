@@ -128,7 +128,6 @@ class CustomView extends React.Component {
     };
 
     renderItemTitles = () => {
-        console.log(" >>>> : " + this.props.userSelectStandard);
         let itemHeadText = "";
         for (let i = 0 ; i < this.props.userSelectItems.length; i++){
             const itemSeparator = (i == this.props.userSelectItems.length -1)? "":", ";

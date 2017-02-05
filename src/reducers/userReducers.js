@@ -22,12 +22,17 @@ export default function userReducers(state=defaultStore, action){
         //local storage integrate
         case "GET_LOCAL_DATA":
             return Object.assign({},state,
-                {userSelectData:{...state.userSelectData,
-                    targetsPrefsFavoured:action.payload.userDataObj.targetsPrefsFavoured ? action.payload.userDataObj.targetsPrefsFavoured:[],
-                    itemsPrefsFavoured:action.payload.userDataObj.itemsPrefsFavoured ? action.payload.userDataObj.itemsPrefsFavoured:[],
-                },userSavedColl:action.payload.userDataObj.userSavedColl ? action.payload.userDataObj.userSavedColl:[]
+                {
+                    userSettings:  {...state.userSettings,
+                        standard:action.payload.userDataObj.userSettings.standard,
+                        language:action.payload.userDataObj.userSettings.language},
+                    userSelectData: {...state.userSelectData,
+                        targetsPrefsFavoured:action.payload.userDataObj.targetsPrefsFavoured ? action.payload.userDataObj.targetsPrefsFavoured:[],
+                        itemsPrefsFavoured:action.payload.userDataObj.itemsPrefsFavoured ? action.payload.userDataObj.itemsPrefsFavoured:[]},
+                    userSavedColl:action.payload.userDataObj.userSavedColl ? action.payload.userDataObj.userSavedColl:[]
                 });
-            break;
+
+        break;
 
         //global
         case "RESET_CUSTOM_PROCESS":

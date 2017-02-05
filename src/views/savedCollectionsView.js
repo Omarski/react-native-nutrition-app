@@ -39,6 +39,10 @@ class SavedCollectionsView extends React.Component {
         let sliders = this.props.savedCollSource === "user" ?
         categorise(this.props.userDataSavedColl,"category"):
         categorise(this.props.appDataSavedColl,"category");
+        console.log("sliders coll <><><><><><><><><><><> source " + this.props.savedCollSource);
+        console.log("coll  user" + this.props.userDataSavedColl);
+        console.log("coll  sample" + this.props.appDataSavedColl);
+        console.dir(sliders);
         return sliders;
     };
 
@@ -224,6 +228,8 @@ class SavedCollectionsView extends React.Component {
 
     render() {
 
+        const preppedSliders = this.prepItemSliders();
+
         return (
 
             <View style={{flex:1}}>
@@ -239,9 +245,9 @@ class SavedCollectionsView extends React.Component {
                 />
 
                 {/*sliders list*/}
-                {this.prepItemSliders() ? <SelectionSliderListView
+                {preppedSliders ? <SelectionSliderListView
                         styles = {this.props.styles}
-                        slidersColl = {this.prepItemSliders()}
+                        slidersColl = {preppedSliders}
                         titleCap = {this.titleCap}
                         onPressBlock={this.onPressBlock}
                         specialSelectorIconsColl={this.prepSpecialIconsColl()}
