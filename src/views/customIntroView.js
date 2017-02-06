@@ -8,7 +8,10 @@ import {
 } from 'react-native';
 
 import {connect} from 'react-redux';
+import ButtonCust from '../viewCommon/buttonCust';
 import TargetView from './targetView';
+import PreferencesView from './preferencesView';
+
 
 class CustomIntroView extends React.Component{
 
@@ -16,6 +19,14 @@ class CustomIntroView extends React.Component{
         styles: PropTypes.object.isRequired,
         navigator: PropTypes.object.isRequired,
         introText: PropTypes.string
+    };
+
+    onPressPrefBtn = ()=>{
+        this.props.navigator.push(
+            {title:"Prefs",
+                component:PreferencesView,
+                passProps: {styles:this.props.styles}
+            });
     };
 
     render(){
@@ -31,6 +42,14 @@ class CustomIntroView extends React.Component{
                         Click here to start!
                     </Text>
                 </TouchableHighlight>
+                <ButtonCust
+                    title = "Preferences"
+                    styleBox= {this.props.styles.buttonModalNext}
+                    styleTitle={this.props.styles.buttonTitleModalNext}
+                    onButtonPress={this.onPressPrefBtn}
+                    enabled={true}
+                    styleDisabled = {{opacity:0.5}}
+                />
             </View>
         )
     }

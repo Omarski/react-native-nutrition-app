@@ -86,7 +86,7 @@ export const styles = StyleSheet.create({
         position:"absolute",
         width:37,
         height:34,
-        top:15,
+        top:-20,
         left:5,
         zIndex:10
     },
@@ -341,6 +341,21 @@ export const styles = StyleSheet.create({
       // width:300
         borderWidth:2,
         borderColor:"red"
+    },
+
+    //Prefs view
+    prefsBlockCont:{
+        flex:1,
+        marginTop:40
+        // justifyContent:"center",
+        // alignItems:"center",
+    },
+
+    optionBlock:{
+        backgroundColor:"#b8b8b8",
+        padding:20
+        // justifyContent:"center",
+        // alignItems:"center",
     },
 
     //Target View

@@ -27,8 +27,8 @@ export default function userReducers(state=defaultStore, action){
                         standard:action.payload.userDataObj.userSettings.standard,
                         language:action.payload.userDataObj.userSettings.language},
                     userSelectData: {...state.userSelectData,
-                        targetsPrefsFavoured:action.payload.userDataObj.targetsPrefsFavoured ? action.payload.userDataObj.targetsPrefsFavoured:[],
-                        itemsPrefsFavoured:action.payload.userDataObj.itemsPrefsFavoured ? action.payload.userDataObj.itemsPrefsFavoured:[]},
+                        targetsPrefsFavoured:action.payload.userDataObj.userSelectData.targetsPrefsFavoured ? action.payload.userDataObj.userSelectData.targetsPrefsFavoured:[],
+                        itemsPrefsFavoured:action.payload.userDataObj.userSelectData.itemsPrefsFavoured ? action.payload.userDataObj.userSelectData.itemsPrefsFavoured:[]},
                     userSavedColl:action.payload.userDataObj.userSavedColl ? action.payload.userDataObj.userSavedColl:[]
                 });
 
@@ -49,6 +49,14 @@ export default function userReducers(state=defaultStore, action){
                     items:[]
             }});
         break;
+
+        //prefs
+        case "CHANGE_SETTINGS_PREFS":
+            return Object.assign({},state,
+                {
+                    userSettings: {...state.userSettings, [action.payload.setting]: action.payload.value
+                    }});
+            break;
 
         //targets
 

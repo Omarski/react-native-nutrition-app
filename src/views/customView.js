@@ -51,7 +51,8 @@ class CustomView extends React.Component {
     };
 
     showFavouredIcon = (itemObj) => {
-        return itemObj.favoured;
+        //return itemObj.favoured;
+        return true;
     };
 
     showIncrementIcon = (itemObj) => {
@@ -68,7 +69,7 @@ class CustomView extends React.Component {
         return [
             {   id:"favoured",
                 imgSrcOn:{uri:"specialSelectorIconFavoredOn"},
-                imgSrcOff:null,
+                imgSrcOff:{uri:"specialSelectorIconFavoredOff"},
                 styleOn:this.props.styles.specialSelectorIconFavoredItemOn,
                 styleOff:null,
                 onPressIcon:this.onPressIconFavoured,

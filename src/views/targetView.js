@@ -41,7 +41,7 @@ class TargetView extends React.Component {
         return [
             {   id:"favoured",
                 imgSrcOn:{uri:"specialSelectorIconFavoredOn"},
-                imgSrcOff:null,
+                imgSrcOff:{uri:"specialSelectorIconFavoredOff"},
                 styleOn:this.props.styles.specialSelectorIconFavoredOn,
                 styleOff:null,
                 onPressIcon:this.onPressIconFavoured,

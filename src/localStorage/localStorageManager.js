@@ -14,10 +14,10 @@ export function setDefaultLocalStorage(){
                 itemsPrefsFavoured:[]
             },
             userSavedColl:[]
-        }),
-        ()=>{AsyncStorage.removeItem("appData")}
-        // (getFromLocalStorage("userLocalData").then((obj)=>console.log(JSON.parse(obj).userSettings.standard)))
+        })
     );
+
+    AsyncStorage.removeItem("appData");
 }
 
 export function updateLocalStorage(key,data){

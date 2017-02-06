@@ -14,8 +14,9 @@ export default class LayoutView extends React.Component{
 
     componentWillMount(){
 
-        //remove
+        //remove - resets all data.
         //setDefaultLocalStorage();
+
         getFromLocalStorage("userLocalData").then((localUserObj)=>{
             if (localUserObj){
                 console.log("oooooooooo found local user data...");

@@ -29,11 +29,12 @@ export default function appReducers(state=defaultStore, action){
                 {
                     appData:{...state.appData,
                         appTargets: state.appData.appTargets.map((targetObj) => {
-                            targetObj.favoured = action.payload.userDataObj.userSelectData.targets.indexOf(targetObj.id) !== -1;
-
+                            targetObj.favoured = action.payload.userDataObj.userSelectData.targetsPrefsFavoured.indexOf(targetObj.id) !== -1;
+                            return targetObj;
                         }),
                         appItems: state.appData.appItems.map((itemObj) => {
-                            itemObj.favoured = action.payload.userDataObj.userSelectData.targets.indexOf(itemObj.id) !== -1;
+                            itemObj.favoured = action.payload.userDataObj.userSelectData.itemsPrefsFavoured.indexOf(itemObj.id) !== -1;
+                            return itemObj;
                         })
                     }
                 });
