@@ -27,9 +27,6 @@ export function updateLocalStorage(key,data){
             console.log("=================== userLocalData:");
             console.log(JSON.parse(obj))
         })
-
-
-
     });
 }
 

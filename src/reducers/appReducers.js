@@ -1,4 +1,5 @@
 
+
 const defaultStore = {
     appData:{},
     appDataLoaded:false,
@@ -22,6 +23,24 @@ export default function appReducers(state=defaultStore, action){
                 }});
             break;
 
+        //local data integration
+        case "UPDATE_APP_WITH_LOCAL_DATA":
+            return Object.assign({},state,
+                {
+                    appData:{...state.appData,
+                        appTargets: state.appData.appTargets.map((targetObj) => {
+                            targetObj.favoured = action.payload.userDataObj.userSelectData.targets.indexOf(targetObj.id) !== -1;
+
+                        }),
+                        appItems: state.appData.appItems.map((itemObj) => {
+                            itemObj.favoured = action.payload.userDataObj.userSelectData.targets.indexOf(itemObj.id) !== -1;
+                        })
+                    }
+                });
+
+            break;
+
+        //data loading
         case "LOAD_DATA_SUCCESS":
             if (action.data){
                 return Object.assign({},state,{"appData":action.data, "appDataLoaded":true});
@@ -30,11 +49,11 @@ export default function appReducers(state=defaultStore, action){
             }
             break;
 
-        case "LOCAL_DATA_SUCCESS": case "INIT_DATA_SUCCESS":
-
+        case "LOCAL_APP_DATA_SUCCESS": case "INIT_DATA_SUCCESS":
             return Object.assign({},state,{"appData":action.data, "appDataLoaded":true});
             break;
 
+        //targets
         case "UPDATE_TARGET_OBJECT":
             return Object.assign({},state,{appData:{...state.appData, appTargets:state.appData.appTargets.map((obj) => {
                 if (obj.id === action.payload.targetObj.id) obj[action.payload.key] = action.payload.value;
@@ -42,6 +61,7 @@ export default function appReducers(state=defaultStore, action){
             })}});
             break;
 
+        //items
         case "UPDATE_ITEM_OBJECT":
             return Object.assign({},state,{appData:{...state.appData, appItems:state.appData.appItems.map((obj) => {
                 if (obj.id === action.payload.itemObj.id) obj[action.payload.key] = action.payload.value;

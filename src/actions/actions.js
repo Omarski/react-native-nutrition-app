@@ -1,5 +1,4 @@
-import {updateLocalStorage, getFromLocalStorage, getInitData} from '../localStorage/localStorageManager'
-
+import {updateLocalStorage, getInitData} from '../localStorage/localStorageManager'
 
 // global
 
@@ -86,8 +85,6 @@ export function targetModalVisibilityAction(targetObj,show){
 
 
 //Items
-
-
 export function itemsRecommendCheckAction(userSelectTargets,appItems){
     return {
         type:"UPDATE_RECOMMENDED_ITEMS",
@@ -200,37 +197,74 @@ export function deleteUserSavedCollAction(collTitle) {
     }
 }
 
+//Uses thunk - returns a function with chained dispatches
+export function getAppAndLocalData(url,localUserObj,localAppDataObj){
 
-//database connect
-export function getAppDataAction(dispatch){
+    return (dispatch) => {
 
-    fetch("http://localhost:3000/appData").then(
-        res => res.json()).then(data =>{
-        //console.log("............. result: " + data.userInit);
-        //dispatch store action only after we get server result
-        dispatch({ type: 'LOAD_DATA_SUCCESS', data:{data:data}});
-        //update local storage here
-        updateLocalStorage("appData",data);
+        fetch(url).then(
+            res => res.json()).then(data =>{
+            //console.log("............. result: " + data.userInit);
+            //dispatch store action only after we get server result
+            dispatch({ type: 'LOAD_DATA_SUCCESS', data:{data:data}});
+            //update local storage here
+            updateLocalStorage("appData",data);
+            dispatch(localUpdatesAppDataAction(JSON.parse(localUserObj)));
 
     }).catch(function(error) {
         //console.log('>>>>>>>>>>>>>> There has been a problem with your fetch operation: ' + error.message);
         //load local storage here
-        if (getFromLocalStorage("appData").then((obj)=>{
-            if (obj){
+            if (localAppDataObj){
                 console.log(">>>>>>>>>>> found local data...");
-                dispatch({ type: 'LOCAL_DATA_SUCCESS', data:getFromLocalStorage("appData")});
+                dispatch({ type: 'LOCAL_APP_DATA_SUCCESS', data:JSON.parse(localAppDataObj)});
+                console.log(">>>>>>>>>>> appData success dispatched ...");
+                dispatch(getLocalDataAction(localUserObj));
+                console.log(">>>>>>>>>>> dispatch get user data ...");
+                dispatch(localUpdatesAppDataAction(JSON.parse(localUserObj)));
+                console.log(">>>>>>>>>>> dispatch local to app update ...");
             } else {
                 console.log(">>>>>>>>>>> No local data...");
                 dispatch({ type: 'INIT_DATA_SUCCESS', data:getInitData()});
             }
-        }));
-    });
+        });
+    }
 }
+//server connect
+// export function getAppDataAction(dispatch){
+//
+//     fetch("http://localhost:3000/appData").then(
+//         res => res.json()).then(data =>{
+//         //console.log("............. result: " + data.userInit);
+//         //dispatch store action only after we get server result
+//         dispatch({ type: 'LOAD_DATA_SUCCESS', data:{data:data}});
+//         //update local storage here
+//         updateLocalStorage("appData",data);
+//
+//     }).catch(function(error) {
+//         //console.log('>>>>>>>>>>>>>> There has been a problem with your fetch operation: ' + error.message);
+//         //load local storage here
+//         getFromLocalStorage("appData").then((obj)=>{
+//             if (obj){
+//                 console.log(">>>>>>>>>>> found local data...");
+//                 dispatch({ type: 'LOCAL_DATA_SUCCESS', data:JSON.parse(obj)});
+//             } else {
+//                 console.log(">>>>>>>>>>> No local data...");
+//                 dispatch({ type: 'INIT_DATA_SUCCESS', data:getInitData()});
+//             }
+//         });
+//     });
+// }
 
 //local storage integrate
 export function getLocalDataAction(userDataObj) {
     return {
         type: "GET_LOCAL_DATA",
+        payload: {userDataObj:userDataObj}
+    }
+}
+export function localUpdatesAppDataAction(userDataObj) {
+    return {
+        type: "UPDATE_APP_WITH_LOCAL_DATA",
         payload: {userDataObj:userDataObj}
     }
 }
